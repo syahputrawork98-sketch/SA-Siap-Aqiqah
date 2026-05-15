@@ -1,29 +1,41 @@
 # SA-Siap-Aqiqah
 
-Project Sistem Informasi Manajemen Aqiqah (Siap Aqiqah) yang sedang dikembangkan sebagai evolusi dari project SIQAH Frontend.
+Project Sistem Informasi Manajemen Aqiqah (Siap Aqiqah) yang dikembangkan sebagai evolusi dari project SIQAH Frontend menjadi sebuah **Production-minded Development Suite**.
 
-## Status Saat Ini: Batch 15 (Handoff Checkpoint)
-Project telah menyelesaikan fase migrasi operasional admin tahap awal yang mencakup:
-- Seluruh halaman publik (Home, Tentang, Layanan, Paket, Kontak).
-- Fondasi layout Backoffice (Admin & Superadmin).
-- Dashboard Utama & Dashboard Data Master (Visual).
-- Halaman Operasional Admin (Pesanan, Detail, Pembayaran) secara visual dan mock logic.
+## Status Saat Ini: Batch 25 (Development Suite Checkpoint)
+
+Project telah mencapai fase integrasi awal antara Frontend dan Backend Development API. Status ringkas:
+- **Public Website**: Selesai.
+- **Backoffice UI**: Selesai untuk Admin & Superadmin (Pesanan, Pembayaran, Laporan, Notifikasi, Pengaturan).
+- **Data Master**: UI Selesai. Integrasi API aktif untuk Hewan dan Kandang.
+- **Backend Foundation**: Express.js aktif dengan rute health check dan Data Master API (Read-only, In-memory).
+- **Pembayaran Manual**: UI instruksi rekening dan upload preview selesai (Frontend-only).
 
 ## Struktur Project
-Project ini menggunakan struktur monorepo ringan:
-- **`client/`**: Frontend aplikasi menggunakan React + Vite + Tailwind v4.
-- **`server/`**: Backend aplikasi (saat ini masih berupa placeholder).
-- **`docs/`**: Pusat dokumentasi aktif project.
-  - `docs/project/`: Roadmap, status terkini, handoff, dan panduan workflow.
-  - `docs/batches/`: Log histori pengerjaan per batch.
 
-## Menjalankan Project (Local Development)
-Untuk menjalankan frontend:
+- **`client/`**: Frontend React + Vite + Tailwind v4 + DaisyUI.
+- **`server/`**: Backend Express.js (Development Mode, In-memory Data).
+- **`docs/`**: Dokumentasi aktif (Roadmap, Status, Batches).
+
+## Cara Menjalankan Project (Local Development)
+
+### 1. Menjalankan Backend (Server)
+```bash
+cd server
+npm install
+cp .env.example .env
+npm run dev # atau npm run start
+```
+*Port default: 3001*
+
+### 2. Menjalankan Frontend (Client)
 ```bash
 cd client
 npm install
+cp .env.example .env
 npm run dev
 ```
+*Pastikan VITE_API_BASE_URL di .env mengarah ke port server (default: http://localhost:3001/api)*
 
 ---
-*Catatan: Status terakhir adalah Batch 15 Checkpoint. Transisi ke pengembangan fitur data master detail atau inisiasi backend akan dilakukan di sesi berikutnya.*
+*Catatan: Project saat ini adalah Development Suite. Fitur database, otentikasi produksi, dan payment gateway masih dalam status HOLD.*

@@ -79,3 +79,56 @@
   - Memperbarui rute /admin/data-master/hewan dan /admin/data-master/kandang untuk menggunakan komponen baru.
 - **Status**: Selesai.
 - **Hasil**: Halaman Data Hewan dan Data Kandang aktif secara visual dan fungsional (frontend-only) dengan data mock yang realistis.
+
+---
+
+## Batch 17: Migration Phase - Admin Data Master Catering, Menu, dan Paket UI (Frontend-only)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memigrasikan tampilan Data Catering, Menu, dan Paket di area Data Master Admin.
+- **Pekerjaan**:
+  - Membuat halaman DataCatering.jsx, DataMenu.jsx, dan DataPaket.jsx.
+  - Implementasi tabel, filter, dan summary statistics untuk masing-masing entitas.
+  - Menyiapkan mock data lengkap di model adminDataMasterData.js.
+  - Memperbarui rute /admin/data-master/* untuk menggantikan komponen placeholder.
+- **Status**: Selesai.
+- **Hasil**: Seluruh modul utama Data Master telah memiliki tampilan fungsional secara frontend-only.
+
+---
+
+## Batch 18: Migration Phase - User, Mitra, dan Konsumen Management UI (Frontend-only)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Membuat halaman manajemen pengguna untuk Admin dan Superadmin.
+- **Pekerjaan**:
+  - Membuat halaman Manajemen User Internal (Superadmin).
+  - Membuat halaman Manajemen Mitra dan Konsumen (Admin/Superadmin).
+  - Menyiapkan mock data di features/admin/model/adminUsersData.js.
+  - Memperbarui rute di adminRoutes.jsx dan superadminRoutes.jsx.
+- **Status**: Selesai.
+- **Hasil**: Modul manajemen pengguna aktif secara visual dengan fungsionalitas filter role dan pencarian dasar.
+
+---
+
+## Batch 19: Enhancement Phase - Pembayaran Manual: Rekening & Upload UI (Frontend-only)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Menambahkan instruksi pembayaran manual dan fitur upload bukti transfer (simulasi).
+- **Pekerjaan**:
+  - Membuat halaman KonfirmasiPembayaran.jsx di sisi publik/konsumen.
+  - Implementasi tampilan nomor rekening dengan fitur 'Salin'.
+  - Implementasi area upload bukti transfer dengan fitur preview lokal (URL.createObjectURL).
+  - Meningkatkan ModalValidasiPembayaran di sisi Admin untuk menampilkan bukti transfer lebih jelas.
+- **Status**: Selesai.
+- **Hasil**: Alur pembayaran manual telah memiliki fondasi UI yang kuat dan realistis.
+
+---
+
+## Batch 20: Migration Phase - Laporan, Notifikasi, dan Pengaturan UI (Frontend-only)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Melengkapi halaman pendukung backoffice (Laporan, Notifikasi, Pengaturan).
+- **Pekerjaan**:
+  - Membuat halaman Laporan (Summary & Periode).
+  - Membuat halaman Notifikasi (Kategori & Mark-as-read).
+  - Membuat halaman Pengaturan (Informasi Bisnis & Preferensi Sistem).
+  - Menyiapkan mock data di features/admin/model/adminSupportData.js.
+  - Memperbarui rute admin dan superadmin.
+- **Status**: Selesai.
+- **Hasil**: Seluruh rute di sidebar backoffice kini telah memiliki halaman fungsional.

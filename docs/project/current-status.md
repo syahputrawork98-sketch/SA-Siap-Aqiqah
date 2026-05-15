@@ -2,28 +2,45 @@
 
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
-- **Versi**: 0.1.4 (Data Master Expansion)
-- **Status**: Batch 16 Selesai.
-- **Target Utama**: Migrasi Admin Data Master Hewan dan Kandang UI (Frontend-only).
+- **Versi**: 0.2.5 (Integration Foundation)
+- **Status**: Batch 25 Selesai (Checkpoint).
+- **Klasifikasi**: Production-minded Development Suite.
 
 ## Kondisi Saat Ini
-1. **Public Website**: Selesai. Seluruh halaman publik aktif.
-2. **Backoffice Foundation**: Selesai. Layout, sidebar, topbar fungsional untuk Admin & Superadmin.
-3. **Dashboards**: Selesai. Admin, Superadmin, dan Data Master Dashboard fungsional secara visual.
-4. **Admin Operational**: Selesai (UI-only). Halaman Pesanan, Detail Pesanan, dan Pembayaran (dengan simulasi validasi) sudah aktif.
-5. **Data Master**: Aktif (Partial). Dashboard, Data Hewan, dan Data Kandang sudah aktif secara UI-only dengan mock data. Modul Catering, Menu, dan Paket masih placeholder.
-6. **Data Management**: Frontend-only. Seluruh fitur menggunakan data mock/static lokal; belum ada integrasi API/Backend/Database.
-7. **Backend Foundation**: Masih berupa placeholder di `server/`.
+
+### 1. Frontend (Client)
+- **Public Website**: Selesai. Seluruh halaman (Home, Tentang, Layanan, Paket, Kontak, Konfirmasi Pembayaran) aktif.
+- **Backoffice Layout**: Selesai. Sidebar responsif dan role-based navigation aktif.
+- **Operational Admin**: Selesai (UI-only). Pesanan, Detail Pesanan, dan Pembayaran (dengan simulasi validasi) fungsional secara visual.
+- **Data Master**: 
+  - **Hewan & Kandang**: Terintegrasi dengan Backend Development API (Read-only).
+  - **Catering, Menu, Paket**: Selesai secara UI-only dengan mock data lokal.
+- **Management UI**: Selesai (UI-only) untuk Manajemen User, Mitra, dan Konsumen.
+- **Supporting UI**: Selesai (UI-only) untuk Laporan, Notifikasi, dan Pengaturan Bisnis.
+- **Pembayaran Manual**: UI instruksi rekening dan upload preview bukti transfer selesai (Frontend-only).
+
+### 2. Backend (Server)
+- **Framework**: Express.js aktif.
+- **API Status**: Aktif untuk rute Health Check dan Data Master (Read-only).
+- **Data Storage**: In-memory (Mock data server-side). Belum ada database permanen.
+- **Endpoints**:
+  - `/api/health`: Status sistem.
+  - `/api/data-master/*`: List dan Detail Hewan, Kandang, Catering, Menu, Paket.
+
+### 3. Infrastruktur & Keamanan
+- **Database**: Belum ada (HOLD).
+- **Auth Production**: Belum ada. Simulasi Role via Developer Persona Switcher.
+- **Payment Gateway**: Belum ada (HOLD).
+- **Cloud Storage**: Belum ada. Upload bukti transfer hanya preview lokal.
 
 ## Catatan Risiko & Limitasi
-1. **Assets**: Cloudinary/external assets masih bersifat temporary.
-2. **Backend**: Belum ada integrasi API maupun Database nyata.
-3. **Security**: Role Guard masih bersifat development-only (mock).
-4. **CRUD**: Tombol CRUD (Tambah/Edit/Hapus) di Data Master masih bersifat visual-only (simulasi).
-5. **Detail Fitur**: Modul detail Catering, Menu, Paket, dan Laporan belum dimigrasikan.
+1. **In-Memory Data**: Data di backend akan ter-reset setiap kali server di-restart.
+2. **Read-Only Integration**: Integrasi frontend-backend saat ini baru sebatas membaca data (GET). Fitur Create/Update/Delete masih simulasi visual.
+3. **No Auth**: Belum ada sistem login nyata atau JWT.
+4. **Environment**: Memerlukan `VITE_API_BASE_URL` yang dikonfigurasi dengan benar agar frontend dapat berkomunikasi dengan backend.
 
-## Milestone Terdekat (Draft)
-- Migrasi Detail Data Master (Catering, Menu, Paket) - UI Only.
-- Migrasi Manajemen Users/Mitra/Konsumen - UI Only.
-- Persiapan Arsitektur Server (Node.js/Express).
-- Setup Database Schema & Migration Foundation.
+## Milestone Terdekat (Batch 26+)
+1. Integrasi API untuk modul Catering, Menu, dan Paket.
+2. Pengembangan Development API untuk Pesanan dan Pembayaran (Read-only).
+3. Integrasi frontend Pesanan/Pembayaran ke API Development.
+4. Perencanaan skema database (Prisma/PostgreSQL) - Tahap Draft.
