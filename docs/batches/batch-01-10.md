@@ -152,3 +152,15 @@
   - Implementasi StatusBadge lokal untuk tabel dashboard.
   - Verifikasi build dan lint monorepo.
 - **Status**: Selesai.
+
+---
+
+## Batch 10: Checkpoint - Finalisasi Tahap Awal Migrasi Frontend
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Sinkronisasi dokumentasi dan verifikasi build batch 1-10.
+- **Pekerjaan**:
+  - Sinkronisasi current-status.md, roadmap.md, dan migration-notes.md.
+  - Verifikasi build dan lint terakhir untuk siklus migrasi awal.
+  - Penyusunan draft rencana Batch 11-20.
+  - Tidak ada penambahan fitur baru.
+- **Status**: Selesai.

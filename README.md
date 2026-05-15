@@ -2,19 +2,27 @@
 
 Project Sistem Informasi Manajemen Aqiqah (Siap Aqiqah) yang sedang dikembangkan sebagai evolusi dari project SIQAH Frontend.
 
+## Status Saat Ini: Batch 10 (Frontend Migration Checkpoint)
+Project telah menyelesaikan fase migrasi frontend tahap awal yang mencakup:
+- Seluruh halaman publik (Home, Tentang, Layanan, Paket, Kontak).
+- Fondasi layout Backoffice (Admin & Superadmin).
+- Dashboard utama Admin & Superadmin (UI-only dengan mock data).
+
 ## Struktur Project
+Project ini menggunakan struktur monorepo ringan:
+- **`client/`**: Frontend aplikasi menggunakan React + Vite + Tailwind v4.
+- **`server/`**: Backend aplikasi (saat ini masih berupa placeholder).
+- **`docs/`**: Pusat dokumentasi aktif project.
+  - `docs/project/`: Roadmap, status terkini, dan panduan workflow.
+  - `docs/batches/`: Log histori pengerjaan setiap batch.
 
-Project ini menggunakan struktur monorepo ringan untuk memudahkan sinkronisasi antara frontend, backend, dan dokumentasi.
-
-- **`client/`**: Frontend aplikasi menggunakan React (Functional Components + Hooks).
-- **`server/`**: Backend aplikasi (rencana menggunakan Node.js/Express dengan Layered Architecture).
-- **`docs/`**: Dokumentasi teknis dan manajemen project (Pusat Dokumentasi Tunggal).
-  - `docs/project/`: Status, roadmap, batasan scope, dan **`workflow.md`** (aturan kerja resmi).
-  - `docs/batches/`: Log progress per batch pengerjaan.
-
-## Status Migrasi
-
-Saat ini project dalam fase awal migrasi dari repo **SIQAH Frontend**. Migrasi dilakukan secara bertahap (batch per batch) untuk memastikan stabilitas dan kualitas kode.
+## Menjalankan Project (Local Development)
+Untuk menjalankan frontend:
+```bash
+cd client
+npm install
+npm run dev
+```
 
 ---
-*Catatan: Batch 1-10 fokus pada setup fondasi dan stabilisasi struktur.*
+*Catatan: Segala rujukan teknis dan aturan kerja mengacu pada `docs/project/workflow.md`.*
