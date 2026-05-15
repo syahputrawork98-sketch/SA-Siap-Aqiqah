@@ -22,9 +22,9 @@ Menghubungkan seluruh modul operasional ke API dan merancang persistensi data.
 ## Fase 5: Hardening & Production Launch (Batch 31+) - FUTURE FOCUS
 Membangun sistem yang benar-benar siap pakai secara nyata.
 
-- **Persistensi Data**: Implementasi Database fisik (PostgreSQL).
+- **Batch 31**: **API Contract Normalization** - Standarisasi seluruh field API (English naming) sebelum masuk ke database fisik.
+- **Batch 32-35**: **Persistensi Data** - Implementasi Database fisik (PostgreSQL) menggunakan Prisma ORM.
 - **Otentikasi Produksi**: Implementasi Auth, JWT, dan RBAC nyata bagi User/Mitra.
 - **Storage Produksi**: Implementasi Server/Cloud Storage untuk bukti transfer.
 - **Audit & Logging**: Implementasi Audit Trail untuk transaksi finansial.
-- **Payment Gateway**: Bersifat opsional (Future Optional); sistem tetap mengandalkan Transfer Manual sebagai jalur utama.
 - **Deployment**: Hardening infrastruktur dan peluncuran produksi.
