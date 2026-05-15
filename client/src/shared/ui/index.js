@@ -3,3 +3,5 @@ export { default as PublicButton } from "./PublicButton";
 export { default as PublicSection } from "./PublicSection";
 export { default as PublicCard } from "./PublicCard";
 export { default as SectionHeading } from "./SectionHeading";
+export { default as PublicBadge } from "./PublicBadge";
+export { default as PublicStat } from "./PublicStat";

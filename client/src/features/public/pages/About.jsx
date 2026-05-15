@@ -1,11 +1,23 @@
-import React from 'react';
+import React from "react";
+import HeroAbout from "@/features/public/ui/about/HeroAbout";
+import VisiMisi from "@/features/public/ui/about/VisiMisi";
+import StorySection from "@/features/public/ui/about/StorySection";
+import LogoMeaning from "@/features/public/ui/about/LogoMeaning";
+import TeamSection from "@/features/public/ui/about/TeamSection";
+import ValuesSection from "@/features/public/ui/about/ValuesSection";
+import CTASection from "@/features/public/ui/about/CTASection";
 
 const About = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[40vh]">
-      <h1 className="text-3xl font-bold">Tentang Kami</h1>
-      <p className="mt-4 opacity-70">Placeholder halaman Tentang Kami. Migrasi konten lengkap di Batch 5.</p>
-    </div>
+    <main className="w-full">
+      <HeroAbout />
+      <VisiMisi />
+      <StorySection />
+      <LogoMeaning />
+      <TeamSection />
+      <ValuesSection />
+      <CTASection />
+    </main>
   );
 };
 

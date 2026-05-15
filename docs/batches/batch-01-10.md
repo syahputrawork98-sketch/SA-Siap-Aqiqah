@@ -105,6 +105,13 @@
 
 ---
 
-## Batch 06: Migration Phase - Full Public Pages (About, Services, etc) (Upcoming)
-- **Tujuan**: Migrasi konten lengkap untuk halaman Tentang, Layanan, Paket, dan Kontak.
-- **Rencana**: Memindahkan sisa halaman publik agar tidak ada lagi placeholder di sisi User.
+## Batch 06: Migration Phase - Full Public Pages
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memigrasikan sisa halaman publik (Tentang, Layanan, Paket, Kontak).
+- **Pekerjaan**:
+  - Migrasi halaman `About`, `Services`, `Paket`, dan `Contact`.
+  - Migrasi semua UI section pendukung ke folder `ui/[page]/`.
+  - Menambah komponen shared UI: `PublicBadge` dan `PublicStat`.
+  - Implementasi `siqah-field` di `index.css` untuk form kontak.
+  - Verifikasi routing dan build aman.
+- **Status**: Selesai.

@@ -55,9 +55,16 @@
   
   --image-public-background: url("https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg");
 
+  /* Component intent tokens */
+  --color-field-bg: var(--color-bg-surface, #ffffff);
+  --color-field-border: var(--color-brand-border-soft);
+  --color-field-placeholder: #9ca3af;
+  --color-state-danger-fill: #dc2626;
+
   /* Shared utility classes helper */
   --font-family-body: "Montserrat", sans-serif;
   --font-family-heading: "Cormorant Garamond", serif;
+  --font-size-sm: 0.875rem;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
@@ -133,6 +140,32 @@ body {
 
 .siqah-public-overlay-soft-glow {
   background-image: var(--color-public-overlay-soft-glow);
+}
+
+.siqah-field {
+  width: 100%;
+  border: 1px solid var(--color-field-border);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.25rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-default);
+  background-color: var(--color-field-bg);
+}
+
+.siqah-field::placeholder {
+  color: var(--color-field-placeholder);
+}
+
+.siqah-field:focus {
+  outline: none;
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-brand-primary) 25%, transparent);
+}
+
+.siqah-field[aria-invalid="true"] {
+  border-color: var(--color-state-danger-fill);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-state-danger-fill) 25%, transparent);
 }
 
 #root {
