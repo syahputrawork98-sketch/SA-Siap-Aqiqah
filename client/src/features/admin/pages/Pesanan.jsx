@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button, Card, CardHeader, CardContent } from "@/shared/ui";
 import { Search, Filter, Eye, CheckCircle, Clock, Package } from "lucide-react";
 import { MOCK_ORDERS } from "../model/adminOrdersData";
@@ -98,10 +99,12 @@ export default function Pesanan() {
                         <StatusBadge status={p.status} />
                       </td>
                       <td className="py-2 px-3 text-center">
-                        <Button variant="ghost" size="sm" className="mx-auto text-[var(--color-public-accent)] hover:text-[var(--color-public-accent-hover)]">
-                          <Eye size={16} />
-                          <span>Detail</span>
-                        </Button>
+                        <Link to={`/admin/pesanan/${p.id}`}>
+                          <Button variant="ghost" size="sm" className="mx-auto text-[var(--color-public-accent)] hover:text-[var(--color-public-accent-hover)]">
+                            <Eye size={16} />
+                            <span>Detail</span>
+                          </Button>
+                        </Link>
                       </td>
                     </tr>
                   ))

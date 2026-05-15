@@ -3,15 +3,15 @@
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
 - **Versi**: 0.1.2 (Initial Frontend Migration Checkpoint)
-- **Status**: Batch 11 Selesai.
-- **Target Utama**: Migrasi Admin Pesanan UI (Frontend-only).
+- **Status**: Batch 12 Selesai.
+- **Target Utama**: Migrasi Admin Detail Pesanan UI (Frontend-only).
 
 ## Kondisi Saat Ini
-1. **Admin Pesanan**: Selesai. Tampilan manajemen pesanan dengan fitur filter status dan pencarian nama konsumen sudah aktif.
-2. **Admin Dashboard**: Selesai. Tampilan dashboard utama dengan statistik operasional.
-3. **Superadmin Dashboard**: Selesai. Dashboard visual dengan statistik sistem dan grafik Recharts.
-4. **Data Management**: Frontend-only. Data menggunakan mock/static lokal (`adminOrdersData.js`, dll).
-5. **Shared UI Backoffice**: `Card`, `AsyncState`, `StatusBadge`, dan `Button` sudah berfungsi penuh di backoffice.
+1. **Admin Detail Pesanan**: Selesai. Tampilan detail pesanan lengkap dengan informasi konsumen, pembayaran, dan progress operasional sudah aktif.
+2. **Admin Pesanan**: Selesai. Daftar pesanan sudah terhubung dengan halaman detail melalui tombol "Detail".
+3. **Dashboards**: Admin dan Superadmin Dashboard sudah aktif dengan data mock.
+4. **Data Management**: Frontend-only. Menggunakan mock data lokal (`adminOrderDetailsData.js`).
+5. **Routing**: Rute `/admin/pesanan/:id` telah ditambahkan dan berfungsi.
 6. **Backend**: Masih berupa placeholder di `server/`.
 
 ## Catatan Risiko & Limitasi

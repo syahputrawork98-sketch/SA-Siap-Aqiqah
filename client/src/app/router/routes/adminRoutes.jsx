@@ -1,6 +1,7 @@
 import React from 'react';
 import Dashboard from '@/features/admin/pages/Dashboard';
 import Pesanan from '@/features/admin/pages/Pesanan';
+import DetailPesanan from '@/features/admin/pages/DetailPesanan';
 
 export const adminRoutes = [
   {
@@ -10,5 +11,9 @@ export const adminRoutes = [
   {
     path: 'pesanan',
     element: <Pesanan />,
+  },
+  {
+    path: 'pesanan/:id',
+    element: <DetailPesanan />,
   },
 ];
