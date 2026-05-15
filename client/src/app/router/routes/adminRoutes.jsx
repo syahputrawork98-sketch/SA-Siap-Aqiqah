@@ -3,6 +3,8 @@ import Dashboard from '@/features/admin/pages/Dashboard';
 import Pesanan from '@/features/admin/pages/Pesanan';
 import DetailPesanan from '@/features/admin/pages/DetailPesanan';
 import Pembayaran from '@/features/admin/pages/Pembayaran';
+import Mitra from '@/features/admin/pages/Mitra';
+import Konsumen from '@/features/admin/pages/Konsumen';
 import DashboardData from '@/features/admin/pages/data-master/DashboardData';
 import DataHewan from '@/features/admin/pages/data-master/DataHewan';
 import DataKandang from '@/features/admin/pages/data-master/DataKandang';
@@ -27,6 +29,14 @@ export const adminRoutes = [
   {
     path: 'pembayaran',
     element: <Pembayaran />,
+  },
+  {
+    path: 'mitra',
+    element: <Mitra />,
+  },
+  {
+    path: 'konsumen',
+    element: <Konsumen />,
   },
   {
     path: 'data-master',
