@@ -61,3 +61,55 @@
   - Klarifikasi alur **Transfer Manual** sebagai jalur pembayaran produksi yang valid.
 - **Status**: Selesai.
 - **Hasil**: Dokumentasi project kini secara konsisten mengarah pada target sistem produksi yang nyata.
+
+---
+
+## Batch 26: Integration Phase - Integrasi Frontend Data Catering, Menu, & Paket ke API
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Menghubungkan modul sisa Data Master ke Backend API.
+- **Pekerjaan**:
+  - Refactor `DataCatering.jsx`, `DataMenu.jsx`, dan `DataPaket.jsx` untuk mengambil data dari API.
+  - Implementasi filter kategori (Menu) dan filter jenis hewan (Paket) via API query params.
+  - Penambahan badge "Development API" pada seluruh modul Data Master.
+- **Status**: Selesai.
+- **Hasil**: Seluruh modul Data Master (5 entitas) telah beralih dari mock statis ke dynamic API integration.
+
+---
+
+## Batch 27: Backend API - Development API Pesanan & Pembayaran Manual
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Membuat API pengembangan untuk manajemen pesanan dan pembayaran.
+- **Pekerjaan**:
+  - Pembuatan modul server `orders` dan `payments` dengan layered architecture.
+  - Penyiapan mock data in-memory yang sinkron dengan kebutuhan operasional.
+  - Implementasi endpoint list, detail, dan summary untuk Orders & Payments.
+  - Implementasi endpoint `bank-accounts` untuk instruksi pembayaran.
+- **Status**: Selesai.
+- **Hasil**: Backend telah siap mendukung alur operasional utama secara dinamis.
+
+---
+
+## Batch 28: Integration Phase - Integrasi Frontend Pesanan & Pembayaran Manual ke API
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Menghubungkan frontend operasional admin dan konfirmasi pembayaran publik ke API.
+- **Pekerjaan**:
+  - Pembuatan `orderApi.js` dan `paymentApi.js` service di sisi client.
+  - Refactor `Pesanan.jsx`, `DetailPesanan.jsx`, dan `Pembayaran.jsx` untuk integrasi API.
+  - Hubungkan daftar rekening di `KonfirmasiPembayaran.jsx` ke API.
+  - Pengayaan mock data server untuk mendukung tampilan detail yang realistis.
+- **Status**: Selesai.
+- **Hasil**: Seluruh alur operasional utama (Master Data, Order, Payment) kini telah API-backed.
+
+---
+
+## Batch 29: Documentation Phase - Database Schema Planning & Production Data Model Draft
+- **Tanggal**: 2026-05-16
+- **Tujuan**: Merancang blueprint database relasional untuk transisi ke production system.
+- **Pekerjaan**:
+  - Pembuatan dokumen `docs/technical/database-schema-planning.md`.
+  - Pemetaan entitas utama (User, Customer, Order, Payment, Master Data).
+  - Perancangan relasi antar entitas (ERD level tinggi).
+  - Pembuatan draft pseudo Prisma model sebagai panduan implementasi.
+  - Analisis jalur produksi pembayaran manual (Audit trail & Storage).
+- **Status**: Selesai.
+- **Hasil**: Rencana teknis untuk transisi database telah terkunci dan terdokumentasi.
