@@ -24,7 +24,7 @@
   /* Public layout tokens */
   --color-public-primary: var(--core-public-primary);
   --color-public-accent: var(--core-public-accent);
-  --color-public-accent-hover: var(--color-public-accent-hover);
+  --color-public-accent-hover: var(--core-public-accent-hover);
   --color-public-text-on-dark: #f8fafc;
   --color-public-text-on-dark-soft: rgb(243 244 246 / 92%);
   --color-public-text-soft: color-mix(in srgb, var(--color-public-primary) 82%, white);

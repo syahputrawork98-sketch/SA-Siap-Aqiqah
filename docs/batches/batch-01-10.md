@@ -97,6 +97,14 @@
 
 ---
 
+## Batch 05.1: Fix CSS Circular Reference
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memperbaiki bug self-reference pada token CSS `--color-public-accent-hover`.
+- **Pekerjaan**: Mengubah value token agar merujuk ke `--core-public-accent-hover`.
+- **Status**: Selesai.
+
+---
+
 ## Batch 06: Migration Phase - Full Public Pages (About, Services, etc) (Upcoming)
 - **Tujuan**: Migrasi konten lengkap untuk halaman Tentang, Layanan, Paket, dan Kontak.
 - **Rencana**: Memindahkan sisa halaman publik agar tidak ada lagi placeholder di sisi User.
