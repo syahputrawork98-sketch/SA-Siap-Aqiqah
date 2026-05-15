@@ -71,6 +71,19 @@
 
 ---
 
-## Batch 04: Migration Phase - Public Layout & Shared UI (Upcoming)
-- **Tujuan**: Migrasi Navbar, Footer, dan komponen UI dasar dari SIQAH Frontend.
-- **Rencana**: Memindahkan elemen visual Landing Page secara bertahap.
+## Batch 04: Migration Phase - Public Layout & Shared UI
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memigrasikan elemen visual dasar dan layout publik.
+- **Pekerjaan**:
+  - Migrasi `Navbar` dan `Footer` dari SIQAH Frontend.
+  - Setup `shared/ui/Button` dan `shared/lib/date`.
+  - Update `PublicLayout` untuk menggunakan komponen Navbar & Footer asli.
+  - Membuat placeholder pages untuk rute: `/tentang`, `/layanan`, `/paket`, `/kontak`.
+  - Sinkronisasi token CSS dan font di `index.css`.
+- **Status**: Selesai.
+
+---
+
+## Batch 05: Migration Phase - Public Pages Content (Upcoming)
+- **Tujuan**: Migrasi konten lengkap halaman Landing Page (Home, About, dll).
+- **Rencana**: Memindahkan seksi Hero, About, Services, dan Paket secara bertahap.

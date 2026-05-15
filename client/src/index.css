@@ -1,32 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Core foundations */
+  --core-brand-primary: #e2b97f;
+  --core-brand-primary-soft: #fefbf7;
+  --core-brand-border-soft: #eee6da;
+  --core-public-primary: #45624b;
+  --core-public-primary-strong: #2f4b3a;
+  --core-public-accent: #b9914d;
+  --core-public-accent-hover: #a37f3e;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Semantic tokens */
+  --color-brand-primary: var(--core-brand-primary);
+  --color-brand-primary-soft: var(--core-brand-primary-soft);
+  --color-brand-border-soft: var(--core-brand-border-soft);
+  --color-text-default: #3b3b3b;
+  --radius-md: 0.75rem;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Public layout tokens */
+  --color-public-primary: var(--core-public-primary);
+  --color-public-accent: var(--core-public-accent);
+  --color-public-accent-hover: var(--core-public-accent-hover);
+  --color-public-text-on-dark: #f8fafc;
+  --color-public-border-soft: rgb(185 145 77 / 20%);
+  --color-public-divider-soft: rgb(255 255 255 / 20%);
+  --color-public-overlay-light: rgb(255 255 255 / 70%);
+  --color-public-overlay-elevated: rgb(255 255 255 / 95%);
+  --color-public-overlay-mobile: rgb(255 255 255 / 90%);
+  --color-public-footer-text: rgb(229 231 235 / 88%);
+  --color-public-footer-text-subtle: #d1d5db;
+  --color-public-footer-glow: rgb(185 145 77 / 20%);
+  --color-public-footer-gradient: linear-gradient(to bottom right, var(--color-public-primary), var(--core-public-primary-strong));
+
+  /* Shared utility classes helper */
+  --font-family-body: "Montserrat", sans-serif;
+  --font-family-heading: "Cormorant Garamond", serif;
+}
+
+/* Base styles */
+html {
+  font-family: var(--font-family-body);
+}
+
+.siqah-public-accent {
+  color: var(--color-public-accent);
+}
+
+.siqah-public-link {
+  color: var(--color-public-primary);
+  transition: color 0.3s;
+}
+
+.siqah-public-link:hover {
+  color: var(--color-public-accent);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  color: var(--color-text-default);
+  background-color: #ffffff;
 }
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
 }

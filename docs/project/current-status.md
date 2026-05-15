@@ -3,15 +3,15 @@
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
 - **Versi**: 0.1.1 (Consolidated Documentation)
-- **Status**: Batch 3 Selesai.
-- **Target Utama**: Implementasi App Shell, Routing, dan Base Layout.
+- **Status**: Batch 4 Selesai.
+- **Target Utama**: Migrasi Public Layout, Navbar, Footer, dan Shared UI dasar.
 
 ## Kondisi Saat Ini
-1. **Struktur Folder**: Selesai (`client/`, `server/`, `docs/`). Mengikuti pola FSD-lite (`app`, `features`, `shared`, `entities`, `widgets`).
-2. **Frontend App Shell**: Selesai. Router, Layouts, dan Role Guard (mock) sudah aktif.
-3. **Routing**: Tersedia route `/`, `/admin`, dan `/superadmin` dengan placeholder pages.
-4. **Error Handling**: `AppErrorBoundary` terpasang di level root.
-5. **Repository Baseline**: `.gitignore` aktif.
+1. **Struktur Folder**: Selesai. Folder `shared/ui` dan `shared/lib` sudah berisi komponen dasar.
+2. **Public Layout**: Selesai. Navbar dan Footer asli dari SIQAH Frontend sudah dimigrasikan.
+3. **Routing**: Menambahkan route `/tentang`, `/layanan`, `/paket`, dan `/kontak` dengan placeholder pages.
+4. **Styling**: Token warna dan font (Cormorant & Montserrat) sudah terkonfigurasi di `index.css`.
+5. **Assets**: Logo menggunakan link eksternal Cloudinary (Temporary).
 6. **Backend**: Masih berupa placeholder di `server/`.
 
 
