@@ -140,3 +140,15 @@
   - Implementasi helper formatCurrencyIdr di shared/lib/.
   - Penyiapan data mock lokal di features/superadmin/model/.
 - **Status**: Selesai.
+
+---
+
+## Batch 09: Migration Phase - Admin Dashboard UI (Frontend-only)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memigrasikan tampilan Admin Dashboard secara frontend-only.
+- **Pekerjaan**:
+  - Migrasi halaman Admin Dashboard dengan Stat Cards dan Tabel Pesanan Terbaru.
+  - Penyiapan data mock lokal di features/admin/model/adminDashboardData.js.
+  - Implementasi StatusBadge lokal untuk tabel dashboard.
+  - Verifikasi build dan lint monorepo.
+- **Status**: Selesai.
