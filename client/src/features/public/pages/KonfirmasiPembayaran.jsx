@@ -1,22 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Card, CardHeader, CardContent, Button } from "@/shared/ui";
-import { Copy, Check, Upload, Image as ImageIcon, AlertCircle } from "lucide-react";
+import { Copy, Check, Upload, Image as ImageIcon, AlertCircle, RefreshCw, Server } from "lucide-react";
 import { formatCurrencyIdr } from "@/shared/lib";
-import { BANK_ACCOUNTS } from "@/features/admin/model/adminPaymentsData";
+import { paymentApi } from "@/features/admin/services/paymentApi";
 
 export default function KonfirmasiPembayaran() {
+  const [bankAccounts, setBankAccounts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // Mock order info
+  // Mock order info (Still static until Public Order feature is developed)
   const orderInfo = {
     id: "ORD-00123",
     total: 2500000,
     status: "Menunggu Pembayaran",
   };
+
+  const fetchBankAccounts = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await paymentApi.getBankAccounts();
+      if (response.success) {
+        setBankAccounts(response.data);
+      } else {
+        setError(response.message);
+      }
+    } catch (err) {
+      setError(err.message || "Gagal mengambil data rekening.");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchBankAccounts();
+  }, [fetchBankAccounts]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -37,7 +62,7 @@ export default function KonfirmasiPembayaran() {
     if (!selectedFile) return;
     
     setIsUploading(true);
-    // Simulate upload
+    // Simulate upload (Persistence remains UI-only)
     setTimeout(() => {
       setIsUploading(false);
       setIsSuccess(true);
@@ -65,7 +90,13 @@ export default function KonfirmasiPembayaran() {
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-[#3b3b3b]">Konfirmasi <span className="siqah-accent-text">Pembayaran</span></h1>
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <h1 className="text-3xl font-bold text-[#3b3b3b]">Konfirmasi <span className="siqah-accent-text">Pembayaran</span></h1>
+          <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full flex items-center gap-1">
+            <Server size={10} />
+            Dev API
+          </span>
+        </div>
         <p className="text-[#7a7368]">Silakan lakukan transfer dan unggah bukti pembayaran Anda.</p>
       </div>
 
@@ -95,22 +126,41 @@ export default function KonfirmasiPembayaran() {
               <AlertCircle size={18} className="text-amber-600" />
               Transfer ke Rekening Berikut:
             </h3>
-            {BANK_ACCOUNTS.map((acc, idx) => (
-              <div key={idx} className="p-4 bg-white border border-[#eee6da] rounded-xl flex justify-between items-center shadow-sm">
-                <div>
-                  <p className="text-xs font-bold text-[var(--color-brand-primary)] uppercase">{acc.bank}</p>
-                  <p className="text-lg font-bold text-[#3b3b3b]">{acc.noRek}</p>
-                  <p className="text-xs text-[#7a7368]">a.n. {acc.atasNama}</p>
-                </div>
-                <button 
-                  onClick={() => handleCopy(acc.noRek, idx)}
-                  className="p-2 hover:bg-[#f9f6ef] rounded-lg transition-colors text-[#7a7368]"
-                  title="Salin No. Rekening"
-                >
-                  {copiedIndex === idx ? <Check size={18} className="text-green-600" /> : <Copy size={18} />}
-                </button>
+            
+            {loading ? (
+              <div className="flex flex-col items-center justify-center py-8 gap-2 border border-[#eee6da] rounded-xl bg-white/50">
+                <RefreshCw size={24} className="animate-spin text-[var(--color-brand-primary)]" />
+                <span className="text-xs text-[#7a7368]">Memuat rekening...</span>
               </div>
-            ))}
+            ) : error ? (
+              <div className="p-4 border border-red-200 bg-red-50 rounded-xl text-center">
+                <p className="text-sm text-red-600 mb-2">{error}</p>
+                <Button variant="ghost" size="sm" onClick={fetchBankAccounts} className="text-red-700 hover:bg-red-100">
+                  <RefreshCw size={14} className="mr-2" /> Coba Lagi
+                </Button>
+              </div>
+            ) : bankAccounts.length > 0 ? (
+              bankAccounts.map((acc, idx) => (
+                <div key={idx} className="p-4 bg-white border border-[#eee6da] rounded-xl flex justify-between items-center shadow-sm">
+                  <div>
+                    <p className="text-xs font-bold text-[var(--color-brand-primary)] uppercase">{acc.bank}</p>
+                    <p className="text-lg font-bold text-[#3b3b3b]">{acc.noRek}</p>
+                    <p className="text-xs text-[#7a7368]">a.n. {acc.atasNama}</p>
+                  </div>
+                  <button 
+                    onClick={() => handleCopy(acc.noRek, idx)}
+                    className="p-2 hover:bg-[#f9f6ef] rounded-lg transition-colors text-[#7a7368]"
+                    title="Salin No. Rekening"
+                  >
+                    {copiedIndex === idx ? <Check size={18} className="text-green-600" /> : <Copy size={18} />}
+                  </button>
+                </div>
+              ))
+            ) : (
+              <div className="p-4 border border-[#eee6da] rounded-xl text-center italic text-sm text-[#7a7368]">
+                Tidak ada data rekening tersedia.
+              </div>
+            )}
           </div>
 
           <div className="p-4 bg-blue-50 border border-blue-100 rounded-xl text-sm text-blue-700 leading-relaxed">
@@ -127,7 +177,7 @@ export default function KonfirmasiPembayaran() {
               </CardHeader>
               <CardContent className="p-6">
                 <div 
-                  className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center transition-all ${
+                  className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center transition-all min-h-[200px] relative ${
                     previewUrl ? 'border-[var(--color-brand-primary)] bg-[var(--color-brand-primary-soft)]/5' : 'border-[#eee6da] hover:border-[#ccc]'
                   }`}
                 >
@@ -161,7 +211,7 @@ export default function KonfirmasiPembayaran() {
 
                 <div className="mt-6 flex items-start gap-2 text-xs text-[#7a7368]">
                   <ImageIcon size={14} className="shrink-0 mt-0.5" />
-                  <p>Hanya preview lokal. Data tidak akan disimpan di server (Frontend-only mode).</p>
+                  <p>Hanya preview lokal. Data tidak akan disimpan di server (Development mode).</p>
                 </div>
               </CardContent>
             </Card>
@@ -177,6 +227,12 @@ export default function KonfirmasiPembayaran() {
             </Button>
           </form>
         </div>
+      </div>
+      
+      {/* Info Label */}
+      <div className="flex items-center justify-center gap-2 text-[10px] text-[#aaa] font-medium uppercase tracking-widest mt-8">
+        <Server size={12} />
+        <span>Backend Status: API-Backed (Read-Only Mode)</span>
       </div>
     </div>
   );

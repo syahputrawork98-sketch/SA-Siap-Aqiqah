@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Card,
   Button,
@@ -6,38 +6,48 @@ import {
   CardContent,
   EmptyState,
 } from "@/shared/ui";
-import { Eye, CreditCard, Clock, CheckCircle, FileCheck } from "lucide-react";
+import { Eye, CreditCard, Clock, CheckCircle, FileCheck, RefreshCw, AlertCircle, Server } from "lucide-react";
 import { formatCurrencyIdr } from "@/shared/lib";
-import { MOCK_PAYMENTS } from "../model/adminPaymentsData";
+import { paymentApi } from "../services/paymentApi";
 import ModalValidasiPembayaran from "../ui/payments/ModalValidasiPembayaran";
 
 export default function Pembayaran() {
   const [activeTab, setActiveTab] = useState("pengajuan");
-  const [data, setData] = useState(MOCK_PAYMENTS);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedData, setSelectedData] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const tabs = [
-    { id: "pengajuan", label: "Pengajuan" },
-    { id: "menunggu", label: "Menunggu Validasi" },
-    { id: "validasi", label: "Diterima" },
-    { id: "lunas", label: "Lunas" },
+    { id: "pengajuan", label: "Pengajuan", status: "Pengajuan" },
+    { id: "menunggu", label: "Menunggu Validasi", status: "Menunggu Validasi" },
+    { id: "validasi", label: "Diterima", status: "Diterima" },
+    { id: "lunas", label: "Lunas", status: "Lunas" },
   ];
 
-  const getFilteredData = (tabId) => {
-    switch (tabId) {
-      case "pengajuan":
-        return data.filter((item) => item.status === "Pengajuan");
-      case "menunggu":
-        return data.filter((item) => item.status === "Menunggu Validasi");
-      case "validasi":
-        return data.filter((item) => item.status === "Diterima");
-      case "lunas":
-        return data.filter((item) => item.status === "Lunas");
-      default:
-        return data;
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await paymentApi.getPayments();
+      setData(response.data);
+    } catch (err) {
+      setError(err.message || "Gagal mengambil data pembayaran.");
+    } finally {
+      setLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const getFilteredData = (tabId) => {
+    const tab = tabs.find(t => t.id === tabId);
+    if (!tab) return [];
+    return data.filter((item) => item.status === tab.status);
   };
 
   const handleOpenModal = (item) => {
@@ -53,7 +63,7 @@ export default function Pembayaran() {
     if (!selectedData) return;
     setIsSubmitting(true);
     
-    // Simulate API call
+    // Simulate API call (Persistence remains UI-only)
     setTimeout(() => {
       const nextStatus = selectedData.status === "Pengajuan" ? "Menunggu Validasi" : 
                          selectedData.status === "Menunggu Validasi" ? "Diterima" : "Lunas";
@@ -76,7 +86,7 @@ export default function Pembayaran() {
     if (!selectedData) return;
     setIsSubmitting(true);
     
-    // Simulate API call
+    // Simulate API call (Persistence remains UI-only)
     setTimeout(() => {
       setData(prev => prev.map(item => 
         item.id === selectedData.id ? { ...item, status: "Pengajuan" } : item
@@ -92,13 +102,25 @@ export default function Pembayaran() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-xl font-semibold text-[#3b3b3b] tracking-wide">
-          Manajemen <span className="siqah-accent-text">Pembayaran</span>
-        </h2>
-        <p className="text-sm text-[#7a7368]">
-          Kelola dan validasi pembayaran konsumen (Mock Data).
-        </p>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <h2 className="text-xl font-semibold text-[#3b3b3b] tracking-wide">
+              Manajemen <span className="siqah-accent-text">Pembayaran</span>
+            </h2>
+            <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full flex items-center gap-1">
+              <Server size={10} />
+              Development API
+            </span>
+          </div>
+          <p className="text-sm text-[#7a7368]">
+            Kelola dan validasi pembayaran konsumen secara dinamis.
+          </p>
+        </div>
+        <Button variant="ghost" size="sm" onClick={fetchData} disabled={loading} className="text-[#7a7368]">
+          <RefreshCw size={16} className={loading ? "animate-spin mr-2" : "mr-2"} />
+          Muat Ulang
+        </Button>
       </div>
 
       {/* Custom Tabs */}
@@ -123,66 +145,91 @@ export default function Pembayaran() {
         </div>
       </div>
 
-      <Card className="bg-white/80 backdrop-blur-md border border-[#eee6da] shadow-sm">
-        <CardHeader>
-          <h3 className="text-lg font-semibold text-[#3b3b3b] capitalize">
-            {activeTab === "pengajuan"
-              ? "Pengajuan Baru"
-              : activeTab === "menunggu"
-              ? "Menunggu Validasi"
-              : activeTab === "validasi"
-              ? "Pembayaran Divalidasi"
-              : "Pembayaran Lunas"}
-          </h3>
-        </CardHeader>
-        <CardContent>
-          {currentFilteredData.length === 0 ? (
-            <EmptyState message="Tidak ada data pembayaran pada kategori ini." />
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full border-collapse">
-                <thead>
-                  <tr className="text-sm text-[#7a7368] border-b border-[#eee6da]">
-                    <th className="py-2 px-3 text-left font-semibold">ID</th>
-                    <th className="py-2 px-3 text-left font-semibold">Nama Konsumen</th>
-                    <th className="py-2 px-3 text-left font-semibold">Tanggal</th>
-                    <th className="py-2 px-3 text-left font-semibold">Jumlah</th>
-                    <th className="py-2 px-3 text-left font-semibold">Status</th>
-                    <th className="py-2 px-3 text-center font-semibold">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {currentFilteredData.map((item) => (
-                    <tr
-                      key={item.id}
-                      className="text-sm text-[#3b3b3b] border-b border-[#f0ebe2] hover:bg-[#f9f6ef]/60 transition"
-                    >
-                      <td className="py-2 px-3 font-medium">{item.id}</td>
-                      <td className="py-2 px-3">{item.konsumen}</td>
-                      <td className="py-2 px-3">{item.tanggal}</td>
-                      <td className="py-2 px-3 font-semibold">{formatCurrencyIdr(item.jumlah)}</td>
-                      <td className="py-2 px-3">
-                        <StatusBadge status={item.status} />
-                      </td>
-                      <td className="py-2 px-3 text-center">
-                        <Button
-                          onClick={() => handleOpenModal(item)}
-                          variant="ghost"
-                          size="sm"
-                          className="mx-auto text-[var(--color-public-accent)] hover:text-[var(--color-public-accent-hover)]"
-                        >
-                          <Eye size={16} />
-                          <span className="text-sm">Lihat</span>
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      {error ? (
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="p-12 flex flex-col items-center justify-center text-center space-y-4">
+            <div className="p-4 bg-red-100 text-red-600 rounded-full">
+              <AlertCircle size={40} />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-red-800">Gagal Memuat Pembayaran</h3>
+              <p className="text-sm text-red-600 max-w-md mx-auto mt-1">{error}</p>
+            </div>
+            <Button variant="primary" onClick={fetchData} className="bg-red-600 hover:bg-red-700 border-none">
+              Coba Lagi
+            </Button>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card className="bg-white/80 backdrop-blur-md border border-[#eee6da] shadow-sm relative overflow-hidden">
+          {loading && (
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] z-10 flex items-center justify-center">
+              <div className="flex flex-col items-center gap-2">
+                <RefreshCw size={32} className="animate-spin text-[var(--color-brand-primary)]" />
+                <span className="text-xs font-bold text-[#7a7368] uppercase tracking-widest">Sinkronisasi Pembayaran...</span>
+              </div>
             </div>
           )}
-        </CardContent>
-      </Card>
+          <CardHeader>
+            <h3 className="text-lg font-semibold text-[#3b3b3b] capitalize">
+              {activeTab === "pengajuan"
+                ? "Pengajuan Baru"
+                : activeTab === "menunggu"
+                ? "Menunggu Validasi"
+                : activeTab === "validasi"
+                ? "Pembayaran Divalidasi"
+                : "Pembayaran Lunas"}
+            </h3>
+          </CardHeader>
+          <CardContent>
+            {currentFilteredData.length === 0 ? (
+              <EmptyState message={loading ? "Memuat data..." : "Tidak ada data pembayaran pada kategori ini."} />
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full border-collapse">
+                  <thead>
+                    <tr className="text-sm text-[#7a7368] border-b border-[#eee6da]">
+                      <th className="py-2 px-3 text-left font-semibold">ID</th>
+                      <th className="py-2 px-3 text-left font-semibold">Nama Konsumen</th>
+                      <th className="py-2 px-3 text-left font-semibold">Tanggal</th>
+                      <th className="py-2 px-3 text-left font-semibold">Jumlah</th>
+                      <th className="py-2 px-3 text-left font-semibold">Status</th>
+                      <th className="py-2 px-3 text-center font-semibold">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#f0ebe2]">
+                    {currentFilteredData.map((item) => (
+                      <tr
+                        key={item.id}
+                        className="text-sm text-[#3b3b3b] hover:bg-[#f9f6ef]/60 transition"
+                      >
+                        <td className="py-3 px-3 font-medium">{item.id}</td>
+                        <td className="py-3 px-3">{item.konsumen}</td>
+                        <td className="py-3 px-3">{item.tanggal}</td>
+                        <td className="py-3 px-3 font-semibold">{formatCurrencyIdr(item.jumlah)}</td>
+                        <td className="py-3 px-3">
+                          <StatusBadge status={item.status} />
+                        </td>
+                        <td className="py-3 px-3 text-center">
+                          <Button
+                            onClick={() => handleOpenModal(item)}
+                            variant="ghost"
+                            size="sm"
+                            className="mx-auto text-[var(--color-public-accent)] hover:text-[var(--color-public-accent-hover)]"
+                          >
+                            <Eye size={16} />
+                            <span className="text-sm">Lihat</span>
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       {showModal && selectedData && (
         <ModalValidasiPembayaran
@@ -193,6 +240,12 @@ export default function Pembayaran() {
           isSubmitting={isSubmitting}
         />
       )}
+
+      {/* Info Label */}
+      <div className="flex items-center justify-center gap-2 text-[10px] text-[#aaa] font-medium uppercase tracking-widest">
+        <Server size={12} />
+        <span>Backend Status: API-Backed (Read-Only Mode)</span>
+      </div>
     </div>
   );
 }
