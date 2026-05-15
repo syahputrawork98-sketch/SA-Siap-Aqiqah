@@ -3,14 +3,15 @@
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
 - **Versi**: 0.1.1 (Consolidated Documentation)
-- **Status**: Batch 1 Selesai, Batch 1.1 (Konsolidasi) Selesai.
-- **Target Utama**: Menyiapkan struktur monorepo dan dokumentasi tunggal yang terpusat.
+- **Status**: Batch 2 Selesai.
+- **Target Utama**: Menyiapkan fondasi frontend React/Vite di folder `client/`.
 
 ## Kondisi Saat Ini
 1. **Struktur Folder**: Selesai (`client/`, `server/`, `docs/`).
-2. **Dokumentasi**: **docs/project/** sekarang menjadi satu-satunya pusat dokumentasi aktif. Folder `docs/project-control/` telah dihapus.
-3. **Workflow**: Aturan kerja resmi telah dipindahkan ke `docs/project/workflow.md`.
-4. **Backend/Frontend**: Masih dalam tahap persiapan (Batch 1 - 10).
+2. **Frontend Foundation**: Selesai dibuat di `client/`. Menggunakan React 19, Vite 6, Tailwind 4, dan DaisyUI 5. Alias `@` telah dikonfigurasi.
+3. **Repository Baseline**: `.gitignore` telah disiapkan di root untuk mengabaikan file dependency, build, dan env.
+4. **Dokumentasi**: `docs/project/` aktif sebagai SoT.
+5. **Backend**: Masih berupa placeholder di `server/`.
 
 
 ## Milestone Terdekat
