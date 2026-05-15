@@ -8,7 +8,7 @@
 
 ## Kondisi Saat Ini
 1. **Struktur Folder**: Selesai (`client/`, `server/`, `docs/`).
-2. **Frontend Foundation**: Selesai dibuat di `client/`. Menggunakan React 19, Vite 6, Tailwind 4, dan DaisyUI 5. Alias `@` telah dikonfigurasi.
+2. **Frontend Foundation**: Selesai dibuat di `client/`. Menggunakan React 19.1, Vite 7.1, Tailwind 4.1, dan DaisyUI 5.3 (selaras dengan SIQAH Frontend). Alias `@` telah dikonfigurasi.
 3. **Repository Baseline**: `.gitignore` telah disiapkan di root untuk mengabaikan file dependency, build, dan env.
 4. **Dokumentasi**: `docs/project/` aktif sebagai SoT.
 5. **Backend**: Masih berupa placeholder di `server/`.

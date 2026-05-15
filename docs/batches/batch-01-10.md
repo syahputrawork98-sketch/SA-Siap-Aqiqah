@@ -46,6 +46,17 @@
 
 ---
 
+## Batch 02.1: Dependency Alignment (Fix Batch 2)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Menyelaraskan versi dependency client dengan repo lama SIQAH Frontend.
+- **Pekerjaan**:
+  - Mengupdate `client/package.json` agar sesuai dengan versi React 19.1, Vite 7.1, Tailwind 4.1, dan DaisyUI 5.3.
+  - Mempertahankan `eslint-plugin-react` untuk kualitas kode.
+  - Verifikasi ulang dengan `npm run build` dan `npm run lint`.
+- **Status**: Selesai.
+
+---
+
 ## Batch 03: Migration Phase - App Shell & Base Layout (Upcoming)
 - **Tujuan**: Migrasi struktur layout utama (Shell) dari SIQAH Frontend.
 - **Rencana**: Setup Router, Sidebar, dan Topbar dasar.
