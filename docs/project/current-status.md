@@ -3,16 +3,16 @@
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
 - **Versi**: 0.1.2 (Initial Frontend Migration Checkpoint)
-- **Status**: Batch 10 Selesai (Initial Frontend Migration Checkpoint).
-- **Target Utama**: Finalisasi tahap awal migrasi frontend dan sinkronisasi dokumentasi.
+- **Status**: Batch 11 Selesai.
+- **Target Utama**: Migrasi Admin Pesanan UI (Frontend-only).
 
 ## Kondisi Saat Ini
-1. **Public Website**: Selesai. Seluruh halaman publik (Home, Tentang, Layanan, Paket, Kontak) sudah dimigrasikan dan aktif.
-2. **Backoffice Layout**: Selesai. `BackofficeLayout` dan `RoleLayout` melayani role Admin dan Superadmin dengan Sidebar dan Topbar fungsional.
-3. **Dashboards**: Selesai. Admin dan Superadmin Dashboard sudah dimigrasikan secara visual (Stat Cards, Tabel, dan Chart).
-4. **Data Management**: Frontend-only. Data menggunakan mock/static lokal; belum ada integrasi API/Backend/Database.
-5. **Shared UI Foundation**: Selesai. Kumpulan komponen UI (Public & Backoffice) sudah tersedia di `shared/ui`.
-6. **Backend Foundation**: Masih berupa placeholder di `server/`.
+1. **Admin Pesanan**: Selesai. Tampilan manajemen pesanan dengan fitur filter status dan pencarian nama konsumen sudah aktif.
+2. **Admin Dashboard**: Selesai. Tampilan dashboard utama dengan statistik operasional.
+3. **Superadmin Dashboard**: Selesai. Dashboard visual dengan statistik sistem dan grafik Recharts.
+4. **Data Management**: Frontend-only. Data menggunakan mock/static lokal (`adminOrdersData.js`, dll).
+5. **Shared UI Backoffice**: `Card`, `AsyncState`, `StatusBadge`, dan `Button` sudah berfungsi penuh di backoffice.
+6. **Backend**: Masih berupa placeholder di `server/`.
 
 ## Catatan Risiko & Limitasi
 1. **Assets**: Cloudinary/external assets masih bersifat temporary (hotlinking dari repo lama).
