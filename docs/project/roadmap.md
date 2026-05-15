@@ -12,11 +12,11 @@ Fokus pada penyelesaian fitur operasional Admin secara frontend-only.
 - **Batch 14**: Admin Data Master Foundation (Dashboard & Placeholders) (Selesai).
 - **Batch 15**: Checkpoint Milestone Akhir Fase Operasional Frontend (Selesai).
 
-## Fase 3: Penyelesaian Frontend & Inisiasi Backend (Batch 16 - 25) - DRAFT
+## Fase 3: Penyelesaian Frontend & Inisiasi Backend (Batch 16 - 25) - ONGOING
 Fokus pada penyelesaian sisa halaman UI dan mulai membangun fondasi server.
 
-- **Kandidat Batch 16-20 (Frontend Only)**:
-  - Manajemen Data Hewan & Kandang UI.
+- **Batch 16**: Admin Data Master Hewan & Kandang UI (Selesai).
+- **Kandidat Batch 17-20 (Frontend Only)**:
   - Manajemen Data Catering, Menu, & Paket UI.
   - Manajemen Users, Mitra, dan Konsumen UI.
   - Halaman Laporan, Notifikasi, dan Pengaturan.

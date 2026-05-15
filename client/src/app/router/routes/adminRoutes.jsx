@@ -4,6 +4,8 @@ import Pesanan from '@/features/admin/pages/Pesanan';
 import DetailPesanan from '@/features/admin/pages/DetailPesanan';
 import Pembayaran from '@/features/admin/pages/Pembayaran';
 import DashboardData from '@/features/admin/pages/data-master/DashboardData';
+import DataHewan from '@/features/admin/pages/data-master/DataHewan';
+import DataKandang from '@/features/admin/pages/data-master/DataKandang';
 import DataMasterPlaceholder from '@/features/admin/pages/data-master/DataMasterPlaceholder';
 import { Navigate } from 'react-router-dom';
 
@@ -37,11 +39,11 @@ export const adminRoutes = [
       },
       {
         path: 'hewan',
-        element: <DataMasterPlaceholder title="Data Hewan" />,
+        element: <DataHewan />,
       },
       {
         path: 'kandang',
-        element: <DataMasterPlaceholder title="Data Kandang" />,
+        element: <DataKandang />,
       },
       {
         path: 'catering',

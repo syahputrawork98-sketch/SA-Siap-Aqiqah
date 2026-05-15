@@ -66,3 +66,16 @@
   - Tidak ada penambahan fitur baru.
 - **Status**: Selesai.
 - **Hasil**: Project siap diserahkan ke room chat baru dengan status transparan.
+
+---
+
+## Batch 16: Migration Phase - Admin Data Master Hewan dan Kandang UI (Frontend-only)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memigrasikan tampilan Data Hewan dan Data Kandang di area Data Master Admin.
+- **Pekerjaan**:
+  - Membuat halaman DataHewan.jsx dengan fitur search, filter, dan summary stats lokal.
+  - Membuat halaman DataKandang.jsx dengan fitur search, summary stats, dan occupancy visualization lokal.
+  - Menyiapkan mock data MOCK_ANIMALS dan MOCK_PENS di model adminDataMasterData.js.
+  - Memperbarui rute /admin/data-master/hewan dan /admin/data-master/kandang untuk menggunakan komponen baru.
+- **Status**: Selesai.
+- **Hasil**: Halaman Data Hewan dan Data Kandang aktif secara visual dan fungsional (frontend-only) dengan data mock yang realistis.
