@@ -6,7 +6,9 @@ import Pembayaran from '@/features/admin/pages/Pembayaran';
 import DashboardData from '@/features/admin/pages/data-master/DashboardData';
 import DataHewan from '@/features/admin/pages/data-master/DataHewan';
 import DataKandang from '@/features/admin/pages/data-master/DataKandang';
-import DataMasterPlaceholder from '@/features/admin/pages/data-master/DataMasterPlaceholder';
+import DataCatering from '@/features/admin/pages/data-master/DataCatering';
+import DataMenu from '@/features/admin/pages/data-master/DataMenu';
+import DataPaket from '@/features/admin/pages/data-master/DataPaket';
 import { Navigate } from 'react-router-dom';
 
 export const adminRoutes = [
@@ -47,15 +49,15 @@ export const adminRoutes = [
       },
       {
         path: 'catering',
-        element: <DataMasterPlaceholder title="Data Catering" />,
+        element: <DataCatering />,
       },
       {
         path: 'menu',
-        element: <DataMasterPlaceholder title="Data Menu" />,
+        element: <DataMenu />,
       },
       {
         path: 'paket',
-        element: <DataMasterPlaceholder title="Data Paket" />,
+        element: <DataPaket />,
       },
     ],
   },
