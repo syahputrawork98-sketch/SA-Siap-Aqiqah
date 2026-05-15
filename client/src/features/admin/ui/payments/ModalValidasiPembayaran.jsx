@@ -31,9 +31,18 @@ export default function ModalValidasiPembayaran({
         <CardContent className="p-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-4">
-              <div>
-                <label className="text-xs font-bold text-[#7a7368] uppercase">Konsumen</label>
-                <p className="text-sm font-semibold text-[#3b3b3b]">{data.konsumen}</p>
+              <div className="flex justify-between items-start">
+                <div>
+                  <label className="text-xs font-bold text-[#7a7368] uppercase">Konsumen</label>
+                  <p className="text-sm font-semibold text-[#3b3b3b]">{data.konsumen}</p>
+                </div>
+                <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase border ${
+                  data.status === 'Diterima' ? 'bg-blue-50 text-blue-600 border-blue-100' :
+                  data.status === 'Menunggu Validasi' ? 'bg-amber-50 text-amber-600 border-amber-100' :
+                  'bg-gray-50 text-gray-600 border-gray-100'
+                }`}>
+                  {data.status}
+                </span>
               </div>
               <div>
                 <label className="text-xs font-bold text-[#7a7368] uppercase">Jumlah Transfer</label>
@@ -41,29 +50,45 @@ export default function ModalValidasiPembayaran({
                   {formatCurrencyIdr(data.jumlah)}
                 </p>
               </div>
-              <div>
-                <label className="text-xs font-bold text-[#7a7368] uppercase">Metode</label>
-                <p className="text-sm text-[#3b3b3b]">{data.metode}</p>
-              </div>
-              <div>
-                <label className="text-xs font-bold text-[#7a7368] uppercase">Tanggal</label>
-                <p className="text-sm text-[#3b3b3b]">{data.tanggal}</p>
+              <div className="p-3 bg-[#f9f6ef] rounded-lg border border-[#eee6da] space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-[10px] font-bold text-[#7a7368] uppercase tracking-wider">Metode</span>
+                  <span className="text-xs font-semibold text-[#3b3b3b]">{data.metode}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[10px] font-bold text-[#7a7368] uppercase tracking-wider">Tanggal</span>
+                  <span className="text-xs font-semibold text-[#3b3b3b]">{data.tanggal}</span>
+                </div>
               </div>
               <div className="p-3 bg-amber-50 border border-amber-100 rounded-lg flex gap-2">
                 <AlertCircle size={18} className="text-amber-600 shrink-0" />
-                <p className="text-xs text-amber-700 leading-relaxed">
-                  Pastikan nominal yang tertera pada bukti transfer sesuai dengan jumlah yang ditagihkan.
+                <p className="text-[11px] text-amber-700 leading-relaxed">
+                  Bandingkan nominal bukti transfer dengan total tagihan. Pastikan bukti tidak duplikat atau palsu.
                 </p>
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-xs font-bold text-[#7a7368] uppercase">Bukti Transfer</label>
-              <div className="border border-[#eee6da] rounded-lg overflow-hidden bg-[#fefbf7]">
-                <img
-                  src={data.bukti}
-                  alt="Bukti Transfer"
-                  className="w-full h-auto max-h-[300px] object-contain"
-                />
+              <div className="border border-[#eee6da] rounded-lg overflow-hidden bg-[#fefbf7] relative group">
+                {data.bukti ? (
+                  <>
+                    <img
+                      src={data.bukti}
+                      alt="Bukti Transfer"
+                      className="w-full h-auto max-h-[300px] object-contain"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <a href={data.bukti} target="_blank" rel="noreferrer" className="text-white text-xs bg-[var(--color-brand-primary)] px-3 py-1.5 rounded-full shadow-lg">
+                        Buka Gambar Full
+                      </a>
+                    </div>
+                  </>
+                ) : (
+                  <div className="w-full aspect-[3/4] flex flex-col items-center justify-center text-[#7a7368] space-y-2">
+                    <AlertCircle size={32} />
+                    <p className="text-xs font-semibold uppercase">Belum Unggah Bukti</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -83,7 +108,7 @@ export default function ModalValidasiPembayaran({
               isLoading={isSubmitting}
             >
               <Check size={18} />
-              Terima & Validasi
+              Konfirmasi & Terima
             </Button>
           </div>
         </CardContent>

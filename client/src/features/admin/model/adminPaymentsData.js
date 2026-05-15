@@ -45,3 +45,8 @@ export const MOCK_PAYMENTS = [
     bukti: "https://via.placeholder.com/400x600?text=Bukti+Transfer+Hani",
   },
 ];
+
+export const BANK_ACCOUNTS = [
+  { bank: 'BCA', noRek: '1234567890', atasNama: 'PT Siap Aqiqah Amanah' },
+  { bank: 'Mandiri', noRek: '0987654321', atasNama: 'PT Siap Aqiqah Amanah' },
+];
