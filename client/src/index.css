@@ -12,6 +12,10 @@
   --core-public-primary-strong: #2f4b3a;
   --core-public-accent: #b9914d;
   --core-public-accent-hover: #a37f3e;
+  --core-public-bg-start: #fefbf7;
+  --core-public-bg-end: #f9f6ef;
+  --core-overlay-white-80: rgb(255 255 255 / 80%);
+  --core-overlay-white-60: rgb(255 255 255 / 60%);
 
   /* Semantic tokens */
   --color-brand-primary: var(--core-brand-primary);
@@ -20,6 +24,8 @@
   --color-text-default: #3b3b3b;
   --radius-md: 0.75rem;
   --radius-xl: 1.5rem;
+  --color-shell-muted: #7a7368;
+  --color-text-inverse: #ffffff;
 
   /* Public layout tokens */
   --color-public-primary: var(--core-public-primary);
@@ -86,6 +92,77 @@ body {
 
 .font-sans {
   font-family: var(--font-family-body);
+}
+
+/* Backoffice-facing brand helpers */
+.siqah-accent-text {
+  color: var(--color-brand-primary);
+}
+
+.siqah-topbar {
+  background-color: var(--core-overlay-white-80);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-brand-border-soft);
+  box-shadow: var(--shadow-sm);
+}
+
+.siqah-chip {
+  background-color: var(--core-overlay-white-60);
+  border: 1px solid var(--color-brand-border-soft);
+  box-shadow: var(--shadow-sm);
+}
+
+.siqah-icon-button {
+  border-radius: 9999px;
+  padding: 0.5rem;
+  transition: all 160ms ease;
+}
+
+.siqah-icon-button:hover {
+  background-color: var(--color-brand-primary-soft);
+}
+
+.siqah-link-action {
+  color: var(--color-text-default);
+  transition: color 160ms ease;
+}
+
+.siqah-link-action:hover {
+  color: var(--color-brand-primary);
+}
+
+.siqah-sidebar-shell {
+  background-color: rgb(255 255 255 / 90%);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid var(--color-brand-border-soft);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 4%);
+}
+
+.siqah-sidebar-header {
+  border-bottom: 1px solid var(--color-brand-border-soft);
+  background: linear-gradient(to right, var(--core-public-bg-start), var(--core-public-bg-end));
+}
+
+.siqah-nav-item {
+  color: var(--color-text-default);
+  transition: all 160ms ease;
+}
+
+.siqah-nav-item:hover {
+  background-color: var(--color-brand-primary-soft);
+  color: var(--color-brand-primary);
+}
+
+.siqah-nav-item-active {
+  background-color: color-mix(in srgb, var(--color-brand-primary) 90%, var(--core-white, #ffffff));
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-sm);
+}
+
+.siqah-sidebar-footer {
+  border-top: 1px solid var(--color-brand-border-soft);
+  background-color: var(--core-overlay-white-60);
+  color: var(--color-shell-muted);
 }
 
 /* Public-facing brand helpers */

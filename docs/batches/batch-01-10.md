@@ -115,3 +115,16 @@
   - Implementasi `siqah-field` di `index.css` untuk form kontak.
   - Verifikasi routing dan build aman.
 - **Status**: Selesai.
+
+---
+
+## Batch 07: Migration Phase - Backoffice Layout Foundation
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memigrasikan fondasi layout backoffice (Admin & Superadmin).
+- **Pekerjaan**:
+  - Migrasi BackofficeLayout dan RoleLayout.
+  - Migrasi komponen Sidebar, Topbar, Footer, dan NotificationDropdown khusus backoffice.
+  - Migrasi seluruh konfigurasi navigasi menu per role ke shared/config/backoffice/.
+  - Implementasi styling dashboard (sidebar shell, topbar blur, nav items) di index.css.
+  - Update router config agar Admin dan Superadmin menggunakan layout asli.
+- **Status**: Selesai.

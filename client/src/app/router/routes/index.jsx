@@ -22,7 +22,7 @@ export const createAppRouterConfig = () => [
     path: '/admin',
     element: (
       <RoleGuard allowedRoles={[ROLES.ADMIN, ROLES.SUPERADMIN]}>
-        <RoleLayout roleTitle="Admin" />
+        <RoleLayout role={ROLES.ADMIN} />
       </RoleGuard>
     ),
     children: adminRoutes,
@@ -33,7 +33,7 @@ export const createAppRouterConfig = () => [
     path: '/superadmin',
     element: (
       <RoleGuard allowedRoles={[ROLES.SUPERADMIN]}>
-        <RoleLayout roleTitle="Superadmin" />
+        <RoleLayout role={ROLES.SUPERADMIN} />
       </RoleGuard>
     ),
     children: superadminRoutes,
