@@ -128,3 +128,15 @@
   - Implementasi styling dashboard (sidebar shell, topbar blur, nav items) di index.css.
   - Update router config agar Admin dan Superadmin menggunakan layout asli.
 - **Status**: Selesai.
+
+---
+
+## Batch 08: Migration Phase - Superadmin Dashboard UI (Frontend-only)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memigrasikan tampilan Superadmin Dashboard secara frontend-only.
+- **Pekerjaan**:
+  - Migrasi halaman Superadmin Dashboard dengan Stat Cards dan Recharts.
+  - Penambahan komponen Shared UI: Card, CardContent, AsyncState (Loading, Error, Empty).
+  - Implementasi helper formatCurrencyIdr di shared/lib/.
+  - Penyiapan data mock lokal di features/superadmin/model/.
+- **Status**: Selesai.

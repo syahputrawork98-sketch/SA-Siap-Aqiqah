@@ -3,15 +3,15 @@
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
 - **Versi**: 0.1.1 (Consolidated Documentation)
-- **Status**: Batch 7 Selesai.
-- **Target Utama**: Migrasi fondasi layout backoffice (Admin & Superadmin).
+- **Status**: Batch 8 Selesai.
+- **Target Utama**: Migrasi Superadmin Dashboard UI (Frontend-only).
 
 ## Kondisi Saat Ini
-1. **Backoffice Layout**: Selesai. `BackofficeLayout` dan `RoleLayout` sudah aktif menggunakan komponen Sidebar dan Topbar asli.
-2. **Halaman Dashboard**: Admin dan Superadmin sudah memakai layout asli, namun konten dashboard masih placeholder.
-3. **Konfigurasi Menu**: Selesai. Folder `shared/config/backoffice` berisi navigasi menu untuk semua role.
-4. **Shared UI Backoffice**: Selesai. Komponen `BackofficeRoleSidebar`, `BackofficeRoleTopbar`, dan lainnya sudah aktif.
-5. **Styling**: Selesai. Token dan utilitas CSS untuk dashboard (sidebar, topbar, chips) sudah ditambahkan.
+1. **Superadmin Dashboard**: Selesai. Tampilan dashboard utama dengan Stat Cards dan Chart distribusi aktivitas sudah aktif menggunakan Recharts.
+2. **Data Dashboard**: Menggunakan data mock/static (`superadminDashboardData.js`). Belum ada integrasi API/Backend.
+3. **Shared UI**: Komponen `Card`, `CardContent`, `EmptyState`, `LoadingState`, dan `ErrorState` telah ditambahkan ke `shared/ui`.
+4. **Helpers**: Helper `formatCurrencyIdr` telah ditambahkan ke `shared/lib/formatters.js`.
+5. **Backoffice Layout**: Berfungsi penuh untuk Admin dan Superadmin.
 6. **Backend**: Masih berupa placeholder di `server/`.
 6. **Assets**: Masih menggunakan Cloudinary external (Temporary).
 
