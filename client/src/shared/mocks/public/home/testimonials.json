@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nama": "Hafidz dan Aisyah",
+    "role": "Orang Tua Bayi",
+    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761262211/family-1_sxghss.jpg",
+    "text": "Layanannya cepat, hewannya sehat, dan masakannya enak. Terima kasih Siqah, aqiqah anak kami jadi lebih mudah dan penuh berkah.",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "nama": "Rini Kartika",
+    "role": "Konsumen Siqah",
+    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761262211/family-2_rlp3ci.jpg",
+    "text": "Tim Siqah sangat ramah dan profesional. Semua proses mulai dari pemesanan sampai pengantaran berjalan lancar.",
+    "rating": 5
+  },
+  {
+    "id": 3,
+    "nama": "Dedi Firmansyah",
+    "role": "Ayah dari Bayi Khalid",
+    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761262211/family-3_uc8dfo.jpg",
+    "text": "Alhamdulillah, semuanya sesuai syariat dan transparan. Kami sangat puas dengan pelayanan Siqah.",
+    "rating": 5
+  }
+]

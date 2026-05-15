@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+/* Tailwind CSS v4 directive for plugins */
 @plugin "daisyui";
 
 :root {
@@ -18,25 +19,47 @@
   --color-brand-border-soft: var(--core-brand-border-soft);
   --color-text-default: #3b3b3b;
   --radius-md: 0.75rem;
+  --radius-xl: 1.5rem;
 
   /* Public layout tokens */
   --color-public-primary: var(--core-public-primary);
   --color-public-accent: var(--core-public-accent);
-  --color-public-accent-hover: var(--core-public-accent-hover);
+  --color-public-accent-hover: var(--color-public-accent-hover);
   --color-public-text-on-dark: #f8fafc;
+  --color-public-text-on-dark-soft: rgb(243 244 246 / 92%);
+  --color-public-text-soft: color-mix(in srgb, var(--color-public-primary) 82%, white);
+  --color-public-text-muted: color-mix(in srgb, var(--color-public-primary) 72%, white);
   --color-public-border-soft: rgb(185 145 77 / 20%);
   --color-public-divider-soft: rgb(255 255 255 / 20%);
   --color-public-overlay-light: rgb(255 255 255 / 70%);
   --color-public-overlay-elevated: rgb(255 255 255 / 95%);
   --color-public-overlay-mobile: rgb(255 255 255 / 90%);
+  --color-public-overlay-soft: rgb(255 255 255 / 72%);
+  --color-public-overlay-strong: rgb(69 98 75 / 76%);
+  --color-public-overlay-hero: linear-gradient(to bottom right, rgb(69 98 75 / 80%), rgb(69 98 75 / 60%), rgb(185 145 77 / 50%));
+  --color-public-overlay-image-bottom: linear-gradient(to top, rgb(0 0 0 / 40%), transparent);
+  --color-public-overlay-soft-glow: linear-gradient(to top, rgb(255 255 255 / 13%), transparent);
+  --color-public-control-bg: rgb(255 255 255 / 70%);
+  --color-public-control-bg-hover: rgb(255 255 255 / 84%);
+  --color-public-accent-ring: rgb(185 145 77 / 80%);
+  --color-public-accent-line: rgb(185 145 77 / 50%);
   --color-public-footer-text: rgb(229 231 235 / 88%);
   --color-public-footer-text-subtle: #d1d5db;
   --color-public-footer-glow: rgb(185 145 77 / 20%);
   --color-public-footer-gradient: linear-gradient(to bottom right, var(--color-public-primary), var(--core-public-primary-strong));
+  --color-public-gradient-base: linear-gradient(to bottom, #fefbf7, #f9f6ef);
+  --color-public-gradient-reverse: linear-gradient(to bottom, #f9f6ef, #fefbf7);
+  --color-public-surface: rgb(255 255 255 / 92%);
+  --color-public-surface-border: rgb(185 145 77 / 24%);
+  --color-public-surface-border-strong: rgb(255 255 255 / 70%);
+  
+  --image-public-background: url("https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg");
 
   /* Shared utility classes helper */
   --font-family-body: "Montserrat", sans-serif;
   --font-family-heading: "Cormorant Garamond", serif;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 /* Base styles */
@@ -44,6 +67,21 @@ html {
   font-family: var(--font-family-body);
 }
 
+body {
+  margin: 0;
+  color: var(--color-text-default);
+  background-color: #ffffff;
+}
+
+.font-heading {
+  font-family: var(--font-family-heading);
+}
+
+.font-sans {
+  font-family: var(--font-family-body);
+}
+
+/* Public-facing brand helpers */
 .siqah-public-accent {
   color: var(--color-public-accent);
 }
@@ -57,10 +95,44 @@ html {
   color: var(--color-public-accent);
 }
 
-body {
-  margin: 0;
-  color: var(--color-text-default);
-  background-color: #ffffff;
+.siqah-public-bg-base {
+  background-image: var(--color-public-gradient-base);
+}
+
+.siqah-public-bg-reverse {
+  background-image: var(--color-public-gradient-reverse);
+}
+
+.siqah-public-text-soft {
+  color: var(--color-public-text-soft);
+}
+
+.siqah-public-text-muted {
+  color: var(--color-public-text-muted);
+}
+
+.siqah-public-text-on-dark-soft {
+  color: var(--color-public-text-on-dark-soft);
+}
+
+.siqah-public-control-circle {
+  background-color: var(--color-public-control-bg);
+}
+
+.siqah-public-control-circle:hover {
+  background-color: var(--color-public-control-bg-hover);
+}
+
+.siqah-public-avatar-ring {
+  border-color: var(--color-public-accent-ring);
+}
+
+.siqah-public-overlay-image-bottom {
+  background-image: var(--color-public-overlay-image-bottom);
+}
+
+.siqah-public-overlay-soft-glow {
+  background-image: var(--color-public-overlay-soft-glow);
 }
 
 #root {

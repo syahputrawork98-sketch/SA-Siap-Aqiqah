@@ -84,6 +84,19 @@
 
 ---
 
-## Batch 05: Migration Phase - Public Pages Content (Upcoming)
-- **Tujuan**: Migrasi konten lengkap halaman Landing Page (Home, About, dll).
-- **Rencana**: Memindahkan seksi Hero, About, Services, dan Paket secara bertahap.
+## Batch 05: Migration Phase - Public Pages Content
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memigrasikan konten lengkap halaman Home/Landing Page.
+- **Pekerjaan**:
+  - Migrasi 8 section utama Home (Hero, About, Paket, Timeline, Hewan, Testimoni, Tim, CTA).
+  - Migrasi data mock ke `shared/mocks/public/home/`.
+  - Implementasi komponen shared UI pendukung: `PublicSection`, `PublicButton`, `PublicCard`, `SectionHeading`.
+  - Perbaikan linting untuk karakter spesial (quotes).
+  - Update `index.css` dengan utility pendukung (overlay, avatar-ring, dll).
+- **Status**: Selesai.
+
+---
+
+## Batch 06: Migration Phase - Full Public Pages (About, Services, etc) (Upcoming)
+- **Tujuan**: Migrasi konten lengkap untuk halaman Tentang, Layanan, Paket, dan Kontak.
+- **Rencana**: Memindahkan sisa halaman publik agar tidak ada lagi placeholder di sisi User.

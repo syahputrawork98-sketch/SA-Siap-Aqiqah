@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nama": "Paket Aqiqah Premium",
+    "harga": "Rp3.000.000",
+    "deskripsi": "Daging kambing pilihan, sate dan gulai, lengkap dengan nasi kebuli.",
+    "gambar": "https://res.cloudinary.com/dcida9qys/image/upload/v1761262212/paket-premium_y5pyhe.jpg"
+  },
+  {
+    "id": 2,
+    "nama": "Paket Aqiqah Standar",
+    "harga": "Rp2.400.000",
+    "deskripsi": "Pilihan ekonomis dengan rasa tetap nikmat dan syari.",
+    "gambar": "https://res.cloudinary.com/dcida9qys/image/upload/v1761262212/paket-standar_wzcoek.jpg"
+  },
+  {
+    "id": 3,
+    "nama": "Paket Aqiqah Hemat",
+    "harga": "Rp1.800.000",
+    "deskripsi": "Cocok untuk keluarga kecil yang ingin tetap penuh keberkahan.",
+    "gambar": "https://res.cloudinary.com/dcida9qys/image/upload/v1761262212/paket-hemat_ebt8wa.jpg"
+  }
+]

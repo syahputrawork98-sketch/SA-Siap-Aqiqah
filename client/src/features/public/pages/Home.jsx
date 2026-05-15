@@ -1,16 +1,25 @@
+import React from "react";
+import HeroSection from "@/features/public/ui/home/HeroSection";
+import AboutSection from "@/features/public/ui/home/AboutSection";
+import PaketSection from "@/features/public/ui/home/PaketSection";
+import TimelineSection from "@/features/public/ui/home/TimelineSection";
+import HewanSection from "@/features/public/ui/home/HewanSection";
+import TestimoniSection from "@/features/public/ui/home/TestimoniSection";
+import TimSection from "@/features/public/ui/home/TimSection";
+import CTASection from "@/features/public/ui/home/CTASection"
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh]">
-      <h1 className="text-4xl font-bold text-primary mb-4">Selamat Datang di Siap-Aqiqah</h1>
-      <p className="text-lg opacity-80 text-center max-w-lg">
-        Ini adalah halaman utama (Home) placeholder. Migrasi fitur Landing Page akan dilakukan pada Batch berikutnya.
-      </p>
-      <div className="mt-8 flex gap-4">
-        <a href="/admin" className="btn btn-outline btn-secondary">Go to Admin Dashboard</a>
-        <a href="/superadmin" className="btn btn-outline btn-accent">Go to Superadmin Dashboard</a>
-      </div>
-    </div>
+    <main className="w-full text-gray-800">
+      <HeroSection />
+      <AboutSection />
+      <PaketSection />
+      <TimelineSection />
+      <HewanSection />
+      <TestimoniSection />
+      <TimSection />
+      <CTASection />
+    </main>
   );
 };
 

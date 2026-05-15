@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "iconKey": "shoppingCart",
+    "title": "Pemesanan",
+    "desc": "Konsumen memesan paket aqiqah sesuai kebutuhan dan budget."
+  },
+  {
+    "id": 2,
+    "iconKey": "goat",
+    "title": "Pemilihan Hewan",
+    "desc": "Hewan dipilih langsung dari mitra kandang yang terpercaya."
+  },
+  {
+    "id": 3,
+    "iconKey": "scissors",
+    "title": "Pemotongan",
+    "desc": "Proses penyembelihan dilakukan sesuai syariat Islam."
+  },
+  {
+    "id": 4,
+    "iconKey": "cook",
+    "title": "Pengolahan Catering",
+    "desc": "Tim catering menyiapkan hidangan dengan cita rasa terbaik."
+  },
+  {
+    "id": 5,
+    "iconKey": "truck",
+    "title": "Pengantaran",
+    "desc": "Pesanan dikirim tepat waktu oleh kurir Siqah ke rumah Anda."
+  },
+  {
+    "id": 6,
+    "iconKey": "checkCircle",
+    "title": "Selesai",
+    "desc": "Aqiqah terselenggara dengan lancar dan penuh keberkahan."
+  }
+]

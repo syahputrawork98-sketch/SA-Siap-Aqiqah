@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "nama": "Ahmad Fauzi",
+    "role": "Tim Kandang",
+    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761263221/team-kandang_tzqlbo.jpg",
+    "quote": "Merawat hewan dengan penuh tanggung jawab dan kasih sayang."
+  },
+  {
+    "id": 2,
+    "nama": "Siti Rahmah",
+    "role": "Mitra Catering",
+    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761263221/team-catering_f3e0ro.jpg",
+    "quote": "Menyiapkan hidangan aqiqah dengan cita rasa terbaik dan penuh keberkahan."
+  },
+  {
+    "id": 3,
+    "nama": "Rizky Pratama",
+    "role": "Kurir Siqah",
+    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761263221/team-kurir_rjhecz.jpg",
+    "quote": "Mengantar pesanan aqiqah Anda dengan aman, cepat, dan ramah."
+  },
+  {
+    "id": 4,
+    "nama": "Nur Aulia",
+    "role": "Admin dan Layanan Pelanggan",
+    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761263221/team-admin_wtrdcj.jpg",
+    "quote": "Membantu setiap pelanggan dengan pelayanan yang jujur dan amanah."
+  }
+]
