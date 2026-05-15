@@ -11,6 +11,9 @@ import DataKandang from '@/features/admin/pages/data-master/DataKandang';
 import DataCatering from '@/features/admin/pages/data-master/DataCatering';
 import DataMenu from '@/features/admin/pages/data-master/DataMenu';
 import DataPaket from '@/features/admin/pages/data-master/DataPaket';
+import Laporan from '@/features/admin/pages/Laporan';
+import Notifikasi from '@/features/admin/pages/Notifikasi';
+import Pengaturan from '@/features/admin/pages/Pengaturan';
 import { Navigate } from 'react-router-dom';
 
 export const adminRoutes = [
@@ -37,6 +40,18 @@ export const adminRoutes = [
   {
     path: 'konsumen',
     element: <Konsumen />,
+  },
+  {
+    path: 'laporan',
+    element: <Laporan />,
+  },
+  {
+    path: 'notifikasi',
+    element: <Notifikasi />,
+  },
+  {
+    path: 'pengaturan',
+    element: <Pengaturan />,
   },
   {
     path: 'data-master',
