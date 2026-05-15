@@ -10,11 +10,20 @@ const getSummary = (req, res) => {
 };
 
 const getAnimals = (req, res) => {
-  const animals = dataMasterService.getAllAnimals();
+  const { search, kategori, status } = req.query;
+  const filters = { search, kategori, status };
+  const allAnimals = dataMasterService.getAllAnimals({});
+  const filteredAnimals = dataMasterService.getAllAnimals(filters);
+  
   res.json({
     success: true,
     message: "Animals retrieved successfully",
-    data: animals
+    data: filteredAnimals,
+    meta: {
+      total: allAnimals.length,
+      filtered: filteredAnimals.length,
+      filters
+    }
   });
 };
 
@@ -35,11 +44,20 @@ const getAnimalById = (req, res) => {
 };
 
 const getPens = (req, res) => {
-  const pens = dataMasterService.getAllPens();
+  const { search, status } = req.query;
+  const filters = { search, status };
+  const allPens = dataMasterService.getAllPens({});
+  const filteredPens = dataMasterService.getAllPens(filters);
+  
   res.json({
     success: true,
     message: "Pens retrieved successfully",
-    data: pens
+    data: filteredPens,
+    meta: {
+      total: allPens.length,
+      filtered: filteredPens.length,
+      filters
+    }
   });
 };
 
@@ -60,11 +78,20 @@ const getPenById = (req, res) => {
 };
 
 const getCaterings = (req, res) => {
-  const caterings = dataMasterService.getAllCaterings();
+  const { search, status } = req.query;
+  const filters = { search, status };
+  const allCaterings = dataMasterService.getAllCaterings({});
+  const filteredCaterings = dataMasterService.getAllCaterings(filters);
+  
   res.json({
     success: true,
     message: "Caterings retrieved successfully",
-    data: caterings
+    data: filteredCaterings,
+    meta: {
+      total: allCaterings.length,
+      filtered: filteredCaterings.length,
+      filters
+    }
   });
 };
 
@@ -85,11 +112,20 @@ const getCateringById = (req, res) => {
 };
 
 const getMenus = (req, res) => {
-  const menus = dataMasterService.getAllMenus();
+  const { search, kategori, status } = req.query;
+  const filters = { search, kategori, status };
+  const allMenus = dataMasterService.getAllMenus({});
+  const filteredMenus = dataMasterService.getAllMenus(filters);
+  
   res.json({
     success: true,
     message: "Menus retrieved successfully",
-    data: menus
+    data: filteredMenus,
+    meta: {
+      total: allMenus.length,
+      filtered: filteredMenus.length,
+      filters
+    }
   });
 };
 
@@ -110,11 +146,20 @@ const getMenuById = (req, res) => {
 };
 
 const getPackages = (req, res) => {
-  const packages = dataMasterService.getAllPackages();
+  const { search, jenisHewan, status } = req.query;
+  const filters = { search, jenisHewan, status };
+  const allPackages = dataMasterService.getAllPackages({});
+  const filteredPackages = dataMasterService.getAllPackages(filters);
+  
   res.json({
     success: true,
     message: "Packages retrieved successfully",
-    data: packages
+    data: filteredPackages,
+    meta: {
+      total: allPackages.length,
+      filtered: filteredPackages.length,
+      filters
+    }
   });
 };
 

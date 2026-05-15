@@ -1,5 +1,26 @@
 const data = require('../modules/data-master/data-master.data');
 
+// Helper for simple filtering
+const applyFilters = (list, filters, searchFields = ['id', 'nama']) => {
+  let filtered = [...list];
+
+  if (filters.search) {
+    const searchLower = filters.search.toLowerCase();
+    filtered = filtered.filter(item => 
+      searchFields.some(field => item[field]?.toLowerCase().includes(searchLower))
+    );
+  }
+
+  // Filter by direct fields (status, kategori, jenisHewan, etc)
+  Object.keys(filters).forEach(key => {
+    if (key !== 'search' && filters[key]) {
+      filtered = filtered.filter(item => item[key] === filters[key]);
+    }
+  });
+
+  return filtered;
+};
+
 const getSummary = () => {
   return {
     animals: {
@@ -22,19 +43,29 @@ const getSummary = () => {
   };
 };
 
-const getAllAnimals = () => data.ANIMALS;
+const getAllAnimals = (filters = {}) => {
+  return applyFilters(data.ANIMALS, filters, ['id', 'nama', 'kategori']);
+};
 const getAnimalById = (id) => data.ANIMALS.find(a => a.id === id);
 
-const getAllPens = () => data.PENS;
+const getAllPens = (filters = {}) => {
+  return applyFilters(data.PENS, filters, ['id', 'nama', 'lokasi', 'mitra']);
+};
 const getPenById = (id) => data.PENS.find(p => p.id === id);
 
-const getAllCaterings = () => data.CATERINGS;
+const getAllCaterings = (filters = {}) => {
+  return applyFilters(data.CATERINGS, filters, ['id', 'nama', 'lokasi', 'mitra']);
+};
 const getCateringById = (id) => data.CATERINGS.find(c => c.id === id);
 
-const getAllMenus = () => data.MENUS;
+const getAllMenus = (filters = {}) => {
+  return applyFilters(data.MENUS, filters, ['id', 'nama', 'kategori', 'catering']);
+};
 const getMenuById = (id) => data.MENUS.find(m => m.id === id);
 
-const getAllPackages = () => data.PACKAGES;
+const getAllPackages = (filters = {}) => {
+  return applyFilters(data.PACKAGES, filters, ['id', 'nama', 'jenisHewan', 'menu']);
+};
 const getPackageById = (id) => data.PACKAGES.find(p => p.id === id);
 
 module.exports = {
