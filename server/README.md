@@ -1,23 +1,39 @@
 # SA-Siap-Aqiqah Backend (Server)
 
-Folder ini disiapkan sebagai tempat untuk logic backend aplikasi.
+Backend foundation built with Node.js and Express.
 
-## Status Saat Ini
-- **Status**: Placeholder / Belum Aktif
-- **Fase**: Setup Fondasi (Batch 1)
+## Getting Started
 
-## Rencana Arsitektur
-Backend akan dikembangkan menggunakan **Layered Architecture** untuk memastikan kode yang bersih dan mudah di-test. Struktur folder yang direncanakan:
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-- `routes/`: Definisi endpoint API.
-- `controllers/`: Logic untuk menangani request dan response.
-- `services/`: Business logic utama aplikasi.
-- `repositories/`: Akses data / database logic.
-- `dto/` (Data Transfer Object) atau `mapper/`: Transformasi data.
+2. Setup environment variables:
+   ```bash
+   cp .env.example .env
+   ```
 
-## Batasan (Saat Ini)
-Belum ada implementasi untuk:
-- Auth Production (JWT/Session/RBAC)
-- Database Schema & Connection
-- Payment Gateway Integration
-- Deployment Scripts
+3. Run the server:
+   ```bash
+   # Development mode (with nodemon)
+   npm run dev
+
+   # Production mode
+   npm run start
+   ```
+
+## API Endpoints
+
+- **GET /**: Welcome message.
+- **GET /api/health**: Health check status.
+
+## Directory Structure
+
+- `src/app.js`: Express application configuration.
+- `src/server.js`: Server entry point.
+- `src/routes/`: API route definitions.
+- `src/controllers/`: Request handlers.
+- `src/services/`: Business logic.
+- `src/middlewares/`: Express middlewares (Auth, Error handling, etc.).
+- `src/config/`: Configuration files (Env, Database, etc.).
