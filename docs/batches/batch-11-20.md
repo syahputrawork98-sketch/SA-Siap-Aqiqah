@@ -24,3 +24,18 @@
   - Integrasi tombol Detail dari halaman Pesanan ke rute detail baru.
 - **Status**: Selesai.
 - **Hasil**: Halaman detail pesanan dapat diakses dengan data simulasi yang kaya (konsumen, bayar, progress).
+
+---
+
+## Batch 13: Migration Phase - Admin Pembayaran UI (Frontend-only)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memigrasikan tampilan Admin Pembayaran secara frontend-only.
+- **Pekerjaan**:
+  - Migrasi halaman Pembayaran.jsx di fitur admin.
+  - Implementasi sistem tab lokal (Pengajuan, Menunggu, Divalidasi, Lunas).
+  - Pembuatan komponen ModalValidasiPembayaran lokal.
+  - Simulasi validasi (Approve/Reject) menggunakan state lokal.
+  - Penyiapan data mock pembayaran di features/admin/model/adminPaymentsData.js.
+  - Penambahan rute /admin/pembayaran di adminRoutes.jsx.
+- **Status**: Selesai.
+- **Hasil**: Halaman manajemen pembayaran aktif dengan fungsionalitas simulasi validasi yang lancar.

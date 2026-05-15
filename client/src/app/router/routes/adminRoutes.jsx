@@ -2,6 +2,7 @@ import React from 'react';
 import Dashboard from '@/features/admin/pages/Dashboard';
 import Pesanan from '@/features/admin/pages/Pesanan';
 import DetailPesanan from '@/features/admin/pages/DetailPesanan';
+import Pembayaran from '@/features/admin/pages/Pembayaran';
 
 export const adminRoutes = [
   {
@@ -15,5 +16,9 @@ export const adminRoutes = [
   {
     path: 'pesanan/:id',
     element: <DetailPesanan />,
+  },
+  {
+    path: 'pembayaran',
+    element: <Pembayaran />,
   },
 ];
