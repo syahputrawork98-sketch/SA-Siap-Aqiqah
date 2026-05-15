@@ -39,3 +39,17 @@
   - Penambahan rute /admin/pembayaran di adminRoutes.jsx.
 - **Status**: Selesai.
 - **Hasil**: Halaman manajemen pembayaran aktif dengan fungsionalitas simulasi validasi yang lancar.
+
+---
+
+## Batch 14: Migration Phase - Admin Data Master Foundation UI (Frontend-only)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Memigrasikan fondasi tampilan Data Master Admin secara frontend-only.
+- **Pekerjaan**:
+  - Migrasi halaman DashboardData.jsx untuk area Data Master.
+  - Pembuatan komponen DataMasterPlaceholder.jsx untuk halaman detail yang belum dimigrasikan.
+  - Penyiapan data mock master di features/admin/model/adminDataMasterData.js.
+  - Penambahan rute /admin/data-master/dashboard dan rute placeholder (hewan, kandang, catering, menu, paket).
+- **Status**: Selesai.
+- **Hasil**: Struktur area Data Master telah siap secara visual dengan dashboard yang informatif.
+- **Catatan**: Batch 15 akan menjadi checkpoint penutup fase migrasi frontend sebelum handoff.
