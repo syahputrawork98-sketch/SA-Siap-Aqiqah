@@ -2,21 +2,20 @@
 
 Dokumen ini berfungsi untuk menjaga agar pengerjaan tetap fokus pada tujuan setiap batch dan menghindari *scope creep*.
 
-## Batasan Umum (Fase Migrasi Frontend)
-1. **No New Heavy Features**: Jangan membuat fitur baru yang tidak ada di SIQAH Frontend.
-2. **No Backend Implementation**: Jangan membuat logic server, database, atau integrasi API nyata. Gunakan mock data jika diperlukan.
-3. **No Auth/Security Complex**: Jangan mengimplementasikan JWT, RBAC, atau Session Management yang nyata. Role Guard tetap menggunakan simulasi lokal.
-4. **No Payment/Legal**: Jangan menyentuh area Payment Gateway, Invoice Legal, atau BAST.
-5. **No Deployment**: Fokus pada local development environment saja.
-6. **No External Requests**: Hindari membuat API call ke server eksternal selain aset statis (seperti Cloudinary).
+## Batasan Umum (Fase Migrasi Frontend & Operasional)
+1. **No Backend Implementation**: Jangan membuat logic server, database, atau integrasi API nyata tanpa rencana batch khusus yang disetujui Room Chat 00.
+2. **No Production Auth**: Jangan mengimplementasikan JWT, RBAC, atau Session Management yang nyata. Role Guard tetap menggunakan simulasi lokal.
+3. **No Payment/Legal**: Jangan menyentuh area Payment Gateway, Invoice Legal, atau BAST.
+4. **No Deployment**: Fokus pada local development environment saja.
+5. **No Full CRUD Together with Refactor**: Hindari melakukan pembuatan fitur CRUD besar secara bersamaan dengan refactor arsitektur besar untuk menjaga stabilitas build.
 
-## Aturan Eksekusi (Gemini)
-- Gemini hanya mengeksekusi instruksi **satu kali per turn**.
-- Tidak ada loop perbaikan otomatis yang tidak diminta.
-- Jika terjadi error atau blocker teknis di luar scope batch, laporkan ke Room Chat 00.
+## Aturan Pasca Handoff (Batch 16+)
+- **Satu Eksekusi Per Turn**: Gemini tetap mengeksekusi instruksi satu kali saja per turn.
+- **Decision Maker**: Segala keputusan strategis (pindah ke backend, refactor OOP, dll) harus melalui instruksi resmi dari Room Chat 00 baru.
+- **Reporting**: Laporan hasil eksekusi tetap wajib menyertakan status build, lint, dan git status.
 
-## Definisi Selesai (Batch 1-10)
-- Struktur folder `client/`, `server/`, `docs/` stabil.
-- Public Website, Backoffice Layout, dan Dashboard Utama berhasil dimigrasikan secara visual.
+## Definisi Selesai (Batch 11-15)
+- Halaman Admin Pesanan, Detail, dan Pembayaran aktif secara visual.
+- Dashboard Data Master aktif dengan rute placeholder detail.
 - Build dan Lint di folder `client/` berstatus OK.
-- Dokumentasi project tersinkronisasi dengan kondisi codebase terbaru.
+- Dokumen Handoff untuk Room Chat baru telah disiapkan.

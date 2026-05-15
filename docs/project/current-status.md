@@ -2,26 +2,28 @@
 
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
-- **Versi**: 0.1.2 (Initial Frontend Migration Checkpoint)
-- **Status**: Batch 14 Selesai.
-- **Target Utama**: Migrasi Admin Data Master Foundation UI (Frontend-only).
+- **Versi**: 0.1.3 (Admin Operational Migration Checkpoint)
+- **Status**: Batch 15 Selesai (Handoff Checkpoint).
+- **Target Utama**: Finalisasi migrasi operasional admin tahap awal dan persiapan handoff ke room chat baru.
 
 ## Kondisi Saat Ini
-1. **Admin Data Master**: Selesai (Fondasi). Dashboard Data Master dengan statistik (Stat Cards & Chart) sudah aktif. Halaman detail (Hewan, Kandang, dll) tersedia dalam bentuk placeholder jujur.
-2. **Admin Operasional**: Selesai (UI-only). Halaman Pesanan, Detail Pesanan, dan Pembayaran sudah fungsional secara visual dengan data mock.
-3. **Dashboards**: Admin, Superadmin, dan Data Master Dashboard aktif dengan data mock.
-4. **Data Management**: Frontend-only. Menggunakan mock data lokal (`adminDataMasterData.js`, dll).
-5. **Routing**: Struktur routing `/admin/data-master/*` telah diimplementasikan.
-6. **Backend**: Masih berupa placeholder di `server/`.
+1. **Public Website**: Selesai. Seluruh halaman publik aktif.
+2. **Backoffice Foundation**: Selesai. Layout, sidebar, topbar fungsional untuk Admin & Superadmin.
+3. **Dashboards**: Selesai. Admin, Superadmin, dan Data Master Dashboard sudah memiliki visual statistik (Stat Cards & Charts).
+4. **Admin Operational**: Selesai (UI-only). Halaman Pesanan, Detail Pesanan, dan Pembayaran (dengan simulasi validasi) sudah aktif.
+5. **Data Master**: Selesai (Fondasi). Dashboard Data Master aktif; modul detail (Hewan, Kandang, dll) tersedia dalam bentuk placeholder.
+6. **Data Management**: Frontend-only. Seluruh fitur menggunakan data mock/static lokal; belum ada integrasi API/Backend/Database.
+7. **Backend Foundation**: Masih berupa placeholder di `server/`.
 
 ## Catatan Risiko & Limitasi
 1. **Assets**: Cloudinary/external assets masih bersifat temporary (hotlinking dari repo lama).
 2. **Backend**: Belum ada integrasi API maupun Database nyata.
 3. **Security**: Role Guard masih bersifat development-only (mock), belum menggunakan JWT/Session/RBAC production.
-4. **Features**: Fitur backoffice mendalam (Detail Pesanan, Manajemen Data Master, dll) belum dimigrasikan.
+4. **CRUD**: Belum ada fitur CRUD nyata (tambah, ubah, hapus) yang terhubung ke persistensi data.
+5. **Detail Fitur**: Modul detail data master dan laporan belum dimigrasikan.
 
-## Milestone Terdekat
-- Migrasi Fitur Pesanan Admin (Batch 11).
-- Migrasi Detail Pesanan Admin (Batch 12).
-- Migrasi Manajemen Pembayaran (Batch 13).
-- Setup Admin Data Master Foundation (Batch 14).
+## Milestone Terdekat (Draft)
+- Migrasi Detail Data Master (Hewan, Kandang, Catering) - UI Only.
+- Migrasi Manajemen Users/Mitra/Konsumen - UI Only.
+- Persiapan Arsitektur Server (Node.js/Express).
+- Setup Database Schema & Migration Foundation.

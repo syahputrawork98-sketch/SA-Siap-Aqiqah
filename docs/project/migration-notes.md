@@ -5,22 +5,19 @@ Migrasi dilakukan dengan metode **"Shift, Stabilize, and Modularize Later"**:
 1. Buat wadah baru (SA-Siap-Aqiqah) dengan monorepo-lite structure.
 2. Pindahkan potongan kode secara bertahap (per batch).
 3. Pastikan potongan tersebut berjalan (build & lint verification).
-4. OOP-style/refactor modular besar dilakukan di fase lanjutan setelah migrasi dasar selesai.
+4. Fokus pada fungsionalitas visual (Frontend-only) sebelum masuk ke integrasi server.
 
-## Hasil Tahap Awal (Batch 1-10)
-- **Public Core**: Berhasil memindahkan Landing Page dan halaman statis lainnya.
-- **Layout Foundation**: Layout backoffice berhasil distandarisasi menggunakan alias `@` dan struktur folder yang lebih rapi (`app/layouts`).
-- **Mock Data Layer**: Menggunakan model statis di dalam folder feature (misal: `features/admin/model/`) untuk mensimulasikan dashboard tanpa API.
+## Hasil Fase Operasional (Batch 11-15)
+- **Admin Operasional**: Berhasil memigrasikan fitur utama Manajemen Pesanan dan Pembayaran.
+- **Mock Validation**: Validasi pembayaran disimulasikan menggunakan state lokal (`useState`) di dalam komponen untuk menunjukkan flow kerja tanpa API.
+- **Master Data Foundation**: Menyiapkan struktur folder dan dashboard untuk area Data Master, menggunakan placeholder untuk modul detail guna menjaga fokus batch.
 
-## Perubahan Struktur Folder & Penamaan
-| Lama (SIQAH) | Baru (SA-Siap-Aqiqah) | Keterangan |
-| --- | --- | --- |
-| `src/` | `client/src/` | Lokasi utama kode frontend. |
-| (New) | `server/` | Tempat backend (saat ini masih placeholder). |
-| `docs/project-control/` | `docs/project/` | Konsolidasi dokumentasi aktif. |
-| `src/shared/ui/` | `client/src/shared/ui/` | Komponen UI distandarisasi dengan penamaan PascalCase. |
+## Perubahan Struktur & Pola Kerja
+- **Shared UI**: Terus menggunakan komponen dari `shared/ui` (Card, Button, AsyncState) untuk konsistensi.
+- **Local Components**: Komponen yang sangat spesifik fitur (misal: `ModalValidasiPembayaran`) diletakkan di dalam folder `features/admin/ui/`.
+- **Data Mocking**: Seluruh data simulasi dipusatkan di folder `features/admin/model/` untuk memudahkan transisi ke API Service di masa depan.
 
-## Catatan Teknis & Checkpoint
-- **Dependency Alignment**: Versi React dan Vite telah diselaraskan dengan repo lama untuk meminimalkan breaking changes saat copy-paste.
-- **Tailwind v4**: Project menggunakan Tailwind CSS v4, sehingga beberapa class atau plugin mungkin memerlukan penyesuaian (meskipun sebagian besar class v3 tetap kompatibel).
-- **PascalCase Convention**: File komponen baru dipaksa menggunakan PascalCase (contoh: `PublicCard.jsx`) untuk konsistensi.
+## Catatan Teknis Lanjutan
+- **React Router 6**: Menggunakan rute dinamis (`:id`) dan nested routes untuk struktur Data Master.
+- **Recharts Integration**: Dashboard Data Master menggunakan Recharts untuk visualisasi data distribusi hewan.
+- **Handoff Readiness**: Seluruh kode telah diverifikasi melalui `build` dan `lint` untuk memastikan tidak ada "technical debt" visual sebelum pindah ke room chat baru.

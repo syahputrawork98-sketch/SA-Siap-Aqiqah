@@ -1,26 +1,31 @@
 # Roadmap SA-Siap-Aqiqah
 
 ## Fase 1: Migrasi & Stabilisasi (Batch 1 - 10) - SELESAI
-Fokus pada pemindahan fitur dari SIQAH Frontend ke struktur baru.
+Fokus pada pemindahan fitur dasar frontend dari SIQAH Frontend ke struktur baru.
 
-- **Batch 1-3**: Setup Repo, Docs, dan Client Foundation (Selesai).
-- **Batch 4-6**: Migrasi Public Layout & Pages (Selesai).
-- **Batch 7-9**: Migrasi Backoffice Layout & Dashboard UI (Selesai).
-- **Batch 10**: Checkpoint & Dokumentasi Sync (Selesai).
+- **Batch 1-10**: Setup Repo, Public Pages, Backoffice Layout, dan Dashboard Utama (Selesai).
 
-## Fase 2: Lanjutan Migrasi Fitur Backoffice (Batch 11 - 20) - DRAFT
-Fokus pada penyelesaian fitur Admin secara frontend-only sebelum masuk ke integrasi server.
+## Fase 2: Migrasi Operasional Admin (Batch 11 - 15) - SELESAI
+Fokus pada penyelesaian fitur operasional Admin secara frontend-only.
 
-- **Batch 11**: Admin Pesanan UI (Frontend-only, Mock data).
-- **Batch 12**: Admin Detail Pesanan UI (Frontend-only, Mock data).
-- **Batch 13**: Admin Pembayaran UI (Frontend-only, Mock data).
-- **Batch 14**: Admin Data Master Foundation UI (Kandang, Hewan, Menu, dll).
-- **Batch 15**: Checkpoint, Build Review & Dokumentasi Sync.
-- **Batch 16-19**: Fitur Admin/Backoffice lanjutan (Laporan, Notifikasi, Pengaturan) atau Persiapan Server.
-- **Batch 20**: Checkpoint Milestone Akhir Fase Frontend.
+- **Batch 11-13**: Admin Pesanan, Detail, dan Pembayaran UI (Selesai).
+- **Batch 14**: Admin Data Master Foundation (Dashboard & Placeholders) (Selesai).
+- **Batch 15**: Checkpoint Milestone Akhir Fase Operasional Frontend (Selesai).
 
-## Fase 3: Backend Integration & Refactor (Batch 21+)
-- Setup Express Server & Layered Architecture.
-- Migrasi Mock Data ke Real API Services.
-- Implementasi Database & Database-backed Features.
-- Refactor modular/OOP-style untuk logic bisnis.
+## Fase 3: Penyelesaian Frontend & Inisiasi Backend (Batch 16 - 25) - DRAFT
+Fokus pada penyelesaian sisa halaman UI dan mulai membangun fondasi server.
+
+- **Kandidat Batch 16-20 (Frontend Only)**:
+  - Manajemen Data Hewan & Kandang UI.
+  - Manajemen Data Catering, Menu, & Paket UI.
+  - Manajemen Users, Mitra, dan Konsumen UI.
+  - Halaman Laporan, Notifikasi, dan Pengaturan.
+- **Kandidat Batch 21-25 (Backend Integration)**:
+  - Setup Express Server & Layered Architecture.
+  - Inisiasi Database Schema & Seeds.
+  - Migrasi Mock Data ke Real API Services (Bertahap).
+
+## Fase 4: Refactor & Finalisasi (Batch 26+)
+- Refactor OOP-style menyeluruh.
+- Implementasi Real Auth (JWT/Session).
+- Integrasi Payment Gateway & Legal Docs.
