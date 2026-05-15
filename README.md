@@ -8,8 +8,8 @@ Project ini menggunakan struktur monorepo ringan untuk memudahkan sinkronisasi a
 
 - **`client/`**: Frontend aplikasi menggunakan React (Functional Components + Hooks).
 - **`server/`**: Backend aplikasi (rencana menggunakan Node.js/Express dengan Layered Architecture).
-- **`docs/`**: Dokumentasi teknis dan manajemen project.
-  - `docs/project/`: Dokumentasi status, roadmap, dan batasan scope.
+- **`docs/`**: Dokumentasi teknis dan manajemen project (Pusat Dokumentasi Tunggal).
+  - `docs/project/`: Status, roadmap, batasan scope, dan **`workflow.md`** (aturan kerja resmi).
   - `docs/batches/`: Log progress per batch pengerjaan.
 
 ## Status Migrasi

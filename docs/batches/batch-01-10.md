@@ -12,6 +12,17 @@
 
 ---
 
+## Batch 01.1: Konsolidasi Dokumentasi (Fix Batch 1)
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Menyatukan pusat dokumentasi agar tidak terjadi dualisme antara `docs/project/` dan `docs/project-control/`.
+- **Pekerjaan**:
+  - Membuat `docs/project/workflow.md` (Migrasi peran & alur dari `project-control`).
+  - Menghapus folder `docs/project-control/`.
+  - Mengupdate status project dan root README.
+- **Status**: Selesai.
+
+---
+
 ## Batch 02: Client Foundation Setup (Upcoming)
 - **Tujuan**: Inisialisasi project frontend di folder `client/`.
 - **Rencana**: Setup Vite/React, Tailwind (jika digunakan), dan folder structure boilerplate.
