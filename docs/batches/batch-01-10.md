@@ -57,6 +57,20 @@
 
 ---
 
-## Batch 03: Migration Phase - App Shell & Base Layout (Upcoming)
-- **Tujuan**: Migrasi struktur layout utama (Shell) dari SIQAH Frontend.
-- **Rencana**: Setup Router, Sidebar, dan Topbar dasar.
+## Batch 03: Migration Phase - App Shell & Base Layout
+- **Tanggal**: 2026-05-15
+- **Tujuan**: Membangun fondasi struktur aplikasi dan sistem routing.
+- **Pekerjaan**:
+  - Setup struktur folder `app/`, `features/`, `shared/`.
+  - Implementasi `AppRouter` dengan `publicRoutes`, `adminRoutes`, dan `superadminRoutes`.
+  - Membuat `PublicLayout` dan `RoleLayout` dasar.
+  - Implementasi `RoleGuard` (mock) dan `AppErrorBoundary`.
+  - Membuat placeholder pages untuk Home, Admin Dashboard, dan Superadmin Dashboard.
+  - Berhasil verifikasi build dan linting.
+- **Status**: Selesai.
+
+---
+
+## Batch 04: Migration Phase - Public Layout & Shared UI (Upcoming)
+- **Tujuan**: Migrasi Navbar, Footer, dan komponen UI dasar dari SIQAH Frontend.
+- **Rencana**: Memindahkan elemen visual Landing Page secara bertahap.

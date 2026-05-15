@@ -3,15 +3,16 @@
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
 - **Versi**: 0.1.1 (Consolidated Documentation)
-- **Status**: Batch 2 Selesai.
-- **Target Utama**: Menyiapkan fondasi frontend React/Vite di folder `client/`.
+- **Status**: Batch 3 Selesai.
+- **Target Utama**: Implementasi App Shell, Routing, dan Base Layout.
 
 ## Kondisi Saat Ini
-1. **Struktur Folder**: Selesai (`client/`, `server/`, `docs/`).
-2. **Frontend Foundation**: Selesai dibuat di `client/`. Menggunakan React 19.1, Vite 7.1, Tailwind 4.1, dan DaisyUI 5.3 (selaras dengan SIQAH Frontend). Alias `@` telah dikonfigurasi.
-3. **Repository Baseline**: `.gitignore` telah disiapkan di root untuk mengabaikan file dependency, build, dan env.
-4. **Dokumentasi**: `docs/project/` aktif sebagai SoT.
-5. **Backend**: Masih berupa placeholder di `server/`.
+1. **Struktur Folder**: Selesai (`client/`, `server/`, `docs/`). Mengikuti pola FSD-lite (`app`, `features`, `shared`, `entities`, `widgets`).
+2. **Frontend App Shell**: Selesai. Router, Layouts, dan Role Guard (mock) sudah aktif.
+3. **Routing**: Tersedia route `/`, `/admin`, dan `/superadmin` dengan placeholder pages.
+4. **Error Handling**: `AppErrorBoundary` terpasang di level root.
+5. **Repository Baseline**: `.gitignore` aktif.
+6. **Backend**: Masih berupa placeholder di `server/`.
 
 
 ## Milestone Terdekat
