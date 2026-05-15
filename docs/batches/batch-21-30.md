@@ -51,13 +51,13 @@
 
 ---
 
-## Batch 25: Checkpoint - Development Suite Stabilization & Docs Sync
+## Batch 25 Fix: Checkpoint - Production-Ready Vision Alignment & Docs Sync
 - **Tanggal**: 2026-05-15
-- **Tujuan**: Melakukan sinkronisasi dokumentasi besar dan konsolidasi status Batch 16-25.
+- **Tujuan**: Sinkronisasi dokumentasi agar selaras dengan target sistem production-ready.
 - **Pekerjaan**:
-  - Pembaruan `README.md` (Root), `current-status.md`, dan `roadmap.md`.
-  - Sinkronisasi histori pengerjaan di `batch-11-20.md` dan `batch-21-30.md`.
-  - Penyiapan `client/.env.example` dan instruksi local development yang jelas.
-  - Tidak ada penambahan fitur baru.
+  - Pembaruan `README.md`, `current-status.md`, `roadmap.md`, dan `scope-guard.md`.
+  - Penegasan visi **Production-Ready Target System**.
+  - Penegasan **Developer Persona Switcher** sebagai alat pengujian internal/developer.
+  - Klarifikasi alur **Transfer Manual** sebagai jalur pembayaran produksi yang valid.
 - **Status**: Selesai.
-- **Hasil**: Project terdokumentasi dengan rapi sebagai sebuah **Production-minded Development Suite**.
+- **Hasil**: Dokumentasi project kini secara konsisten mengarah pada target sistem produksi yang nyata.

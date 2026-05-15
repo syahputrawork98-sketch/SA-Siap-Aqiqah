@@ -1,21 +1,20 @@
 # SA-Siap-Aqiqah
 
-Project Sistem Informasi Manajemen Aqiqah (Siap Aqiqah) yang dikembangkan sebagai evolusi dari project SIQAH Frontend menjadi sebuah **Production-minded Development Suite**.
+Project Sistem Informasi Manajemen Aqiqah (Siap Aqiqah) yang ditargetkan menjadi sebuah **Production-Ready System** dengan alur bisnis yang matang dan teruji.
 
-## Status Saat Ini: Batch 25 (Development Suite Checkpoint)
+## Status Saat Ini: Batch 25 Fix (Production-Ready Target Checkpoint)
 
-Project telah mencapai fase integrasi awal antara Frontend dan Backend Development API. Status ringkas:
-- **Public Website**: Selesai.
-- **Backoffice UI**: Selesai untuk Admin & Superadmin (Pesanan, Pembayaran, Laporan, Notifikasi, Pengaturan).
-- **Data Master**: UI Selesai. Integrasi API aktif untuk Hewan dan Kandang.
-- **Backend Foundation**: Express.js aktif dengan rute health check dan Data Master API (Read-only, In-memory).
-- **Pembayaran Manual**: UI instruksi rekening dan upload preview selesai (Frontend-only).
+Project sedang berada pada fase integrasi awal antara Frontend dan Backend Development API menuju sistem produksi yang lengkap.
+- **Visi Utama**: Membangun sistem manajemen aqiqah yang siap pakai secara nyata.
+- **Status Integrasi**: Data Master Hewan dan Kandang telah terhubung ke Backend Development API (Read-only).
+- **Tool Internal**: **Developer Persona Switcher** tetap dipertahankan sebagai alat pengujian internal/developer untuk mensimulasikan role sebelum sistem autentikasi produksi (Auth) diimplementasikan.
+- **Metode Pembayaran**: Fokus pada **Transfer Manual** (Rekening & Upload Bukti) sebagai jalur pembayaran produksi yang valid dan legal.
 
 ## Struktur Project
 
 - **`client/`**: Frontend React + Vite + Tailwind v4 + DaisyUI.
 - **`server/`**: Backend Express.js (Development Mode, In-memory Data).
-- **`docs/`**: Dokumentasi aktif (Roadmap, Status, Batches).
+- **`docs/`**: Pusat dokumentasi aktif (Roadmap, Status, Batches).
 
 ## Cara Menjalankan Project (Local Development)
 
@@ -24,9 +23,8 @@ Project telah mencapai fase integrasi awal antara Frontend dan Backend Developme
 cd server
 npm install
 cp .env.example .env
-npm run dev # atau npm run start
+npm run dev
 ```
-*Port default: 3001*
 
 ### 2. Menjalankan Frontend (Client)
 ```bash
@@ -35,7 +33,6 @@ npm install
 cp .env.example .env
 npm run dev
 ```
-*Pastikan VITE_API_BASE_URL di .env mengarah ke port server (default: http://localhost:3001/api)*
 
 ---
-*Catatan: Project saat ini adalah Development Suite. Fitur database, otentikasi produksi, dan payment gateway masih dalam status HOLD.*
+*Catatan: SA-Siap-Aqiqah ditargetkan menjadi sistem production-ready. Pada fase saat ini, project masih berada pada checkpoint integrasi development. Developer Persona Switcher adalah alat internal testing, bukan pengganti autentikasi produksi final.*

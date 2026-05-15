@@ -1,23 +1,20 @@
 # Scope Guard - Batasan Project
 
-Dokumen ini berfungsi untuk menjaga agar pengerjaan tetap fokus pada tujuan setiap batch dan menghindari *scope creep*.
+Dokumen ini menjaga agar pengerjaan tetap fokus pada target **Production-Ready System** tanpa melakukan lompatan teknis prematur.
 
-## Batasan Umum (Development Suite Phase)
-1. **No Production Database**: Jangan menggunakan database fisik (PostgreSQL/MySQL/MongoDB) atau Prisma. Data tetap disimpan di memori (in-memory) atau file lokal.
-2. **No Production Auth**: Jangan mengimplementasikan JWT, RBAC, atau Session Management yang nyata. Role Guard tetap menggunakan simulasi lokal (Developer Persona Switcher).
-3. **No Real File Upload**: Upload file (bukti transfer) dilarang masuk ke server storage atau cloud storage. Cukup gunakan preview lokal di browser.
-4. **No Payment Gateway**: Integrasi Midtrans/Xendit atau sejenisnya dilarang keras. Pembayaran tetap menggunakan metode transfer manual dengan validasi admin manual.
-5. **No Production Deployment**: Fokus tetap pada local development environment.
-6. **No Legal Invoice/BAST**: Pembuatan dokumen legal tetap dilarang. Fokus pada manajemen data mentah saja.
+## Aturan Pengembangan Menuju Produksi
+1. **Database Persistence**: Implementasi database fisik (PostgreSQL) dilarang dilakukan sebelum Fase 5 (Batch 31+) atau instruksi khusus perancangan skema. Data saat ini tetap dikelola via in-memory/mock API.
+2. **Production Authentication**: Implementasi sistem login/logout nyata dilarang sebelum batch khusus. **Developer Persona Switcher** wajib digunakan sebagai alat pengujian internal dan tidak boleh dianggap sebagai sistem keamanan final.
+3. **Manual Payment Path**: Pengerjaan diarahkan untuk mematangkan alur pembayaran manual (Instruksi -> Upload -> Verifikasi Admin) sebagai jalur produksi yang sah. Integrasi Payment Gateway otomatis tetap dalam status HOLD dan bersifat opsional di masa depan.
+4. **Cloud/Server Storage**: Upload bukti transfer dilarang disimpan secara permanen di server/cloud sebelum infrastruktur storage disiapkan secara resmi.
+5. **No Premature Deployment**: Segala aktivitas pengerjaan harus dilakukan di local development environment hingga audit production-readiness selesai.
 
-## Aturan Komunikasi & Eksekusi
-- **Satu Eksekusi Per Turn**: Gemini mengeksekusi instruksi satu kali saja per turn untuk menjaga fokus.
-- **Decision Maker**: Perubahan dari in-memory data ke database fisik harus melalui instruksi eksplisit dari Room Chat 00.
-- **Wording Policy**: Hindari klaim "Production Ready". Gunakan istilah "Development Suite" atau "Production-minded".
+## Kebijakan Wording & Konsep
+- Project ini ditargetkan menjadi sistem **Production-Ready**.
+- Fase saat ini adalah **Development Integration Checkpoint**.
+- Developer Persona Switcher adalah **Internal Testing Tool**, bukan pengganti Auth produksi final.
 
-## Definisi Selesai (Batch 21 - 25)
-- Backend Express fungsional dengan rute Health Check.
-- API Data Master tersedia secara Read-only (In-memory).
-- Halaman Data Hewan dan Data Kandang terintegrasi secara dinamis ke API.
-- Dokumentasi project tersinkronisasi dan mencerminkan status terbaru integrasi client-server.
-- Build dan Lint di folder `client/` serta `server/` berstatus OK.
+## Definisi Selesai Batch 25 Fix
+- Seluruh dokumentasi telah selaras dengan visi "Production-Ready Target".
+- Catatan teknis tetap mencerminkan status pengembangan saat ini (In-memory, Read-only API).
+- Roadmap mencerminkan jalur hardening menuju sistem produksi yang stabil.

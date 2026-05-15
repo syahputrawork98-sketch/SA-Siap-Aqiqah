@@ -1,35 +1,30 @@
 # Roadmap SA-Siap-Aqiqah
 
-## Fase 1: Inisiasi & Migrasi Dasar (Batch 1 - 10) - SELESAI
-Setup repo, Tailwind v4, DaisyUI, Public Pages, dan Dashboard UI-only.
+## Fase 1 & 2: Migrasi & Operasional UI (Batch 1 - 15) - SELESAI
+Membangun fondasi UI dan alur bisnis operasional secara visual.
 
-## Fase 2: Operasional Admin Frontend (Batch 11 - 15) - SELESAI
-Penyelesaian halaman Pesanan, Detail, dan Pembayaran (UI-only).
+## Fase 3: Integrasi API & Development Checkpoint (Batch 16 - 25) - SELESAI
+Fokus pada penghubungan Frontend ke Backend Development API.
 
-## Fase 3: Ekspansi UI & Integrasi API (Batch 16 - 25) - SELESAI
-Fokus pada kelengkapan UI Backoffice dan inisiasi Backend Development API.
+- **Batch 21-23**: Inisiasi Backend API (Data Master).
+- **Batch 24**: Integrasi API Hewan & Kandang.
+- **Batch 25 Fix**: Checkpoint Keselarasan Visi Production-Ready.
 
-- **Batch 16-17**: Data Master UI (Hewan, Kandang, Catering, Menu, Paket).
-- **Batch 18**: User, Mitra, dan Konsumen Management UI.
-- **Batch 19**: Pembayaran Manual UI (Instruksi & Upload Preview).
-- **Batch 20**: Laporan, Notifikasi, dan Pengaturan UI.
-- **Batch 21**: Express.js Backend Foundation & Health Check.
-- **Batch 22-23**: Data Master Development API (Read-only, In-memory).
-- **Batch 24**: Integrasi API untuk Data Hewan & Kandang.
-- **Batch 25**: Checkpoint Milestone - Development Suite Stabilization.
+## Fase 4: Integrasi Bisnis & Persiapan Persistensi (Batch 26 - 30) - NEXT FOCUS
+Menghubungkan seluruh modul operasional ke API dan merancang persistensi data.
 
-## Fase 4: Integrasi Lanjutan & API Bisnis (Batch 26 - 30) - NEXT FOCUS
-Fokus pada penghubungan sisa UI ke API Development.
-
-- **Batch 26**: Integrasi API untuk Catering, Menu, dan Paket.
-- **Batch 27**: Development API untuk Pesanan dan Pembayaran (Read-only).
+- **Batch 26**: Integrasi API Catering, Menu, dan Paket.
+- **Batch 27**: Development API Pesanan dan Pembayaran Manual.
 - **Batch 28**: Integrasi Frontend Pesanan/Pembayaran ke API.
-- **Batch 29**: Perencanaan Database Schema & Migrasi Draft.
-- **Batch 30**: Checkpoint Milestone - Data Consistency Audit.
+- **Batch 29**: Perencanaan Database Schema & Migrasi Draft (Prisma/Postgres).
+- **Batch 30**: **Production Readiness Audit** - Evaluasi kelayakan transisi ke database fisik.
 
-## Fase 5: Keamanan & Produksi (Batch 31+) - FUTURE HOLD
-- Implementasi Database (PostgreSQL/Prisma).
-- Implementasi Auth & Role-Based Access Control (RBAC).
-- Implementasi Server Storage (Cloudinary/S3) untuk Bukti Transfer.
-- Integrasi Payment Gateway & Legal Invoice.
-- Deployment ke Production Environment.
+## Fase 5: Hardening & Production Launch (Batch 31+) - FUTURE FOCUS
+Membangun sistem yang benar-benar siap pakai secara nyata.
+
+- **Persistensi Data**: Implementasi Database fisik (PostgreSQL).
+- **Otentikasi Produksi**: Implementasi Auth, JWT, dan RBAC nyata bagi User/Mitra.
+- **Storage Produksi**: Implementasi Server/Cloud Storage untuk bukti transfer.
+- **Audit & Logging**: Implementasi Audit Trail untuk transaksi finansial.
+- **Payment Gateway**: Bersifat opsional (Future Optional); sistem tetap mengandalkan Transfer Manual sebagai jalur utama.
+- **Deployment**: Hardening infrastruktur dan peluncuran produksi.
