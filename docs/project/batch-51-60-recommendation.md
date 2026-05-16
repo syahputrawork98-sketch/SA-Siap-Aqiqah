@@ -15,10 +15,10 @@ Menghubungkan visualisasi Dashboard (Admin, Konsumen, Mitra) yang sudah ada deng
 | **Batch 54** | Konsumen Checkout & Create Order | Integrasi alur pemesanan (Checkout) konsumen ke Database (Write Mode). | **SELESAI** |
 | **Batch 55** | Mitra Kandang UI Integration | Integrasi dashboard Mitra Kandang untuk melihat tugas dan konfirmasi. | **SELESAI** |
 | **Batch 56** | Mitra Kurir UI Integration | Integrasi dashboard Mitra Kurir untuk update progres pengantaran. | **SELESAI** |
-| **Batch 57** | Cross-Role Timeline Visibility | Sinkronisasi transparansi timeline antar semua role (Admin/Konsumen/Mitra). | **NEXT FOCUS** |
-| **Batch 58** | Operational Edge Cases | Penanganan re-schedule mitra, penolakan pembayaran berulang, dll. | **DRAFT** |
-| **Batch 59** | User Feedback & Notification Sim | Simulasi feedback sistem (toast/notif) saat aksi dilakukan. | **DRAFT** |
-| **Batch 60** | UI Integration Checkpoint | Audit menyeluruh alur end-to-end dari UI hingga Database. | **DRAFT** |
+| **Batch 57** | Cross-Role Timeline Visibility | Sinkronisasi transparansi timeline antar semua role (Admin/Konsumen/Mitra). | **SELESAI** |
+| **Batch 58** | Order Status Consistency Pass | Standarisasi status order dan action guard lintas role. | **SELESAI** |
+| **Batch 59** | End-to-End Local Order Flow Polish | Penghalusan alur end-to-end dari checkout hingga selesai. | **SELESAI** |
+| **Batch 60** | Final UI Integration Stabilization | Audit teknis akhir, perbaikan linting, dan validasi build. | **SELESAI** |
 
 ## Catatan Penting
 - **Auth Strategy**: Tetap menggunakan **Developer Persona Switcher**.

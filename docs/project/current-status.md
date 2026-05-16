@@ -2,9 +2,9 @@
 
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
-- **Versi**: 0.9.0 (Transactional Integration Baseline)
-- **Status**: Batch 50 (Completed).
-- **Blueprint**: Audit dan checkpoint integrasi database transaksional selesai. Sesi 41–50 ditutup.
+- **Versi**: 0.9.5 (UI Integration Baseline)
+- **Status**: Batch 60 (Completed) / Batch 61 (Checkpoint).
+- **Blueprint**: Integrasi UI lintas peran (Admin, Konsumen, Mitra) selesai dan stabil. Sesi 51–60 ditutup.
 - **Klasifikasi**: **Production-Ready Target System**.
 
 ## Kondisi Saat Ini
@@ -29,7 +29,6 @@
 3. **Audit Trail**: Logging transaksional dasar tersedia via DB, namun audit trail finansial formal belum diimplementasikan.
 4. **API Stabilization**: Kontrak API perlu distabilkan sebelum integrasi UI penuh di semua dashboard.
 
-## Milestone Terdekat (Batch 51+)
-1. **UI Integration**: Menghubungkan dashboard Admin, Konsumen, dan Mitra ke API DB-aware secara menyeluruh.
-2. **Operational Flow Polish**: Perbaikan kecil pada alur transaksional berdasarkan feedback simulasi UI.
-3. **Drafting Auth Implementation**: Perencanaan transisi dari Persona Switcher ke Auth nyata.
+## Milestone Terdekat (Batch 61+)
+1. **Batch 61**: **Post UI Integration Checkpoint & Docs Sync** - Sinkronisasi dokumentasi dan audit status akhir.
+2. **Draft Batch 62-70**: Fokus pada pembersihan kode, peningkatan UX modal, dan pelaporan lokal.

@@ -38,8 +38,11 @@ Membangun sistem yang benar-benar siap pakai secara nyata.
 - **Batch 49**: **Fulfillment Timeline** - Implementasi alur pelacakan progres pengerjaan pesanan oleh mitra. (SELESAI)
 - **Batch 50**: **Transactional Integration Checkpoint** - Audit integrasi transaksional dan persiapan transisi ke UI. (SELESAI)
 - **Siklus Batch 41-50**: **Database & Transactional Baseline Integration** (LENGKAP)
-- **Batch 51-60**: **UI Integration & Operational Phase** (DRAFT DISKUSI)
-- **Otentikasi Produksi**: Implementasi Auth, JWT, dan RBAC nyata bagi User/Mitra.
-- **Storage Produksi**: Implementasi Server/Cloud Storage untuk bukti transfer.
-- **Audit & Logging**: Implementasi Audit Trail untuk transaksi finansial.
-- **Deployment**: Hardening infrastruktur dan peluncuran produksi.
+- **Batch 51-60**: **UI Integration & Operational Phase** (LENGKAP)
+    - Admin dashboard, Action control, Konsumen checkout, Mitra dashboards terintegrasi ke DB.
+- **Batch 61**: **Post UI Integration Checkpoint & Docs Sync** (SELESAI)
+- **Batch 62-70**: **Operational Polish & Local Reporting** (DRAFT DISKUSI)
+- **Otentikasi Produksi**: Implementasi Auth, JWT, dan RBAC nyata bagi User/Mitra. (HOLD)
+- **Storage Produksi**: Implementasi Server/Cloud Storage untuk bukti transfer. (HOLD)
+- **Audit & Logging**: Implementasi Audit Trail untuk transaksi finansial. (HOLD)
+- **Deployment**: Hardening infrastruktur dan peluncuran produksi. (HOLD)
