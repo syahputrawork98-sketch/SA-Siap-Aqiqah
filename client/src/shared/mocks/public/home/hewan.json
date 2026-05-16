@@ -4,7 +4,7 @@
     "nama": "Kambing Jawa Super",
     "berat": "25-30 kg",
     "harga": "Rp 2.450.000",
-    "img": "https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&q=80&w=800",
+    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761097682/goat-1_vpqckt.jpg",
     "ready": true
   },
   {
@@ -12,7 +12,7 @@
     "nama": "Kambing Etawa Premium",
     "berat": "30-35 kg",
     "harga": "Rp 2.950.000",
-    "img": "https://images.unsplash.com/photo-1543328222-386004b3e51d?auto=format&fit=crop&q=80&w=800",
+    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761097701/goat-2_fpt7xt.jpg",
     "ready": true
   },
   {
@@ -20,7 +20,7 @@
     "nama": "Domba Garut Pilihan",
     "berat": "28-33 kg",
     "harga": "Rp 2.750.000",
-    "img": "https://images.unsplash.com/photo-1484557985045-edf25e08da73?auto=format&fit=crop&q=80&w=800",
+    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761097715/goat-3_lrrmbl.jpg",
     "ready": true
   }
 ]

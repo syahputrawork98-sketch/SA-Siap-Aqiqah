@@ -6,28 +6,28 @@ const teamData = [
   {
     nama: "Admin Siqah",
     jabatan: "Manajemen dan Layanan Pelanggan",
-    foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
+    foto: "https://res.cloudinary.com/dcida9qys/image/upload/v1761272551/admin_siqah_gx3jtz.png",
     deskripsi:
       "Mengelola sistem, memastikan proses layanan berjalan lancar, dan menjaga komunikasi dengan pelanggan agar selalu puas dan tenang.",
   },
   {
     nama: "Tim Kandang",
     jabatan: "Perawatan dan Pemilihan Hewan",
-    foto: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?auto=format&fit=crop&q=80&w=800",
+    foto: "https://res.cloudinary.com/dcida9qys/image/upload/v1761272551/kandang_siqah_fphlfv.png",
     deskripsi:
       "Bertanggung jawab atas kesehatan dan kelayakan hewan aqiqah, memastikan setiap hewan dipelihara dengan penuh kasih dan sesuai syariat.",
   },
   {
     nama: "Mitra Catering",
     jabatan: "Pengolahan dan Penyajian Menu",
-    foto: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800",
+    foto: "https://res.cloudinary.com/dcida9qys/image/upload/v1761272551/catering_siqah_xcw9ry.png",
     deskripsi:
       "Menyiapkan olahan daging aqiqah dengan standar kebersihan tinggi, cita rasa terbaik, dan penuh keberkahan.",
   },
   {
     nama: "Mitra Kurir",
     jabatan: "Pengantaran dan Ketepatan Waktu",
-    foto: "https://images.unsplash.com/photo-1582733775062-eb92170f5e13?auto=format&fit=crop&q=80&w=800",
+    foto: "https://res.cloudinary.com/dcida9qys/image/upload/v1761272551/kurir_siqah_yu7nmp.png",
     deskripsi:
       "Mengantarkan paket aqiqah dengan aman, tepat waktu, dan pelayanan penuh senyum hingga ke tangan penerima.",
   },
