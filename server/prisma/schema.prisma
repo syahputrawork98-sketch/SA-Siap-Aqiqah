@@ -1,0 +1,266 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==========================================
+// ENUMS (Based on docs/database/status-enum-contract.md)
+// ==========================================
+
+enum UserRole {
+  USER
+  MITRA_KANDANG
+  MITRA_CATERING
+  MITRA_KURIR
+  ADMIN
+  SUPERADMIN
+}
+
+enum PartnerType {
+  MITRA_KANDANG
+  MITRA_CATERING
+  MITRA_KURIR
+}
+
+enum OrderStatus {
+  DRAFT
+  PENDING_CONFIRMATION
+  CONFIRMED
+  AWAITING_PAYMENT
+  PROCESSING
+  ON_DELIVERY
+  DELIVERED
+  COMPLETED
+  CANCELLED
+}
+
+enum PartnerConfirmationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  NEED_RESCHEDULE
+}
+
+enum PaymentStatus {
+  UNPAID
+  PENDING_VERIFICATION
+  PAID_DP
+  PAID_FULL
+  REJECTED
+}
+
+enum FulfillmentStatus {
+  WAITING
+  IN_PROGRESS
+  DONE
+  ISSUE
+}
+
+enum PayoutStatus {
+  PENDING
+  PAID
+}
+
+enum TimelineVisibility {
+  INTERNAL
+  PUBLISHED
+}
+
+// ==========================================
+// MODELS (Based on docs/database/database-contract-map.md)
+// ==========================================
+
+model User {
+  id              String           @id @default(cuid())
+  email           String           @unique
+  passwordHash    String           // Planned for future production auth
+  role            UserRole         @default(USER)
+  isActive        Boolean          @default(true)
+  consumerProfile ConsumerProfile?
+  partnerProfile  PartnerProfile?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model ConsumerProfile {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id])
+  fullName       String
+  phone          String?
+  addressDefault String?
+  avatarUrl      String?
+  orders         Order[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model PartnerProfile {
+  id                   String                @id @default(cuid())
+  userId               String                @unique
+  user                 User                  @relation(fields: [userId], references: [id])
+  type                 PartnerType
+  businessName         String
+  ownerName            String
+  phone                String
+  address              String
+  bio                  String?
+  bankAccountInfo      String?
+  isVerified           Boolean               @default(false)
+  animals              Animal[]
+  cateringMenus        CateringMenu[]
+  partnerConfirmations PartnerConfirmation[]
+  payouts              Payout[]
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+}
+
+model Package {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  priceBase   Int      // Nominal dalam satuan terkecil (e.g., Rupiah)
+  imageUrl    String?
+  isActive    Boolean  @default(true)
+  orders      Order[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Animal {
+  id          String         @id @default(cuid())
+  partnerId   String
+  partner     PartnerProfile @relation(fields: [partnerId], references: [id])
+  type        String         // e.g., "Kambing", "Domba"
+  weight      String?
+  gender      String?
+  price       Int
+  status      String         @default("AVAILABLE") // AVAILABLE, RESERVED, SOLD
+  imageUrl    String?
+  orderItems  OrderItem[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model CateringMenu {
+  id            String         @id @default(cuid())
+  partnerId     String
+  partner       PartnerProfile @relation(fields: [partnerId], references: [id])
+  menuName      String
+  description   String?
+  pricePerPorsi Int
+  orderItems    OrderItem[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Order {
+  id                   String                @id @default(cuid())
+  orderNumber          String                @unique
+  consumerId           String
+  consumer             ConsumerProfile       @relation(fields: [consumerId], references: [id])
+  packageId            String
+  package              Package               @relation(fields: [packageId], references: [id])
+  status               OrderStatus           @default(DRAFT)
+  totalAmount          Int
+  dpAmount             Int
+  remainingAmount      Int
+  scheduledDate        DateTime
+  deliveryAddress      String
+  notesConsumer        String?
+  items                OrderItem[]
+  partnerConfirmations PartnerConfirmation[]
+  payments             Payment[]
+  payouts              Payout[]
+  timelineEvents       TimelineEvent[]
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+}
+
+model OrderItem {
+  id             String        @id @default(cuid())
+  orderId        String
+  order          Order         @relation(fields: [orderId], references: [id])
+  entityType     String        // "ANIMAL" or "CATERING_MENU"
+  animalId       String?
+  animal         Animal?       @relation(fields: [animalId], references: [id])
+  cateringMenuId String?
+  cateringMenu   CateringMenu? @relation(fields: [cateringMenuId], references: [id])
+  quantity       Int           @default(1)
+  priceAtOrder   Int
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model PartnerConfirmation {
+  id           String                    @id @default(cuid())
+  orderId      String
+  order        Order                     @relation(fields: [orderId], references: [id])
+  partnerId    String
+  partner      PartnerProfile            @relation(fields: [partnerId], references: [id])
+  partnerRole  PartnerType
+  status       PartnerConfirmationStatus @default(PENDING)
+  notesPartner String?
+  confirmedAt  DateTime?
+  createdAt    DateTime                  @default(now())
+  updatedAt    DateTime                  @updatedAt
+}
+
+model Payment {
+  id            String        @id @default(cuid())
+  orderId       String
+  order         Order         @relation(fields: [orderId], references: [id])
+  type          String        // e.g., "DP", "FULL", "REMAINING"
+  amount        Int
+  proofImageUrl String?
+  status        PaymentStatus @default(PENDING_VERIFICATION)
+  adminNote     String?
+  verifiedAt    DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Payout {
+  id        String       @id @default(cuid())
+  orderId   String
+  order     Order        @relation(fields: [orderId], references: [id])
+  partnerId String
+  partner   PartnerProfile @relation(fields: [partnerId], references: [id])
+  amount    Int
+  status    PayoutStatus @default(PENDING)
+  paidAt    DateTime?
+  adminNote String?
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model TimelineEvent {
+  id            String             @id @default(cuid())
+  orderId       String
+  order         Order              @relation(fields: [orderId], references: [id])
+  eventKey      String             // e.g., "SLAUGHTER", "COOKING"
+  title         String
+  description   String?
+  status        FulfillmentStatus  @default(WAITING)
+  visibility    TimelineVisibility @default(INTERNAL)
+  proofImageUrl String?
+  updatedBy     String             // Menyimpan role/ID pengupdate
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+}
+
+model PlatformSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique // e.g., "platform_fee_pct", "dp_pct"
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

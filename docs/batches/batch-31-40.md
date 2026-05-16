@@ -35,10 +35,19 @@ Dokumen ini mencatat progres pengembangan pada fase Hardening, Persona Expansion
   - Pemetaan 15+ entitas utama dan 8+ grup enum status.
   - Dasar untuk pembuatan schema Prisma di batch mendatang.
 
-## Batch 39 - 40: Schema Initialization & Database Setup
-- **Tujuan**: Implementasi fisik Database menggunakan Prisma & PostgreSQL.
+## Batch 39: Prisma Schema Baseline Draft
+- **Tujuan**: Membuat draft skema Prisma (Enum & Model) sebagai fondasi database fisik.
+- **Status**: Selesai.
+- **Hasil**: 
+  - Pembuatan file `server/prisma/schema.prisma`.
+  - Definisi 8 Enum (UserRole, OrderStatus, dll).
+  - Definisi 13 Model utama (User, Order, Payment, TimelineEvent, dll).
+  - Skema siap untuk inisialisasi database PostgreSQL di fase berikutnya.
+
+## Batch 40: Schema Initialization & Database Setup
+- **Tujuan**: Inisialisasi fisik Database PostgreSQL, migrasi awal, dan integrasi API operasional.
 - **Status**: Mendatang.
-- **Fokus**: Inisialisasi skema, migrasi, dan sinkronisasi field kontrak.
+- **Fokus**: Menjalankan migrasi database dan menghubungkan controller ke DB via Prisma.
 
 ---
 *Terakhir diperbarui: 16 Mei 2026*
