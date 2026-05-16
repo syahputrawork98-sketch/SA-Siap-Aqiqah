@@ -5,9 +5,9 @@ import { PublicButton, PublicSection } from "@/shared/ui";
 const HeroAbout = () => {
   return (
     <PublicSection
-      className="bg-gradient-to-b from-[#fefbf7] to-[#f9f6ef]"
+      className="py-24"
       overlay="soft"
-      overlayClassName="backdrop-blur-[2px]"
+      usePattern={true}
       containerClassName="flex flex-col items-center gap-12 px-6 md:flex-row md:px-10"
     >
       <motion.div

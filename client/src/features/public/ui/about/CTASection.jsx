@@ -7,6 +7,8 @@ const CTASection = () => {
     <PublicSection
       className="py-24 text-center"
       overlay="dark"
+      usePattern={true}
+      overlayClassName="bg-[var(--color-public-primary)]/85"
       containerClassName="max-w-5xl px-6 text-center text-white md:px-10"
     >
       <motion.div

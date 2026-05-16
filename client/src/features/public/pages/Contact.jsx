@@ -19,7 +19,7 @@ const adminData = {
 
 const Contact = () => {
   return (
-    <PublicSection className="py-24" overlay="soft" overlayClassName="bg-gradient-to-b from-white/20 via-[var(--color-public-primary)]/20 to-white/40">
+    <PublicSection className="py-24" overlay="soft" usePattern={true}>
       <div className="text-center">
         <motion.img
           src="https://res.cloudinary.com/dcida9qys/image/upload/v1761097925/Siqah-logo-HD_umjt9e.png"

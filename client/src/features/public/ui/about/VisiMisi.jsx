@@ -5,9 +5,9 @@ import { PublicCard, PublicSection, SectionHeading } from "@/shared/ui";
 const VisiMisi = () => {
   return (
     <PublicSection
-      className="bg-gradient-to-b from-[#fefbf7] to-[#f9f6ef]"
+      className="py-24"
       overlay="soft"
-      overlayClassName="backdrop-blur-[2px]"
+      usePattern={true}
       containerClassName="px-6 md:px-10"
     >
       <SectionHeading

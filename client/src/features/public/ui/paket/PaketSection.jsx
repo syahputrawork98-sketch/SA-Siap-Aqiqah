@@ -31,6 +31,7 @@ const PaketSection = () => {
     <PublicSection
       className="siqah-public-bg-base"
       overlay="soft"
+      usePattern={true}
       containerClassName="px-6"
     >
       <SectionHeading className="mb-12" title="Daftar Paket Aqiqah Siqah" />

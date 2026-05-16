@@ -36,7 +36,7 @@ const AdvantagesSection = () => {
     <PublicSection
       className="py-24"
       overlay="soft"
-      overlayClassName="bg-gradient-to-b from-white/20 via-[var(--color-public-primary)]/20 to-white/40"
+      usePattern={true}
     >
       <SectionHeading
         className="mb-16"

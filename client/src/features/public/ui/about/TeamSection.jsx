@@ -36,9 +36,9 @@ const teamData = [
 const TeamSection = () => {
   return (
     <PublicSection
-      className="bg-gradient-to-b from-[#fefbf7] to-[#f9f6ef]"
+      className="py-24"
       overlay="soft"
-      overlayClassName="backdrop-blur-[2px]"
+      usePattern={true}
       containerClassName="space-y-16 px-6 text-center md:px-10"
     >
       <SectionHeading
