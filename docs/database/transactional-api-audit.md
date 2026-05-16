@@ -18,11 +18,13 @@ Audit ini merangkum cakupan integrasi teknis antara API Server dan Database Pris
 | --- | --- | --- | --- |
 | `GET /api/orders` | `Order` | Mock (Read) | Aktif |
 | `POST /api/orders` | `Order`, `OrderItem` | **None** (Write) | Aktif |
-| `GET /api/orders/:id/confirmations` | `PartnerConfirmation` | Mock (Empty) | Aktif |
-| `POST /api/orders/:id/confirmations` | `PartnerConfirmation` | **None** | Aktif |
-| `PATCH /api/orders/:id/confirmations/:cid` | `PartnerConfirmation` | **None** | Aktif |
+| `GET /api/orders/:id/partner-confirmations` | `PartnerConfirmation` | Mock (Empty) | Aktif |
+| `POST /api/orders/:id/partner-confirmations` | `PartnerConfirmation` | **None** | Aktif |
+| `PATCH /api/orders/:id/partner-confirmations/:cid/status` | `PartnerConfirmation` | **None** | Aktif |
 | `GET /api/orders/:id/timeline-events` | `TimelineEvent` | Mock (Empty) | Aktif |
 | `POST /api/orders/:id/timeline-events` | `TimelineEvent` | **None** | Aktif |
+| `PATCH /api/orders/:id/timeline-events/:eid/status` | `TimelineEvent` | **None** | Aktif |
+| `PATCH /api/orders/:id/timeline-events/:eid/visibility` | `TimelineEvent` | **None** | Aktif |
 
 ### Modul Payments (Read/Write)
 | Endpoint | Model Prisma | Fallback | Status |
@@ -30,6 +32,7 @@ Audit ini merangkum cakupan integrasi teknis antara API Server dan Database Pris
 | `GET /api/payments` | `Payment` | Mock (Read) | Aktif |
 | `POST /api/payments` | `Payment` | **None** (Write) | Aktif |
 | `PATCH /api/payments/:id/verify` | `Payment`, `Order` | **None** | Aktif |
+| `PATCH /api/payments/:id/reject` | `Payment` | **None** | Aktif |
 
 ## 2. Penggunaan Model Prisma
 
@@ -47,9 +50,16 @@ Audit ini merangkum cakupan integrasi teknis antara API Server dan Database Pris
 | `Payment` | Aktif | Alur Pembayaran Manual. |
 | `TimelineEvent` | Aktif | Alur Timeline 2 (Fulfillment). |
 | `PlatformSetting` | Aktif | Digunakan untuk konstanta `dp_pct`. |
-| `Payout` | **Idle** | Belum diaktifkan di API. |
+| `Payout` | **HOLD** | Model tersedia, API belum diimplementasikan. |
 
-## 3. Risiko Teknis & Mitigasi
+## 3. Hasil Audit Alur Transaksional (Logical Check)
+
+1. **Order Creation**: `PENDING_CONFIRMATION` -> Pesanan tersimpan di DB dengan relasi `Consumer` dan `Package` yang benar. (LULUS)
+2. **Timeline 1 (Partner Confirmation)**: Mitra wajib (Kandang, Catering, Kurir) terdaftar. Status pesanan berubah ke `AWAITING_PAYMENT` hanya jika SEMUA mitra menerima (`ACCEPTED`). (LULUS)
+3. **Manual Payment**: Mendukung pembayaran DP. Verifikasi admin memicu perubahan status pesanan ke `PROCESSING`. (LULUS)
+4. **Timeline 2 (Fulfillment)**: Progres pelacakan hanya bisa dimulai jika status pesanan minimal `PROCESSING`. Status pesanan berubah otomatis (`ON_DELIVERY`, `DELIVERED`, `COMPLETED`) berdasarkan event kunci. (LULUS)
+
+## 4. Risiko Teknis & Mitigasi
 
 | Risiko | Deskripsi | Mitigasi |
 | --- | --- | --- |
