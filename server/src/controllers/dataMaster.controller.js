@@ -1,7 +1,7 @@
 const dataMasterService = require('../services/dataMaster.service');
 
-const getSummary = (req, res) => {
-  const summary = dataMasterService.getSummary();
+const getSummary = async (req, res) => {
+  const summary = await dataMasterService.getSummary();
   res.json({
     success: true,
     message: "Data Master summary retrieved successfully",
@@ -9,11 +9,11 @@ const getSummary = (req, res) => {
   });
 };
 
-const getAnimals = (req, res) => {
+const getAnimals = async (req, res) => {
   const { search, kategori, status } = req.query;
   const filters = { search, kategori, status };
-  const allAnimals = dataMasterService.getAllAnimals({});
-  const filteredAnimals = dataMasterService.getAllAnimals(filters);
+  const allAnimals = await dataMasterService.getAllAnimals({});
+  const filteredAnimals = await dataMasterService.getAllAnimals(filters);
   
   res.json({
     success: true,
@@ -27,8 +27,8 @@ const getAnimals = (req, res) => {
   });
 };
 
-const getAnimalById = (req, res) => {
-  const animal = dataMasterService.getAnimalById(req.params.id);
+const getAnimalById = async (req, res) => {
+  const animal = await dataMasterService.getAnimalById(req.params.id);
   if (!animal) {
     return res.status(404).json({
       success: false,
@@ -43,11 +43,11 @@ const getAnimalById = (req, res) => {
   });
 };
 
-const getPens = (req, res) => {
+const getPens = async (req, res) => {
   const { search, status } = req.query;
   const filters = { search, status };
-  const allPens = dataMasterService.getAllPens({});
-  const filteredPens = dataMasterService.getAllPens(filters);
+  const allPens = await dataMasterService.getAllPens({});
+  const filteredPens = await dataMasterService.getAllPens(filters);
   
   res.json({
     success: true,
@@ -61,8 +61,8 @@ const getPens = (req, res) => {
   });
 };
 
-const getPenById = (req, res) => {
-  const pen = dataMasterService.getPenById(req.params.id);
+const getPenById = async (req, res) => {
+  const pen = await dataMasterService.getPenById(req.params.id);
   if (!pen) {
     return res.status(404).json({
       success: false,
@@ -77,11 +77,11 @@ const getPenById = (req, res) => {
   });
 };
 
-const getCaterings = (req, res) => {
+const getCaterings = async (req, res) => {
   const { search, status } = req.query;
   const filters = { search, status };
-  const allCaterings = dataMasterService.getAllCaterings({});
-  const filteredCaterings = dataMasterService.getAllCaterings(filters);
+  const allCaterings = await dataMasterService.getAllCaterings({});
+  const filteredCaterings = await dataMasterService.getAllCaterings(filters);
   
   res.json({
     success: true,
@@ -95,8 +95,8 @@ const getCaterings = (req, res) => {
   });
 };
 
-const getCateringById = (req, res) => {
-  const catering = dataMasterService.getCateringById(req.params.id);
+const getCateringById = async (req, res) => {
+  const catering = await dataMasterService.getCateringById(req.params.id);
   if (!catering) {
     return res.status(404).json({
       success: false,
@@ -111,11 +111,11 @@ const getCateringById = (req, res) => {
   });
 };
 
-const getMenus = (req, res) => {
+const getMenus = async (req, res) => {
   const { search, kategori, status } = req.query;
   const filters = { search, kategori, status };
-  const allMenus = dataMasterService.getAllMenus({});
-  const filteredMenus = dataMasterService.getAllMenus(filters);
+  const allMenus = await dataMasterService.getAllMenus({});
+  const filteredMenus = await dataMasterService.getAllMenus(filters);
   
   res.json({
     success: true,
@@ -129,8 +129,8 @@ const getMenus = (req, res) => {
   });
 };
 
-const getMenuById = (req, res) => {
-  const menu = dataMasterService.getMenuById(req.params.id);
+const getMenuById = async (req, res) => {
+  const menu = await dataMasterService.getMenuById(req.params.id);
   if (!menu) {
     return res.status(404).json({
       success: false,
@@ -145,11 +145,11 @@ const getMenuById = (req, res) => {
   });
 };
 
-const getPackages = (req, res) => {
+const getPackages = async (req, res) => {
   const { search, jenisHewan, status } = req.query;
   const filters = { search, jenisHewan, status };
-  const allPackages = dataMasterService.getAllPackages({});
-  const filteredPackages = dataMasterService.getAllPackages(filters);
+  const allPackages = await dataMasterService.getAllPackages({});
+  const filteredPackages = await dataMasterService.getAllPackages(filters);
   
   res.json({
     success: true,
@@ -163,8 +163,8 @@ const getPackages = (req, res) => {
   });
 };
 
-const getPackageById = (req, res) => {
-  const packageData = dataMasterService.getPackageById(req.params.id);
+const getPackageById = async (req, res) => {
+  const packageData = await dataMasterService.getPackageById(req.params.id);
   if (!packageData) {
     return res.status(404).json({
       success: false,

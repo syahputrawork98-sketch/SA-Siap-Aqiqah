@@ -32,9 +32,19 @@ Dokumen ini mencatat progres pengembangan pada fase Database & Operational Integ
   - Pembuatan 8 dokumen detail di `docs/database/seed-tables/`.
   - Sinkronisasi `seed-data-baseline.md` sebagai indeks dokumen.
 
-## Batch 44: API Data Master Migration (Mendatang)
-- **Tujuan**: Menghubungkan modul Data Master (Mitra, Paket, Hewan) ke database fisik.
-- **Fokus**: Refactor service/controller untuk menggunakan PrismaClient.
+## Batch 44: API Data Master Migration (Read-only)
+- **Tujuan**: Menghubungkan modul Data Master ke database Prisma secara read-only dengan guarded fallback.
+- **Status**: Selesai.
+- **Hasil**: 
+  - Pembuatan Prisma Client singleton di `server/src/lib/prisma.js`.
+  - Refactor `dataMaster.service.js` dan `dataMaster.controller.js` untuk mendukung async/await.
+  - Implementasi mekanisme `tryDB` untuk fallback otomatis ke mock data jika database offline.
+  - Mapping data Prisma ke shape data mock untuk menjaga kompatibilitas frontend.
+  - Pembuatan dokumentasi `docs/database/data-master-api-migration.md`.
+
+## Batch 45: Order Flow Database Integration (Mendatang)
+- **Tujuan**: Mengaktifkan penyimpanan pesanan baru ke dalam database Prisma.
+- **Fokus**: Refactor Order service/controller.
 
 ---
 *Terakhir diperbarui: 16 Mei 2026*
