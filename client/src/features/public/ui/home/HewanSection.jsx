@@ -6,7 +6,7 @@ import hewanList from "@/shared/mocks/public/home/hewan.json";
 
 const HewanSection = () => {
   return (
-    <PublicSection className="siqah-public-bg-reverse">
+    <PublicSection className="siqah-public-bg-reverse" overlay="wash">
       <SectionHeading
         className="mb-12"
         title="Pilihan Hewan Aqiqah"

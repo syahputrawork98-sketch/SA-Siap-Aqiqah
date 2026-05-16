@@ -5,7 +5,7 @@ import teamMembers from "@/shared/mocks/public/home/team-members.json";
 
 const TimSection = () => {
   return (
-    <PublicSection className="siqah-public-bg-reverse">
+    <PublicSection className="siqah-public-bg-reverse" overlay="wash">
       <SectionHeading
         className="mb-12"
         title="Tim Amanah Siqah"

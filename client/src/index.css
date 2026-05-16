@@ -40,11 +40,17 @@
   --color-public-overlay-light: rgb(255 255 255 / 70%);
   --color-public-overlay-elevated: rgb(255 255 255 / 95%);
   --color-public-overlay-mobile: rgb(255 255 255 / 90%);
-  --color-public-overlay-soft: rgb(255 255 255 / 72%);
-  --color-public-overlay-strong: rgb(69 98 75 / 76%);
-  --color-public-overlay-hero: linear-gradient(to bottom right, rgb(69 98 75 / 80%), rgb(69 98 75 / 60%), rgb(185 145 77 / 50%));
+  --color-public-overlay-soft: rgb(255 255 255 / 82%);
+  --color-public-overlay-strong: rgb(69 98 75 / 82%);
+  --color-public-overlay-hero: linear-gradient(to bottom right, rgb(69 98 75 / 85%), rgb(69 98 75 / 70%), rgb(185 145 77 / 60%));
   --color-public-overlay-image-bottom: linear-gradient(to top, rgb(0 0 0 / 40%), transparent);
   --color-public-overlay-soft-glow: linear-gradient(to top, rgb(255 255 255 / 13%), transparent);
+  
+  /* Section Wash & Glow for smooth transitions */
+  --color-public-section-wash: linear-gradient(to bottom, var(--core-public-bg-start), var(--core-public-bg-end));
+  --color-public-section-wash-reverse: linear-gradient(to bottom, var(--core-public-bg-end), var(--core-public-bg-start));
+  --color-public-section-glow: radial-gradient(circle at 50% 50%, rgb(255 255 255 / 40%), transparent);
+  
   --color-public-control-bg: rgb(255 255 255 / 70%);
   --color-public-control-bg-hover: rgb(255 255 255 / 84%);
   --color-public-accent-ring: rgb(185 145 77 / 80%);

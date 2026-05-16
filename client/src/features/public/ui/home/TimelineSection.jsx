@@ -16,7 +16,7 @@ const stepIcons = {
 
 const TimelineSection = () => {
   return (
-    <PublicSection className="siqah-public-bg-reverse">
+    <PublicSection className="siqah-public-bg-reverse" overlay="wash-reverse">
       <SectionHeading
         className="mb-12"
         title="Proses Aqiqah Siqah"

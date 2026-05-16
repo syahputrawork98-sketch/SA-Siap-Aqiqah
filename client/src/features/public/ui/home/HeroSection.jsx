@@ -8,7 +8,6 @@ const HeroSection = () => {
       className="siqah-public-bg-base"
       containerClassName="flex flex-col-reverse items-center justify-center gap-10 md:flex-row md:gap-20"
       overlay="hero"
-      backgroundImage="https://images.unsplash.com/photo-1716047866102-ec21d084fe0e?q=80&w=1170&auto=format&fit=crop"
       fixedBackground={false}
       usePattern={true}
     >

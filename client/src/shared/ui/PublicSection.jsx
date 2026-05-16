@@ -17,6 +17,9 @@ export default function PublicSection({
     soft: "bg-[var(--color-public-overlay-soft)]",
     dark: "bg-[var(--color-public-overlay-strong)]",
     hero: "bg-[image:var(--color-public-overlay-hero)] mix-blend-multiply",
+    wash: "bg-[image:var(--color-public-section-wash)] opacity-95",
+    "wash-reverse": "bg-[image:var(--color-public-section-wash-reverse)] opacity-95",
+    glow: "bg-[image:var(--color-public-section-glow)]",
   };
 
   const sectionStyle = {
