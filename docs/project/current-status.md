@@ -2,8 +2,9 @@
 
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
-- **Versi**: 0.3.0 (Audit & Readiness Checkpoint)
-- **Status**: Batch 30 (Checkpoint).
+- **Versi**: 0.4.0 (Business Flow Documentation)
+- **Status**: Batch 37 (Completed).
+- **Blueprint**: Dokumen Alur Bisnis Selesai (docs/business-flow/).
 - **Klasifikasi**: **Production-Ready Target System**.
 
 ## Kondisi Saat Ini

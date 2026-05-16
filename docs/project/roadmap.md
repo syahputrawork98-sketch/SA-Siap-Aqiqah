@@ -19,11 +19,12 @@ Menghubungkan seluruh modul operasional ke API dan merancang persistensi data.
 - **Batch 29**: Perencanaan Database Schema & Migrasi Draft (Prisma/Postgres).
 - **Batch 30**: **Production Readiness Audit** - Evaluasi kelayakan transisi ke database fisik.
 
-## Fase 5: Hardening & Production Launch (Batch 31+) - FUTURE FOCUS
+## Fase 5: Hardening & Production Launch (Batch 31+) - ACTIVE FOCUS
 Membangun sistem yang benar-benar siap pakai secara nyata.
 
-- **Batch 31**: **API Contract Normalization** - Standarisasi seluruh field API (English naming) sebelum masuk ke database fisik.
-- **Batch 32-35**: **Persistensi Data** - Implementasi Database fisik (PostgreSQL) menggunakan Prisma ORM.
+- **Batch 31-36**: **Backoffice Polish & Persona Expansion** - Perbaikan UI publik dan perluasan sistem testing Developer Persona (6 Role).
+- **Batch 37**: **Business Flow Blueprint** - Dokumentasi alur bisnis end-to-end (Consumer, Partner, Payment, Fulfillment).
+- **Batch 38-45**: **Database Foundation** - Implementasi Database fisik (PostgreSQL) menggunakan Prisma ORM.
 - **Otentikasi Produksi**: Implementasi Auth, JWT, dan RBAC nyata bagi User/Mitra.
 - **Storage Produksi**: Implementasi Server/Cloud Storage untuk bukti transfer.
 - **Audit & Logging**: Implementasi Audit Trail untuk transaksi finansial.
