@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { PublicButton, PublicCard, PublicSection, SectionHeading } from "@/shared/ui";
 
 const paketList = [
@@ -58,7 +59,9 @@ const PaketSection = () => {
                 <p className="mb-4 text-xl font-bold text-[var(--color-public-accent)]">
                   Rp {paket.harga.toLocaleString("id-ID")}
                 </p>
-                <PublicButton size="sm">Lihat Detail</PublicButton>
+                <Link to={`/checkout?packageId=${paket.id}`}>
+                  <PublicButton size="sm">Pesan Sekarang</PublicButton>
+                </Link>
               </div>
             </PublicCard>
           </motion.div>

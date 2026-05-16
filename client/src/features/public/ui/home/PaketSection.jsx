@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { PublicButton, PublicCard, PublicSection, SectionHeading } from "@/shared/ui";
 import paketData from "@/shared/mocks/public/home/paket.json";
 
@@ -41,9 +42,11 @@ const PaketSection = () => {
                   {paket.deskripsi}
                 </p>
                 <p className="mb-4 text-lg font-bold text-[var(--color-public-accent)]">{paket.harga}</p>
-                <PublicButton as="a" href="#transaksi" size="sm" className="shadow-md">
-                  Pesan Sekarang
-                </PublicButton>
+                <Link to={`/checkout?packageId=${paket.id}`}>
+                  <PublicButton size="sm" className="shadow-md">
+                    Pesan Sekarang
+                  </PublicButton>
+                </Link>
               </div>
             </PublicCard>
           </motion.div>

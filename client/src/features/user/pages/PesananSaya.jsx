@@ -23,8 +23,8 @@ const PesananSaya = () => {
       setLoading(true);
       setError(null);
       try {
-        // For development, we fetch all orders or we could simulate consumerId 'C-001'
-        const response = await orderApi.getOrders({ consumerId: 'C-001' });
+        // In development, we fetch all orders to ensure new checkouts are visible
+        const response = await orderApi.getOrders({});
         setOrders(response.data);
       } catch (err) {
         setError("Gagal memuat daftar pesanan. Silakan coba lagi nanti.");

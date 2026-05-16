@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { PublicButton, PublicSection, SectionHeading } from "@/shared/ui";
 
 const PaketPilihan = () => {
@@ -29,9 +30,11 @@ const PaketPilihan = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <PublicButton size="lg" className="font-bold shadow-lg hover:shadow-xl">
-            Buat Paket Saya
-          </PublicButton>
+          <Link to="/checkout">
+            <PublicButton size="lg" className="font-bold shadow-lg hover:shadow-xl">
+              Buat Paket Saya
+            </PublicButton>
+          </Link>
         </motion.div>
       </motion.div>
     </PublicSection>

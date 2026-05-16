@@ -5,6 +5,7 @@ import Services from '@/features/public/pages/Services';
 import Paket from '@/features/public/pages/Paket';
 import Contact from '@/features/public/pages/Contact';
 import KonfirmasiPembayaran from '@/features/public/pages/KonfirmasiPembayaran';
+import Checkout from '@/features/public/pages/Checkout';
 
 export const publicRoutes = [
   {
@@ -30,5 +31,9 @@ export const publicRoutes = [
   {
     path: 'konfirmasi-pembayaran',
     element: <KonfirmasiPembayaran />,
+  },
+  {
+    path: 'checkout',
+    element: <Checkout />,
   },
 ];

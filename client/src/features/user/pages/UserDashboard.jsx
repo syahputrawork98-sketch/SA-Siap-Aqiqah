@@ -26,6 +26,9 @@ const UserDashboard = () => {
           <PublicButton variant="solid" onClick={() => window.location.href = "/user/pesanan"}>
             <FiPackage className="mr-2" /> Lihat Pesanan Saya
           </PublicButton>
+          <PublicButton variant="outline" onClick={() => window.location.href = "/checkout"}>
+            Buat Pesanan Baru
+          </PublicButton>
           <PublicButton variant="outline" onClick={() => window.location.href = "/"}>
             Kembali ke Beranda
           </PublicButton>

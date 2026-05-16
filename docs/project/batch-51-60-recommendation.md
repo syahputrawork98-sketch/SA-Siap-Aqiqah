@@ -12,8 +12,8 @@ Menghubungkan visualisasi Dashboard (Admin, Konsumen, Mitra) yang sudah ada deng
 | **Batch 51** | Admin Transaction Dashboard Integration | Menghubungkan dashboard Admin (List & Detail) ke API DB-aware. | **SELESAI** |
 | **Batch 52** | Admin Action Control Integration | Implementasi tombol aksi (Verify Payment, Confirm Partner, Update Timeline). | **SELESAI** |
 | **Batch 53** | Konsumen Order Status Read | Sinkronisasi dashboard konsumen (daftar pesanan & detail) dengan data real dari DB. | **SELESAI** |
-| **Batch 54** | Konsumen Checkout & Create Order | Integrasi alur pemesanan (Checkout) konsumen ke Database (Write Mode). | **NEXT FOCUS** |
-| **Batch 55** | Mitra Kandang UI Integration | Integrasi dashboard Mitra Kandang untuk melihat tugas dan konfirmasi. | **DRAFT** |
+| **Batch 54** | Konsumen Checkout & Create Order | Integrasi alur pemesanan (Checkout) konsumen ke Database (Write Mode). | **SELESAI** |
+| **Batch 55** | Mitra Kandang UI Integration | Integrasi dashboard Mitra Kandang untuk melihat tugas dan konfirmasi. | **NEXT FOCUS** |
 | **Batch 56** | Mitra Catering & Kurir UI | Integrasi dashboard Mitra Catering dan Kurir untuk update progres. | **DRAFT** |
 | **Batch 57** | Mitra Fulfillment Detail UI | Peningkatan detail kontrol bagi Mitra untuk upload bukti & progres. | **DRAFT** |
 | **Batch 58** | Operational Edge Cases | Penanganan re-schedule mitra, penolakan pembayaran berulang, dll. | **DRAFT** |
