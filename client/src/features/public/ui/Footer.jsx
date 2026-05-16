@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { FaInstagram, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getCurrentYear } from "@/shared/lib";
+import { isPersonaActive } from "@/app/router/developerPersona";
 
 export function Footer() {
   const [visible, setVisible] = useState(false);
+  const isActive = isPersonaActive();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,6 +81,14 @@ export function Footer() {
                 Kontak
               </Link>
             </li>
+            {isActive && (
+              <li className="pt-2 border-t border-white/10">
+                <Link to="/user" className="text-white hover:text-[var(--color-public-accent)] font-bold transition-all duration-300 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                  Dashboard Saya
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
 

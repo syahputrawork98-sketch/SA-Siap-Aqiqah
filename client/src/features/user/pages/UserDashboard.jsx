@@ -12,18 +12,21 @@ const UserDashboard = () => {
         
         <div className="space-y-2">
           <h2 className="text-3xl font-heading font-bold text-[var(--color-public-primary)]">Dashboard Konsumen</h2>
-          <div className="flex items-center justify-center gap-2 text-amber-600 font-medium">
-            <FiClock />
-            <span>Fitur Sedang Disiapkan</span>
+          <div className="flex items-center justify-center gap-2 text-blue-600 font-medium">
+            <FiCheckCircle />
+            <span>Akses Pesanan Aktif</span>
           </div>
         </div>
 
         <p className="text-[var(--color-text-default)]/70 leading-relaxed max-w-xl mx-auto">
-          Halaman untuk memantau pesanan aqiqah, riwayat ibadah, dan status pengiriman Anda sedang dalam tahap pengembangan. Kami akan segera hadir untuk memberikan pengalaman terbaik bagi keluarga Anda.
+          Selamat datang di portal keluarga Siap Aqiqah. Di sini Anda dapat memantau status persiapan hewan, proses memasak, hingga pengiriman paket aqiqah ke lokasi Anda secara transparan.
         </p>
 
-        <div className="pt-4">
-          <PublicButton variant="solid" onClick={() => window.location.href = "/"}>
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <PublicButton variant="solid" onClick={() => window.location.href = "/user/pesanan"}>
+            <FiPackage className="mr-2" /> Lihat Pesanan Saya
+          </PublicButton>
+          <PublicButton variant="outline" onClick={() => window.location.href = "/"}>
             Kembali ke Beranda
           </PublicButton>
         </div>
