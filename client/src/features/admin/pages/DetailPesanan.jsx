@@ -253,7 +253,7 @@ export default function DetailPesanan() {
               <h3 className="text-lg font-semibold flex items-center gap-2 text-[#3b3b3b]">
                 <CreditCard size={18} className="siqah-accent-text" /> Informasi Pembayaran
               </h3>
-              {pesanan.pembayaran?.status === 'UNPAID' && (
+              {pesanan.pembayaran?.status === 'UNPAID' && ['PENDING_CONFIRMATION', 'AWAITING_PAYMENT', 'Menunggu Konfirmasi', 'Menunggu Pembayaran'].includes(pesanan.status) && (
                 <div className="flex gap-2">
                   <Button 
                     size="sm" 
@@ -336,7 +336,7 @@ export default function DetailPesanan() {
                     <div className="flex flex-col gap-2">
                       <div className="flex justify-between items-center">
                         <span className="text-[10px] font-bold text-[#7a7368] uppercase tracking-widest">{role.replace("MITRA_", "")}</span>
-                        {conf?.status === 'PENDING' && (
+                        {conf?.status === 'PENDING' && ['PENDING_CONFIRMATION', 'Menunggu Konfirmasi'].includes(pesanan.status) && (
                           <div className="flex gap-1">
                             <button 
                               onClick={() => handleUpdatePartnerStatus(conf.id, 'REJECTED')}
@@ -378,7 +378,7 @@ export default function DetailPesanan() {
                 <Package size={18} className="siqah-accent-text" /> Tahap 2: Fulfillment & Produksi
               </h3>
               <div className="flex items-center gap-3">
-                {['PROCESSING', 'ON_DELIVERY', 'DELIVERED'].includes(pesanan.pembayaran?.status === 'PAID_DP' || pesanan.pembayaran?.status === 'PAID_FULL' ? 'PROCESSING' : 'WAITING') && (
+                {['PROCESSING', 'ON_DELIVERY', 'DELIVERED', 'COMPLETED', 'Diproses', 'Dalam Pengiriman', 'Telah Sampai', 'Selesai'].includes(pesanan.status) && (
                   <Button 
                     size="sm" 
                     variant="ghost" 
@@ -528,12 +528,18 @@ function StatusBadge({ status, type = "order" }) {
 
   switch (status) {
     case "Menunggu Konfirmasi":
-    case "Menunggu Pembayaran":
     case "AWAITING_PAYMENT":
+    case "Menunggu Pembayaran":
+      return (
+        <span className={`${base} bg-indigo-50 text-indigo-600 border border-indigo-100`}>
+          <Clock size={14} /> Menunggu Pembayaran
+        </span>
+      );
     case "PENDING_CONFIRMATION":
+    case "Menunggu Konfirmasi":
       return (
         <span className={`${base} bg-amber-50 text-amber-600 border border-amber-100`}>
-          <Clock size={14} /> {status.replace(/_/g, " ")}
+          <Clock size={14} /> Menunggu Konfirmasi
         </span>
       );
     case "Diproses":

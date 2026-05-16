@@ -177,7 +177,7 @@ const MitraKandangDetail = () => {
               </div>
 
               <div className="pt-4 space-y-4">
-                {myConfirmation?.status === 'PENDING' ? (
+                {myConfirmation?.status === 'PENDING' && ['PENDING_CONFIRMATION', 'Menunggu Konfirmasi'].includes(order.status) ? (
                   <>
                     <PublicButton 
                       variant="solid" 
@@ -197,15 +197,26 @@ const MitraKandangDetail = () => {
                     </PublicButton>
                   </>
                 ) : (
-                  <div className={`p-6 rounded-2xl text-center space-y-3 ${myConfirmation?.status === 'ACCEPTED' ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700'}`}>
+                  <div className={`p-6 rounded-2xl text-center space-y-3 ${myConfirmation?.status === 'ACCEPTED' ? 'bg-emerald-50 text-emerald-700' : myConfirmation?.status === 'REJECTED' ? 'bg-red-50 text-red-700' : 'bg-gray-50 text-gray-400'}`}>
                     {myConfirmation?.status === 'ACCEPTED' ? (
                       <FiCheckCircle size={40} className="mx-auto" />
-                    ) : (
+                    ) : myConfirmation?.status === 'REJECTED' ? (
                       <FiXCircle size={40} className="mx-auto" />
+                    ) : (
+                      <FiClock size={40} className="mx-auto" />
                     )}
                     <div className="space-y-1">
-                      <p className="font-bold uppercase tracking-widest text-xs">Tugas {myConfirmation?.status === 'ACCEPTED' ? 'Diterima' : 'Ditolak'}</p>
-                      <p className="text-[10px] opacity-70">Respons telah dikirimkan ke Admin pada {myConfirmation?.waktu ? new Date(myConfirmation.waktu).toLocaleString('id-ID') : 'saat ini'}</p>
+                      <p className="font-bold uppercase tracking-widest text-xs">
+                        {myConfirmation?.status === 'ACCEPTED' ? 'Tugas Diterima' : 
+                         myConfirmation?.status === 'REJECTED' ? 'Tugas Ditolak' : 
+                         'Tugas Terkunci'}
+                      </p>
+                      <p className="text-[10px] opacity-70">
+                        {myConfirmation?.status === 'PENDING' 
+                          ? 'Waktu konfirmasi telah habis atau pesanan sudah lanjut ke tahap berikutnya.'
+                          : `Respons telah dikirimkan ke Admin pada ${myConfirmation?.waktu ? new Date(myConfirmation.waktu).toLocaleString('id-ID') : 'saat ini'}`
+                        }
+                      </p>
                     </div>
                   </div>
                 )}

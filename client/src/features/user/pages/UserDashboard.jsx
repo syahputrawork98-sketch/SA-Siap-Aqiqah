@@ -1,6 +1,6 @@
 import React from "react";
 import { PublicButton, PublicSection } from "@/shared/ui";
-import { FiUser, FiClock } from "react-icons/fi";
+import { FiUser, FiClock, FiCheckCircle, FiPackage } from "react-icons/fi";
 
 const UserDashboard = () => {
   return (

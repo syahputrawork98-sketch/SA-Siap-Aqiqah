@@ -83,7 +83,7 @@ const MitraKandangDashboard = () => {
                         <h3 className="font-bold text-[var(--color-public-primary)]">{order.paket}</h3>
                         <div className="flex items-center gap-4 text-xs text-gray-500">
                           <span className="flex items-center gap-1"><FiCalendar size={12} /> {order.tanggal}</span>
-                          <span className="flex items-center gap-1"><FiAlertCircle size={12} /> {order.status}</span>
+                          <span className="flex items-center gap-1"><FiAlertCircle size={12} /> {getFriendlyOrderStatus(order.status)}</span>
                         </div>
                       </div>
                     </div>
@@ -115,11 +115,30 @@ const getStatusColor = (status) => {
 };
 
 const getStatusBadgeColor = (status) => {
-  switch (status) {
-    case 'ACCEPTED': return 'bg-emerald-100 text-emerald-700';
-    case 'REJECTED': return 'bg-red-100 text-red-700';
-    default: return 'bg-amber-100 text-amber-700';
-  }
+  const map = {
+    'ACCEPTED': 'bg-emerald-100 text-emerald-700',
+    'REJECTED': 'bg-red-100 text-red-700',
+    'PENDING': 'bg-amber-100 text-amber-700'
+  };
+  return map[status] || 'bg-gray-100 text-gray-700';
+};
+
+const getFriendlyOrderStatus = (status) => {
+  const map = {
+    'PENDING_CONFIRMATION': 'Menunggu Konfirmasi',
+    'AWAITING_PAYMENT': 'Menunggu Pembayaran',
+    'PROCESSING': 'Diproses',
+    'ON_DELIVERY': 'Dalam Pengiriman',
+    'DELIVERED': 'Telah Sampai',
+    'COMPLETED': 'Selesai',
+    'Menunggu Konfirmasi': 'Menunggu Konfirmasi',
+    'Menunggu Pembayaran': 'Menunggu Pembayaran',
+    'Diproses': 'Diproses',
+    'Dalam Pengiriman': 'Dalam Pengiriman',
+    'Telah Sampai': 'Telah Sampai',
+    'Selesai': 'Selesai',
+  };
+  return map[status] || status;
 };
 
 export default MitraKandangDashboard;

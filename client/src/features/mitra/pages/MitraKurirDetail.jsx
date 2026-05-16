@@ -190,38 +190,48 @@ const MitraKurirDetail = () => {
                 </div>
 
                 <div className="space-y-4">
-                  {deliveryEvents.length > 0 ? (
-                    <div className="grid grid-cols-1 gap-3">
-                      {deliveryEvents.map((event, idx) => (
-                        <div key={idx} className={`p-4 rounded-2xl border flex items-center justify-between transition-all ${event.status === 'DONE' ? 'bg-emerald-50 border-emerald-100' : 'bg-gray-50 border-gray-100 opacity-70'}`}>
-                          <div className="flex items-center gap-3">
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${event.status === 'DONE' ? 'bg-emerald-500 text-white' : 'bg-gray-200 text-gray-400'}`}>
-                              {event.status === 'DONE' ? <FiCheckCircle size={14} /> : <FiClock size={14} />}
+                  {['PROCESSING', 'ON_DELIVERY', 'DELIVERED', 'COMPLETED', 'Diproses', 'Dalam Pengiriman', 'Telah Sampai', 'Selesai'].includes(order.status) ? (
+                    <>
+                      {deliveryEvents.length > 0 ? (
+                        <div className="grid grid-cols-1 gap-3">
+                          {deliveryEvents.map((event, idx) => (
+                            <div key={idx} className={`p-4 rounded-2xl border flex items-center justify-between transition-all ${event.status === 'DONE' ? 'bg-emerald-50 border-emerald-100' : 'bg-gray-50 border-gray-100 opacity-70'}`}>
+                              <div className="flex items-center gap-3">
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${event.status === 'DONE' ? 'bg-emerald-500 text-white' : 'bg-gray-200 text-gray-400'}`}>
+                                  {event.status === 'DONE' ? <FiCheckCircle size={14} /> : <FiClock size={14} />}
+                                </div>
+                                <div>
+                                  <p className={`text-sm font-bold ${event.status === 'DONE' ? 'text-emerald-700' : 'text-gray-600'}`}>{event.tahap}</p>
+                                  <p className="text-[10px] text-gray-400">{event.status === 'DONE' ? 'Selesai' : 'Menunggu update...'}</p>
+                                </div>
+                              </div>
+                              
+                              {event.status !== 'DONE' && (
+                                <PublicButton 
+                                  variant="solid" 
+                                  size="sm" 
+                                  className="bg-purple-600 hover:bg-purple-700 text-white text-[10px] border-none"
+                                  onClick={() => handleUpdateDelivery(event.eventKey, 'DONE', event.tahap)}
+                                  disabled={actionLoading}
+                                >
+                                  Selesaikan
+                                </PublicButton>
+                              )}
                             </div>
-                            <div>
-                              <p className={`text-sm font-bold ${event.status === 'DONE' ? 'text-emerald-700' : 'text-gray-600'}`}>{event.tahap}</p>
-                              <p className="text-[10px] text-gray-400">{event.status === 'DONE' ? 'Selesai' : 'Menunggu update...'}</p>
-                            </div>
-                          </div>
-                          
-                          {event.status !== 'DONE' && (
-                            <PublicButton 
-                              variant="solid" 
-                              size="sm" 
-                              className="bg-purple-600 hover:bg-purple-700 text-white text-[10px] border-none"
-                              onClick={() => handleUpdateDelivery(event.eventKey, 'DONE', event.tahap)}
-                              disabled={actionLoading}
-                            >
-                              Selesaikan
-                            </PublicButton>
-                          )}
+                          ))}
                         </div>
-                      ))}
-                    </div>
+                      ) : (
+                        <div className="p-8 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                          <p className="text-[10px] text-gray-400">Progres pengiriman belum aktif.</p>
+                          <p className="text-[9px] text-gray-400 mt-1">Akan muncul setelah persiapan di dapur selesai dan Admin menerbitkan jadwal fulfillment.</p>
+                        </div>
+                      )}
+                    </>
                   ) : (
-                    <div className="p-8 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
-                       <p className="text-[10px] text-gray-400">Progres pengiriman belum aktif.</p>
-                       <p className="text-[9px] text-gray-400 mt-1">Akan muncul setelah persiapan di dapur selesai dan Admin menerbitkan jadwal fulfillment.</p>
+                    <div className="p-8 text-center bg-amber-50 rounded-2xl border border-dashed border-amber-200">
+                      <FiClock size={32} className="mx-auto text-amber-400 mb-2" />
+                      <p className="text-[10px] font-bold text-amber-700 uppercase">Menunggu Validasi Pembayaran</p>
+                      <p className="text-[9px] text-amber-600 mt-1">Update pengiriman dapat dilakukan setelah pembayaran konsumen diverifikasi oleh Admin.</p>
                     </div>
                   )}
                 </div>
@@ -238,7 +248,7 @@ const MitraKurirDetail = () => {
               </div>
 
               <div className="pt-4 space-y-4">
-                {myConfirmation?.status === 'PENDING' ? (
+                {myConfirmation?.status === 'PENDING' && order.status === 'PENDING_CONFIRMATION' ? (
                   <>
                     <PublicButton 
                       variant="solid" 
@@ -258,15 +268,26 @@ const MitraKurirDetail = () => {
                     </PublicButton>
                   </>
                 ) : (
-                  <div className={`p-6 rounded-2xl text-center space-y-3 ${myConfirmation?.status === 'ACCEPTED' ? 'bg-purple-50 text-purple-700' : 'bg-red-50 text-red-700'}`}>
+                  <div className={`p-6 rounded-2xl text-center space-y-3 ${myConfirmation?.status === 'ACCEPTED' ? 'bg-purple-50 text-purple-700' : myConfirmation?.status === 'REJECTED' ? 'bg-red-50 text-red-700' : 'bg-gray-50 text-gray-400'}`}>
                     {myConfirmation?.status === 'ACCEPTED' ? (
                       <FiCheckCircle size={40} className="mx-auto" />
-                    ) : (
+                    ) : myConfirmation?.status === 'REJECTED' ? (
                       <FiXCircle size={40} className="mx-auto" />
+                    ) : (
+                      <FiClock size={40} className="mx-auto" />
                     )}
                     <div className="space-y-1">
-                      <p className="font-bold uppercase tracking-widest text-xs">Tugas {myConfirmation?.status === 'ACCEPTED' ? 'Diterima' : 'Ditolak'}</p>
-                      <p className="text-[10px] opacity-70">Terdaftar dalam sistem pada {myConfirmation?.waktu ? new Date(myConfirmation.waktu).toLocaleString('id-ID') : 'saat ini'}</p>
+                      <p className="font-bold uppercase tracking-widest text-xs">
+                        {myConfirmation?.status === 'ACCEPTED' ? 'Tugas Diterima' : 
+                         myConfirmation?.status === 'REJECTED' ? 'Tugas Ditolak' : 
+                         'Tugas Terkunci'}
+                      </p>
+                      <p className="text-[10px] opacity-70">
+                        {myConfirmation?.status === 'PENDING' 
+                          ? 'Waktu konfirmasi telah habis atau pesanan sudah lanjut ke tahap berikutnya.'
+                          : `Terdaftar dalam sistem pada ${myConfirmation?.waktu ? new Date(myConfirmation.waktu).toLocaleString('id-ID') : 'saat ini'}`
+                        }
+                      </p>
                     </div>
                   </div>
                 )}

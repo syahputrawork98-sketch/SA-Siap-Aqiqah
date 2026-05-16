@@ -106,21 +106,37 @@ const PesananSaya = () => {
 };
 
 const StatusBadge = ({ status }) => {
+  const map = {
+    'PENDING_CONFIRMATION': 'Menunggu Konfirmasi Tim',
+    'AWAITING_PAYMENT': 'Menunggu Pembayaran',
+    'PROCESSING': 'Pesanan Sedang Diproses',
+    'ON_DELIVERY': 'Dalam Pengiriman',
+    'DELIVERED': 'Telah Sampai di Lokasi',
+    'COMPLETED': 'Pesanan Selesai',
+    'CANCELLED': 'Pesanan Dibatalkan',
+    'Menunggu Konfirmasi': 'Menunggu Konfirmasi Tim',
+    'Menunggu Pembayaran': 'Menunggu Pembayaran',
+    'Diproses': 'Pesanan Sedang Diproses',
+    'Dalam Pengiriman': 'Dalam Pengiriman',
+    'Telah Sampai': 'Telah Sampai di Lokasi',
+    'Selesai': 'Pesanan Selesai',
+  };
+
+  const friendlyStatus = map[status] || status;
+  
   const styles = {
-    "Draft": "bg-gray-100 text-gray-600",
-    "Menunggu Konfirmasi": "bg-amber-100 text-amber-600",
-    "Dikonfirmasi": "bg-blue-100 text-blue-600",
+    "Menunggu Konfirmasi Tim": "bg-amber-100 text-amber-600",
     "Menunggu Pembayaran": "bg-indigo-100 text-indigo-600",
-    "Diproses": "bg-purple-100 text-purple-600",
+    "Pesanan Sedang Diproses": "bg-purple-100 text-purple-600",
     "Dalam Pengiriman": "bg-orange-100 text-orange-600",
-    "Telah Sampai": "bg-emerald-100 text-emerald-600",
-    "Selesai": "bg-green-100 text-green-600",
-    "Dibatalkan": "bg-red-100 text-red-600",
+    "Telah Sampai di Lokasi": "bg-emerald-100 text-emerald-600",
+    "Pesanan Selesai": "bg-green-100 text-green-600",
+    "Pesanan Dibatalkan": "bg-red-100 text-red-600",
   };
 
   return (
-    <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${styles[status] || "bg-gray-100 text-gray-600"}`}>
-      {status}
+    <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${styles[friendlyStatus] || "bg-gray-100 text-gray-600"}`}>
+      {friendlyStatus}
     </span>
   );
 };

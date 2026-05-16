@@ -174,30 +174,55 @@ function StatCard({ icon: Icon, title, value, color, loading }) {
 
 function StatusBadge({ status }) {
   const base = "px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border tracking-tight inline-flex items-center gap-1";
-  switch (status) {
-    case "Menunggu Konfirmasi":
+  
+  const map = {
+    'PENDING_CONFIRMATION': 'Menunggu Konfirmasi',
+    'AWAITING_PAYMENT': 'Menunggu Pembayaran',
+    'PROCESSING': 'Diproses',
+    'ON_DELIVERY': 'Dalam Pengiriman',
+    'DELIVERED': 'Telah Sampai',
+    'COMPLETED': 'Selesai',
+    'Menunggu Konfirmasi': 'Menunggu Konfirmasi',
+    'Menunggu Pembayaran': 'Menunggu Pembayaran',
+    'Diproses': 'Diproses',
+    'Dalam Pengiriman': 'Dalam Pengiriman',
+    'Telah Sampai': 'Telah Sampai',
+    'Selesai': 'Selesai',
+  };
+
+  const friendlyStatus = map[status] || status;
+
+  switch (friendlyStatus) {
     case "Menunggu Pembayaran":
       return (
+        <span className={`${base} bg-indigo-50 text-indigo-600 border-indigo-100`}>
+          <Clock size={10} /> {friendlyStatus}
+        </span>
+      );
+    case "Menunggu Konfirmasi":
+      return (
         <span className={`${base} bg-amber-50 text-amber-600 border-amber-100`}>
-          <Clock size={10} /> {status}
+          <Clock size={10} /> {friendlyStatus}
         </span>
       );
     case "Dikonfirmasi":
     case "Diproses":
+    case "Dalam Pengiriman":
       return (
         <span className={`${base} bg-blue-50 text-blue-600 border-blue-100`}>
-          <Package size={10} /> {status}
+          <Package size={10} /> {friendlyStatus}
         </span>
       );
     case "Selesai":
+    case "Telah Sampai":
       return (
         <span className={`${base} bg-emerald-50 text-emerald-600 border-emerald-100`}>
-          <CheckCircle size={10} /> {status}
+          <CheckCircle size={10} /> {friendlyStatus}
         </span>
       );
     default:
       return (
-        <span className={`${base} bg-gray-50 text-gray-700 border-gray-100`}>{status}</span>
+        <span className={`${base} bg-gray-50 text-gray-700 border-gray-100`}>{friendlyStatus}</span>
       );
   }
 }
