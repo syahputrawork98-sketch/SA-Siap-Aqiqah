@@ -60,12 +60,6 @@ const HeroSection = () => {
         transition={{ delay: 0.6, duration: 1 }}
       >
         <div className="relative overflow-hidden rounded-3xl border-4 border-[var(--color-public-surface-border-strong)] shadow-2xl">
-          <motion.div
-            className="siqah-public-overlay-soft-glow absolute inset-0 z-10 rounded-3xl"
-            animate={{ opacity: [0.2, 0.5, 0.2] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          />
-
           <video
             src="https://res.cloudinary.com/dcida9qys/video/upload/v1761261096/White_Minimalist_Morning_Routine_Mobile_Video_1_a04fes.mp4"
             autoPlay

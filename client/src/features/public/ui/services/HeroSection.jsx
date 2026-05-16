@@ -74,7 +74,6 @@ const HeroSection = () => {
         ))}
       </motion.div>
 
-      <div className="absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-black/30 to-transparent" />
     </PublicSection>
   );
 };
