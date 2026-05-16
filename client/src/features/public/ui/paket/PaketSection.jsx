@@ -29,9 +29,8 @@ const paketList = [
 const PaketSection = () => {
   return (
     <PublicSection
-      className="bg-gradient-to-b from-[#fefbf7] to-[#f9f6ef]"
+      className="siqah-public-bg-base"
       overlay="soft"
-      overlayClassName="bg-gradient-to-b from-white/20 via-[var(--color-public-primary)]/20 to-white/40"
       containerClassName="px-6"
     >
       <SectionHeading className="mb-12" title="Daftar Paket Aqiqah Siqah" />

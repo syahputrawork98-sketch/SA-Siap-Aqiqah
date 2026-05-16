@@ -4,7 +4,13 @@ import { PublicButton, PublicSection, SectionHeading } from "@/shared/ui";
 
 const PaketPilihan = () => {
   return (
-    <PublicSection className="py-24 text-center" overlay="dark" containerClassName="max-w-4xl px-6 text-center">
+    <PublicSection
+      className="py-24 text-center"
+      overlay="dark"
+      usePattern={true}
+      overlayClassName="bg-[var(--color-public-primary)]/85"
+      containerClassName="max-w-4xl px-6 text-center text-white"
+    >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

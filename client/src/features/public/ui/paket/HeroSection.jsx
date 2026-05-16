@@ -4,7 +4,13 @@ import { PublicSection, PublicStat, SectionHeading } from "@/shared/ui";
 
 const HeroSection = () => {
   return (
-    <PublicSection className="py-24 text-center" overlay="dark" containerClassName="max-w-3xl px-6 text-center">
+    <PublicSection
+      className="py-24 text-center"
+      overlay="dark"
+      usePattern={true}
+      overlayClassName="bg-[var(--color-public-primary)]/85"
+      containerClassName="max-w-3xl px-6 text-center text-white"
+    >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -12,7 +18,7 @@ const HeroSection = () => {
       >
         <SectionHeading
           title="Pilih Paket Aqiqah Terbaik untuk Keluarga Anda"
-          titleClassName="text-[var(--color-public-accent)]"
+          titleClassName="text-white"
           descriptionClassName="font-sans text-gray-100"
           description="Disiapkan oleh catering profesional, disembelih sesuai syariat, dan dikirim dengan amanah."
         />

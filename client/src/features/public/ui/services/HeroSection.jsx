@@ -26,7 +26,8 @@ const HeroSection = () => {
     <PublicSection
       className="min-h-screen flex items-center py-24"
       overlay="dark"
-      overlayClassName="bg-[var(--color-public-primary)]/90"
+      usePattern={true}
+      overlayClassName="bg-[var(--color-public-primary)]/85"
       containerClassName="flex w-full max-w-7xl flex-col items-center justify-between gap-12 px-8 text-white md:flex-row"
     >
       <motion.div
@@ -35,7 +36,7 @@ const HeroSection = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
       >
-        <h1 className="mb-6 font-heading text-5xl font-bold leading-tight text-[var(--color-public-accent)] drop-shadow-xl md:text-6xl">
+        <h1 className="mb-6 font-heading text-5xl font-bold leading-tight text-white drop-shadow-xl md:text-6xl">
           Layanan Aqiqah dan Qurban Terpadu
         </h1>
 

@@ -42,7 +42,7 @@ const ProcessSection = () => {
       <SectionHeading
         className="mb-16"
         title="Proses Layanan Siqah"
-        titleClassName="text-[var(--color-public-accent)]"
+        titleClassName="text-white"
         descriptionClassName="text-gray-100"
         description="Kami memastikan setiap tahap dilakukan dengan penuh amanah, transparansi, dan profesionalisme."
       />

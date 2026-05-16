@@ -7,7 +7,8 @@ const CTASection = () => {
     <PublicSection
       className="py-24"
       overlay="dark"
-      overlayClassName="bg-[var(--color-public-primary)]/90"
+      usePattern={true}
+      overlayClassName="bg-[var(--color-public-primary)]/85"
       containerClassName="max-w-3xl px-6 text-center text-white"
     >
       <motion.div
@@ -19,7 +20,7 @@ const CTASection = () => {
         <SectionHeading
           className="mb-10"
           title="Siap Memulai Aqiqah Bersama Siqah?"
-          titleClassName="text-[var(--color-public-accent)] drop-shadow-lg"
+          titleClassName="text-white drop-shadow-lg"
           descriptionClassName="text-gray-100"
           description="Wujudkan momen penuh berkah dan kebahagiaan keluarga Anda dengan layanan aqiqah yang amanah, profesional, dan sesuai syariat."
         />
