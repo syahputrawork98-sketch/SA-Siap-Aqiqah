@@ -55,6 +55,7 @@ const mapOrder = (o) => ({
   },
   konfirmasiMitra: o.partnerConfirmations?.map(c => ({
     id: c.id,
+    partnerId: c.partnerId,
     peran: c.partnerRole,
     status: c.status,
     catatan: c.notesPartner,
@@ -99,6 +100,14 @@ const getAllOrders = async (filters = {}) => {
     const where = {};
     if (filters.consumerId) {
       where.consumerId = filters.consumerId;
+    }
+
+    if (filters.partnerId) {
+      where.partnerConfirmations = {
+        some: {
+          partnerId: filters.partnerId
+        }
+      };
     }
 
     const orders = await prisma.order.findMany({

@@ -10,8 +10,8 @@ const getSummary = async (req, res) => {
 };
 
 const getOrders = async (req, res) => {
-  const { search, status, tanggal, consumerId } = req.query;
-  const filters = { search, status, tanggal, consumerId };
+  const { search, status, tanggal, consumerId, partnerId } = req.query;
+  const filters = { search, status, tanggal, consumerId, partnerId };
   
   const allOrders = await orderService.getAllOrders({});
   const filteredOrders = await orderService.getAllOrders(filters);
