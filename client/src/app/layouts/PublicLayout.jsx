@@ -5,9 +5,9 @@ import Navbar from "@/features/public/ui/Navbar";
 
 const PublicLayout = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
+    <div className="flex flex-col min-h-screen bg-[var(--core-public-bg-start)] text-[var(--color-text-default)]">
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 pt-20">
         <Outlet />
       </main>
       <Footer />

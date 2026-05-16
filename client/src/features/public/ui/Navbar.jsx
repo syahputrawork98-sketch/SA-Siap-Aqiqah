@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiLogIn } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/shared/ui";
+import { PublicButton } from "@/shared/ui";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -73,12 +73,12 @@ const Navbar = () => {
 
         {/* ========== KANAN: LOGIN & MENU MOBILE ========== */}
         <div className="flex items-center gap-4">
-          <Button
-            variant="primary"
-            className="hidden lg:flex rounded-xl bg-[var(--color-public-accent)] px-4 py-2 hover:bg-[var(--color-public-accent-hover)]"
+          <PublicButton
+            variant="solid"
+            className="hidden lg:flex"
           >
             <FiLogIn className="text-lg" /> Login
-          </Button>
+          </PublicButton>
 
           {/* Tombol toggle mobile */}
           <button
@@ -127,12 +127,12 @@ const Navbar = () => {
               </li>
             );
           })}
-          <Button
-            variant="primary"
-            className="flex rounded-xl bg-[var(--color-public-accent)] px-5 py-2 hover:bg-[var(--color-public-accent-hover)]"
+          <PublicButton
+            variant="solid"
+            className="flex w-[80%]"
           >
             <FiLogIn className="text-lg" /> Login
-          </Button>
+          </PublicButton>
         </motion.ul>
       )}
     </motion.nav>

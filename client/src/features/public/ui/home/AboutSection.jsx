@@ -17,7 +17,7 @@ const AboutSection = () => {
           <motion.img
             src="https://res.cloudinary.com/dcida9qys/image/upload/v1761098052/Siqah-logo-HD_fpetwm.png"
             alt="Logo Siqah"
-            className="relative z-10 h-52 w-80 drop-shadow-2xl md:h-72 md:w-80"
+            className="relative z-10 w-full max-w-[200px] aspect-square object-contain drop-shadow-2xl md:max-w-xs"
             initial={{ scale: 0.9, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1 }}

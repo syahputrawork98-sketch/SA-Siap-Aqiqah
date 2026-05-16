@@ -55,27 +55,27 @@ export function Footer() {
           <h4 className="text-lg font-semibold mb-4 siqah-public-accent">Navigasi</h4>
           <ul className="space-y-3 text-[var(--color-public-footer-text)]">
             <li>
-              <Link to="/" className="siqah-public-link transition-colors duration-300">
+              <Link to="/" className="text-white/80 hover:text-white transition-colors duration-300">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/tentang" className="siqah-public-link transition-colors duration-300">
+              <Link to="/tentang" className="text-white/80 hover:text-white transition-colors duration-300">
                 Tentang Kami
               </Link>
             </li>
             <li>
-              <Link to="/layanan" className="siqah-public-link transition-colors duration-300">
+              <Link to="/layanan" className="text-white/80 hover:text-white transition-colors duration-300">
                 Layanan
               </Link>
             </li>
             <li>
-              <Link to="/paket" className="siqah-public-link transition-colors duration-300">
+              <Link to="/paket" className="text-white/80 hover:text-white transition-colors duration-300">
                 Paket
               </Link>
             </li>
             <li>
-              <Link to="/kontak" className="siqah-public-link transition-colors duration-300">
+              <Link to="/kontak" className="text-white/80 hover:text-white transition-colors duration-300">
                 Kontak
               </Link>
             </li>
@@ -85,17 +85,17 @@ export function Footer() {
         <div className="flex flex-col items-center md:items-start">
           <h4 className="text-lg font-semibold mb-4 siqah-public-accent">Hubungi Kami</h4>
           <ul className="space-y-3">
-            <li className="flex items-center gap-3 siqah-public-link transition-all duration-300">
+            <li className="flex items-center gap-3 text-white/80 hover:text-white transition-all duration-300">
               <FaWhatsapp className="text-xl" />
               <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer">
                 0812-3456-7890
               </a>
             </li>
-            <li className="flex items-center gap-3 siqah-public-link transition-all duration-300">
+            <li className="flex items-center gap-3 text-white/80 hover:text-white transition-all duration-300">
               <FaEnvelope className="text-xl" />
               <a href="mailto:info@siqah.id">info@siqah.id</a>
             </li>
-            <li className="flex items-center gap-3 siqah-public-link transition-all duration-300">
+            <li className="flex items-center gap-3 text-white/80 hover:text-white transition-all duration-300">
               <FaInstagram className="text-xl" />
               <a href="https://instagram.com/siqah.id" target="_blank" rel="noopener noreferrer">
                 @siqah.id
@@ -105,7 +105,7 @@ export function Footer() {
         </div>
       </motion.div>
 
-      <div className="relative z-10 mt-12 border-t border-[var(--color-public-divider-soft)] pt-6 text-center text-sm text-[var(--color-public-footer-text-subtle)]">
+      <div className="relative z-10 mt-12 border-t border-[var(--color-public-divider-soft)] pt-6 text-center text-sm text-white/60">
         &copy; {getCurrentYear()} Siap Aqiqah. All rights reserved.
       </div>
     </footer>

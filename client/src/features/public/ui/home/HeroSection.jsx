@@ -71,7 +71,7 @@ const HeroSection = () => {
             loop
             muted
             playsInline
-            className="relative z-10 mx-auto h-[300px] w-[90%] rounded-3xl object-cover md:h-[400px] md:w-[500px]"
+            className="relative z-10 mx-auto aspect-[4/5] w-full max-w-[280px] rounded-3xl object-cover shadow-inner md:max-w-md lg:max-w-lg"
           />
 
           <motion.div

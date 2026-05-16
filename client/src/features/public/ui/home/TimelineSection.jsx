@@ -30,7 +30,7 @@ const TimelineSection = () => {
         transition={{ duration: 1.2, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <div className="absolute left-0 right-0 top-12 z-0 hidden h-[2px] bg-[var(--color-public-accent-line)] md:block" />
+        <div className="absolute left-[8.33%] right-[8.33%] top-12 z-0 hidden h-[2px] bg-[var(--color-public-accent-line)] md:block" />
 
         {steps.map((step, index) => (
           <motion.div
