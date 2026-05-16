@@ -34,7 +34,8 @@ Membangun sistem yang benar-benar siap pakai secara nyata.
 - **Batch 45**: **Order API Read-only** - Integrasi read-only modul Order ke Prisma dengan guarded fallback. (SELESAI)
 - **Batch 46**: **Order Creation Write** - Implementasi penulisan pesanan baru ke model Order dan OrderItem. (SELESAI)
 - **Batch 47**: **Partner Confirmation Baseline** - Implementasi alur konfirmasi mitra dan transisi status order. (SELESAI)
-- **Batch 48-50**: **Payment & Fulfillment** - Implementasi verifikasi pembayaran manual dan alur fulfillment timeline. (NEXT FOCUS)
+- **Batch 48**: **Manual Payment Verification** - Implementasi pencatatan dan verifikasi pembayaran manual oleh admin. (SELESAI)
+- **Batch 49-50**: **Fulfillment Timeline** - Implementasi alur fulfillment (Timeline 2) dan penyelesaian transaksional. (NEXT FOCUS)
 - **Otentikasi Produksi**: Implementasi Auth, JWT, dan RBAC nyata bagi User/Mitra.
 - **Storage Produksi**: Implementasi Server/Cloud Storage untuk bukti transfer.
 - **Audit & Logging**: Implementasi Audit Trail untuk transaksi finansial.

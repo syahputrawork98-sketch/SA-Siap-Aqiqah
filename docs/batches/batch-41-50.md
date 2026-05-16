@@ -70,9 +70,18 @@ Dokumen ini mencatat progres pengembangan pada fase Database & Operational Integ
   - Penanganan idempotensi pada pembuatan record konfirmasi.
   - Dokumentasi baru di `docs/database/partner-confirmation-api.md`.
 
-## Batch 48: Manual Payment Verification (Mendatang)
-- **Tujuan**: Implementasi pencatatan dan verifikasi pembayaran manual oleh admin.
-- **Fokus**: Model `Payment` dan transisi status ke `PROCESSING`.
+## Batch 48: Manual Payment Verification
+- **Tujuan**: Implementasi pencatatan dan verifikasi pembayaran manual ke database Prisma.
+- **Status**: Selesai.
+- **Hasil**: 
+  - Refactor `payment.service.js` dan `payment.controller.js` untuk integrasi Prisma (Read & Write).
+  - Penambahan endpoint `POST /api/payments`, `PATCH /.../verify`, dan `PATCH /.../reject`.
+  - Logika transisi otomatis status `Order` menjadi `PROCESSING` setelah pembayaran DP diverifikasi.
+  - Dokumentasi baru di `docs/database/payment-api-migration.md`.
+
+## Batch 49: Fulfillment Timeline / Timeline 2 (Mendatang)
+- **Tujuan**: Implementasi pencatatan progress fulfillment oleh mitra.
+- **Fokus**: Model `TimelineEvent` dan update status order.
 
 ---
 *Terakhir diperbarui: 16 Mei 2026*
