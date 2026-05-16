@@ -184,7 +184,7 @@ const MitraKurirDetail = () => {
                     <FiNavigation size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[var(--color-public-primary)]">Update Progress Pengiriman</h3>
+                    <h3 className="font-bold text-[var(--color-public-primary)]">Progres Pengantaran (Timeline 2)</h3>
                     <p className="text-xs text-gray-400">Update status secara real-time untuk konsumen</p>
                   </div>
                 </div>
@@ -220,8 +220,8 @@ const MitraKurirDetail = () => {
                     </div>
                   ) : (
                     <div className="p-8 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
-                       <p className="text-xs text-gray-400">Timeline pengiriman belum tersedia.</p>
-                       <p className="text-[10px] text-gray-400 mt-1">Admin sedang menyiapkan jadwal fulfillment.</p>
+                       <p className="text-[10px] text-gray-400">Progres pengiriman belum aktif.</p>
+                       <p className="text-[9px] text-gray-400 mt-1">Akan muncul setelah persiapan di dapur selesai dan Admin menerbitkan jadwal fulfillment.</p>
                     </div>
                   )}
                 </div>

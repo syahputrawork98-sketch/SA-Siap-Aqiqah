@@ -319,10 +319,10 @@ export default function DetailPesanan() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold flex items-center gap-2 text-[#3b3b3b]">
-                <Clock size={18} className="siqah-accent-text" /> Tahap 1: Konfirmasi Mitra
+                <Clock size={18} className="siqah-accent-text" /> Tahap 1: Konfirmasi Persiapan (Pra-Proses)
               </h3>
               <span className="text-[10px] bg-[#eee6da] text-[#7a7368] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                Timeline 1 (Pra-Proses)
+                System Timeline 1
               </span>
             </div>
           </CardHeader>
@@ -375,7 +375,7 @@ export default function DetailPesanan() {
           <CardHeader>
              <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold flex items-center gap-2 text-[#3b3b3b]">
-                <Package size={18} className="siqah-accent-text" /> Tahap 2: Proses Fulfillment
+                <Package size={18} className="siqah-accent-text" /> Tahap 2: Fulfillment & Produksi
               </h3>
               <div className="flex items-center gap-3">
                 {['PROCESSING', 'ON_DELIVERY', 'DELIVERED'].includes(pesanan.pembayaran?.status === 'PAID_DP' || pesanan.pembayaran?.status === 'PAID_FULL' ? 'PROCESSING' : 'WAITING') && (

@@ -125,9 +125,9 @@ const DetailPesananSaya = () => {
               <div className="flex items-center justify-between mb-8">
                 <div className="space-y-1">
                   <h3 className="text-xl font-bold text-[var(--color-public-primary)] flex items-center gap-2">
-                    <FiActivity className="text-blue-600" /> Tahap 1: Persiapan Mitra
+                    <FiActivity className="text-blue-600" /> Tahap 1: Persiapan Pesanan
                   </h3>
-                  <p className="text-xs text-[var(--color-text-default)]/50">Konfirmasi kesediaan tim kandang, catering, dan kurir</p>
+                  <p className="text-xs text-[var(--color-text-default)]/50">Konfirmasi kesediaan tim operasional (Kandang, Catering, Kurir)</p>
                 </div>
               </div>
 
@@ -159,9 +159,9 @@ const DetailPesananSaya = () => {
               <div className="flex items-center justify-between mb-8">
                 <div className="space-y-1">
                   <h3 className="text-xl font-bold text-[var(--color-public-primary)] flex items-center gap-2">
-                    <FiPackage className="text-indigo-600" /> Tahap 2: Proses Pelaksanaan
+                    <FiPackage className="text-indigo-600" /> Tahap 2: Proses Aqiqah & Pengiriman
                   </h3>
-                  <p className="text-xs text-[var(--color-text-default)]/50">Progres pemotongan hingga pengantaran ke lokasi</p>
+                  <p className="text-xs text-[var(--color-text-default)]/50">Progres pemotongan hewan, pengolahan masakan, hingga pengantaran</p>
                 </div>
               </div>
 
@@ -217,37 +217,69 @@ const DetailPesananSaya = () => {
 };
 
 // Reuse Badges from List or move to components
+// Friendly mapping for consumer-facing labels
+const getFriendlyOrderStatus = (status) => {
+  const map = {
+    'PENDING_CONFIRMATION': 'Menunggu Konfirmasi Tim',
+    'AWAITING_PAYMENT': 'Menunggu Pembayaran',
+    'PROCESSING': 'Pesanan Sedang Diproses',
+    'ON_DELIVERY': 'Dalam Pengiriman',
+    'DELIVERED': 'Telah Sampai di Lokasi',
+    'COMPLETED': 'Pesanan Selesai',
+    'CANCELLED': 'Pesanan Dibatalkan',
+    'Menunggu Konfirmasi': 'Menunggu Konfirmasi Tim',
+    'Menunggu Pembayaran': 'Menunggu Pembayaran',
+    'Diproses': 'Pesanan Sedang Diproses',
+    'Dalam Pengiriman': 'Dalam Pengiriman',
+    'Telah Sampai': 'Telah Sampai di Lokasi',
+    'Selesai': 'Pesanan Selesai',
+  };
+  return map[status] || status;
+};
+
 const StatusBadge = ({ status }) => {
+  const friendlyStatus = getFriendlyOrderStatus(status);
+  
   const styles = {
-    "Draft": "bg-gray-100 text-gray-600",
-    "Menunggu Konfirmasi": "bg-amber-100 text-amber-600",
-    "Dikonfirmasi": "bg-blue-100 text-blue-600",
+    "Menunggu Konfirmasi Tim": "bg-amber-100 text-amber-600",
     "Menunggu Pembayaran": "bg-indigo-100 text-indigo-600",
-    "Diproses": "bg-purple-100 text-purple-600",
+    "Pesanan Sedang Diproses": "bg-purple-100 text-purple-600",
     "Dalam Pengiriman": "bg-orange-100 text-orange-600",
-    "Telah Sampai": "bg-emerald-100 text-emerald-600",
-    "Selesai": "bg-green-100 text-green-600",
-    "Dibatalkan": "bg-red-100 text-red-600",
+    "Telah Sampai di Lokasi": "bg-emerald-100 text-emerald-600",
+    "Pesanan Selesai": "bg-green-100 text-green-600",
+    "Pesanan Dibatalkan": "bg-red-100 text-red-600",
   };
 
   return (
-    <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest ${styles[status] || "bg-gray-100 text-gray-600"}`}>
-      {status}
+    <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest ${styles[friendlyStatus] || "bg-gray-100 text-gray-600"}`}>
+      {friendlyStatus}
     </span>
   );
 };
 
 const PaymentBadge = ({ status }) => {
+    const map = {
+        "PAID_FULL": "Lunas",
+        "PAID_DP": "DP Valid",
+        "UNPAID": "Belum Bayar",
+        "REJECTED": "Ditolak",
+        "Lunas": "Lunas",
+        "Valid (DP)": "DP Valid",
+        "Belum Bayar": "Belum Bayar",
+    };
+    
+    const friendlyStatus = map[status] || status;
+
     const styles = {
         "Lunas": "text-green-600 bg-green-50 px-4 py-1.5 rounded-full border border-green-100",
-        "Valid (DP)": "text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100",
+        "DP Valid": "text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100",
         "Belum Bayar": "text-amber-600 bg-amber-50 px-4 py-1.5 rounded-full border border-amber-100",
         "Ditolak": "text-red-600 bg-red-50 px-4 py-1.5 rounded-full border border-red-100",
     };
 
     return (
-        <span className={`text-xs font-bold uppercase tracking-widest ${styles[status] || "text-gray-600"}`}>
-            {status}
+        <span className={`text-xs font-bold uppercase tracking-widest ${styles[friendlyStatus] || "text-gray-600"}`}>
+            {friendlyStatus}
         </span>
     );
 };

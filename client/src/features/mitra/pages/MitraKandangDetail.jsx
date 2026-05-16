@@ -130,6 +130,42 @@ const MitraKandangDetail = () => {
                 {order.konsumen?.alamat || 'Alamat tidak tersedia'}
               </p>
             </PublicCard>
+
+            {/* Timeline 2: Progres Produksi (Read-Only for Kandang) */}
+            <PublicCard className="p-8 space-y-6 bg-white border-none shadow-xl rounded-3xl">
+              <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
+                <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center">
+                  <FiClock size={24} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-[var(--color-public-primary)]">Progres Produksi</h3>
+                  <p className="text-xs text-gray-400">Pantau tahapan pelaksanaan aqiqah</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                {order.progress && order.progress.length > 0 ? (
+                  <div className="relative space-y-6 before:absolute before:inset-0 before:ml-4 before:-translate-x-px before:h-full before:w-0.5 before:bg-gray-100">
+                    {order.progress.map((step, idx) => (
+                      <div key={idx} className="relative flex items-start gap-4">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 ${step.status === 'DONE' ? 'bg-emerald-500 text-white' : 'bg-gray-100 text-gray-400'}`}>
+                          {step.status === 'DONE' ? <FiCheckCircle size={14} /> : <span className="text-[10px] font-bold">{idx + 1}</span>}
+                        </div>
+                        <div className="space-y-0.5">
+                           <p className={`text-xs font-bold ${step.status === 'DONE' ? 'text-gray-800' : 'text-gray-400'}`}>{step.tahap}</p>
+                           <p className="text-[10px] text-gray-400">{step.waktu}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="p-6 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                     <p className="text-[10px] text-gray-400">Progres produksi belum dimulai.</p>
+                     <p className="text-[9px] text-gray-400 mt-1">Akan muncul setelah konfirmasi mitra & pembayaran selesai.</p>
+                  </div>
+                )}
+              </div>
+            </PublicCard>
           </div>
 
           {/* Right Column: Actions */}
