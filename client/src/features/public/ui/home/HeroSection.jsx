@@ -10,6 +10,7 @@ const HeroSection = () => {
       overlay="hero"
       backgroundImage="https://images.unsplash.com/photo-1716047866102-ec21d084fe0e?q=80&w=1170&auto=format&fit=crop"
       fixedBackground={false}
+      usePattern={true}
     >
       <motion.div
         className="max-w-xl text-center text-white"

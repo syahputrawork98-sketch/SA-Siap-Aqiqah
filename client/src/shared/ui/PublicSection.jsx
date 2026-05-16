@@ -6,7 +6,7 @@ export default function PublicSection({
   containerClassName = "",
   overlay = "soft",
   overlayClassName = "",
-  usePattern = true,
+  usePattern = false,
   fixedBackground = true,
   backgroundImage,
   style,

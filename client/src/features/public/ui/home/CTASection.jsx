@@ -7,6 +7,7 @@ const CTASection = () => {
     <PublicSection
       className="py-24 text-center"
       overlay="dark"
+      usePattern={true}
       containerClassName="max-w-4xl text-white"
     >
       <motion.div

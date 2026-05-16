@@ -3,10 +3,12 @@ import { motion } from "framer-motion";
 import { FiLogIn } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import { PublicButton } from "@/shared/ui";
+import DeveloperLoginModal from "./DeveloperLoginModal";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
   const location = useLocation();
 
   const menuItems = [
@@ -76,6 +78,7 @@ const Navbar = () => {
           <PublicButton
             variant="solid"
             className="hidden lg:flex"
+            onClick={() => setLoginModalOpen(true)}
           >
             <FiLogIn className="text-lg" /> Login
           </PublicButton>
@@ -130,11 +133,20 @@ const Navbar = () => {
           <PublicButton
             variant="solid"
             className="flex w-[80%]"
+            onClick={() => {
+              setMobileOpen(false);
+              setLoginModalOpen(true);
+            }}
           >
             <FiLogIn className="text-lg" /> Login
           </PublicButton>
         </motion.ul>
       )}
+
+      <DeveloperLoginModal 
+        isOpen={loginModalOpen} 
+        onClose={() => setLoginModalOpen(false)} 
+      />
     </motion.nav>
   );
 };

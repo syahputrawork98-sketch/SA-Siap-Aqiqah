@@ -4,7 +4,7 @@ import { PublicButton, PublicSection, SectionHeading } from "@/shared/ui";
 
 const AboutSection = () => {
   return (
-    <PublicSection overlay="dark" className="bg-fixed bg-center bg-cover">
+    <PublicSection overlay="dark" usePattern={true} className="bg-fixed bg-center bg-cover">
       <div className="flex flex-col items-center justify-center gap-12 md:flex-row md:gap-32">
         <motion.div
           className="relative flex basis-1/2 justify-center md:justify-end"
