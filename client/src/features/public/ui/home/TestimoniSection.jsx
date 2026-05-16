@@ -18,7 +18,7 @@ const TestimoniSection = () => {
   const nextSlide = () => setIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
 
   return (
-    <PublicSection className="siqah-public-bg-reverse" containerClassName="max-w-4xl text-center" overlay="wash-reverse">
+    <PublicSection className="siqah-public-bg-reverse" containerClassName="max-w-4xl text-center" overlay="soft" usePattern={true}>
       <SectionHeading
         className="mb-12"
         title="Apa Kata Mereka"

@@ -5,7 +5,7 @@ import paketData from "@/shared/mocks/public/home/paket.json";
 
 const PaketSection = () => {
   return (
-    <PublicSection id="paket" className="siqah-public-bg-base" overlay="wash">
+    <PublicSection id="paket" className="siqah-public-bg-base" overlay="soft" usePattern={true}>
       <SectionHeading
         className="mb-12"
         title="Pilihan Paket Aqiqah"
