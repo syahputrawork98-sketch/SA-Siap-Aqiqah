@@ -204,15 +204,53 @@ export default function DetailPesanan() {
           </CardContent>
         </Card>
 
-        {/* Progress Pesanan */}
-        {pesanan.progress && (
-          <Card className="bg-white/80 backdrop-blur-md border border-[#eee6da] shadow-sm lg:col-span-2">
-            <CardHeader>
+        {/* Timeline 1: Konfirmasi Mitra */}
+        <Card className="bg-white/80 backdrop-blur-md border border-[#eee6da] shadow-sm lg:col-span-2">
+          <CardHeader>
+            <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold flex items-center gap-2 text-[#3b3b3b]">
-                <Package size={18} className="siqah-accent-text" /> Progress Operasional
+                <Clock size={18} className="siqah-accent-text" /> Tahap 1: Konfirmasi Mitra
               </h3>
-            </CardHeader>
-            <CardContent>
+              <span className="text-[10px] bg-[#eee6da] text-[#7a7368] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                Timeline 1 (Pra-Proses)
+              </span>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {["MITRA_KANDANG", "MITRA_CATERING", "MITRA_KURIR"].map((role) => {
+                const conf = pesanan.konfirmasiMitra?.find(c => c.peran === role);
+                return (
+                  <div key={role} className="p-4 border border-[#eee6da] rounded-xl bg-white/50">
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[10px] font-bold text-[#7a7368] uppercase tracking-widest">{role.replace("MITRA_", "")}</span>
+                      <div className="flex items-center justify-between">
+                         <StatusBadge status={conf?.status || "PENDING"} type="confirmation" />
+                         {conf?.waktu && <span className="text-[9px] text-[#aaa]">{new Date(conf.waktu).toLocaleDateString()}</span>}
+                      </div>
+                      {conf?.catatan && <p className="text-[11px] text-[#7a7368] italic mt-1">"{conf.catatan}"</p>}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Timeline 2: Fulfillment Process */}
+        <Card className="bg-white/80 backdrop-blur-md border border-[#eee6da] shadow-sm lg:col-span-2">
+          <CardHeader>
+             <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold flex items-center gap-2 text-[#3b3b3b]">
+                <Package size={18} className="siqah-accent-text" /> Tahap 2: Proses Fulfillment
+              </h3>
+              <span className="text-[10px] bg-[#e2b97f]/20 text-[var(--color-brand-primary)] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider border border-[var(--color-brand-primary)]/20">
+                Timeline 2 (Produksi)
+              </span>
+            </div>
+          </CardHeader>
+          <CardContent>
+            {pesanan.progress && pesanan.progress.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {pesanan.progress.map((p, idx) => (
                   <div
@@ -221,22 +259,25 @@ export default function DetailPesanan() {
                   >
                     <div className="flex items-center gap-3 text-[#3b3b3b] font-semibold mb-3">
                       <div className="p-2 bg-[#e2b97f]/10 rounded-lg group-hover:bg-[#e2b97f]/20 transition-colors">
-                        {p.tahap.includes("Penyembelihan") ? (
+                        {p.tahap.toLowerCase().includes("sembelih") ? (
                           <Camera size={18} className="siqah-accent-text" />
-                        ) : p.tahap.includes("Catering") ? (
+                        ) : p.tahap.toLowerCase().includes("catering") ? (
                           <Utensils size={18} className="siqah-accent-text" />
                         ) : (
                           <Truck size={18} className="siqah-accent-text" />
                         )}
                       </div>
-                      <span className="text-sm uppercase tracking-tight">{p.tahap}</span>
+                      <div className="flex flex-col">
+                        <span className="text-xs uppercase tracking-tight">{p.tahap}</span>
+                        <StatusBadge status={p.status} />
+                      </div>
                     </div>
                     <div className="space-y-1 mb-4">
                       <p className="text-xs text-[#7a7368]">
                         Mitra: <span className="font-semibold text-[#3b3b3b]">{p.mitra}</span>
                       </p>
                       <p className="text-xs text-[#7a7368]">
-                        Waktu: <span className="font-medium">{p.waktu}</span>
+                        Waktu: <span className="font-medium text-[10px]">{p.waktu}</span>
                       </p>
                     </div>
                     <div className="aspect-video w-full overflow-hidden rounded-lg border border-[#eee6da] bg-white">
@@ -249,9 +290,14 @@ export default function DetailPesanan() {
                   </div>
                 ))}
               </div>
-            </CardContent>
-          </Card>
-        )}
+            ) : (
+              <div className="p-12 text-center border border-dashed border-[#eee6da] rounded-xl">
+                 <p className="text-sm text-[#7a7368] italic">Belum ada progres fulfillment yang dicatat untuk pesanan ini.</p>
+                 <p className="text-[10px] text-[#aaa] mt-1 uppercase tracking-widest">Fulfillment dimulai setelah pembayaran DP divalidasi</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
       
       {/* Info Label */}
@@ -263,30 +309,66 @@ export default function DetailPesanan() {
   );
 }
 
-function StatusBadge({ status }) {
+function StatusBadge({ status, type = "order" }) {
   const base =
-    "px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1.5";
+    "px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1.5 border";
+  
+  if (type === "payment") {
+    switch (status) {
+      case "Lunas":
+      case "Valid (DP)":
+      case "PAID_DP":
+      case "PAID_FULL":
+        return <span className={`${base} bg-emerald-50 text-emerald-600 border-emerald-100 tracking-tight`}>{status.replace("PAID_", "Lunas ")}</span>;
+      case "Belum Bayar":
+      case "UNPAID":
+        return <span className={`${base} bg-amber-50 text-amber-600 border-amber-100`}>Belum Bayar</span>;
+      default:
+        return <span className={`${base} bg-gray-50 text-gray-600 border-gray-100`}>{status}</span>;
+    }
+  }
+
+  if (type === "confirmation") {
+    switch (status) {
+      case "ACCEPTED":
+        return <span className={`${base} bg-emerald-50 text-emerald-600 border-emerald-100`}><CheckCircle size={10} /> Disetujui</span>;
+      case "REJECTED":
+        return <span className={`${base} bg-red-50 text-red-600 border-red-100`}><AlertCircle size={10} /> Ditolak</span>;
+      case "NEED_RESCHEDULE":
+        return <span className={`${base} bg-amber-50 text-amber-600 border-amber-100`}><RefreshCw size={10} /> Reschedule</span>;
+      default:
+        return <span className={`${base} bg-gray-50 text-gray-600 border-gray-100`}><Clock size={10} /> Pending</span>;
+    }
+  }
+
   switch (status) {
+    case "Menunggu Konfirmasi":
     case "Menunggu Pembayaran":
-    case "Belum Bayar":
+    case "AWAITING_PAYMENT":
+    case "PENDING_CONFIRMATION":
       return (
         <span className={`${base} bg-amber-50 text-amber-600 border border-amber-100`}>
-          <Clock size={14} /> {status}
+          <Clock size={14} /> {status.replace(/_/g, " ")}
         </span>
       );
     case "Diproses":
+    case "PROCESSING":
+    case "ON_DELIVERY":
       return (
         <span className={`${base} bg-blue-50 text-blue-600 border border-blue-100`}>
-          <Package size={14} /> {status}
+          <Package size={14} /> {status.replace(/_/g, " ")}
         </span>
       );
     case "Selesai":
     case "Diterima":
     case "Lunas":
     case "Valid":
+    case "DELIVERED":
+    case "COMPLETED":
+    case "DONE":
       return (
         <span className={`${base} bg-emerald-50 text-emerald-600 border border-emerald-100`}>
-          <CheckCircle size={14} /> {status}
+          <CheckCircle size={14} /> {status.replace(/_/g, " ")}
         </span>
       );
     default:
@@ -297,3 +379,4 @@ function StatusBadge({ status }) {
       );
   }
 }
+

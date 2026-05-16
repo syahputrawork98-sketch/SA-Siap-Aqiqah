@@ -130,13 +130,15 @@ export default function Pesanan() {
             <div className="overflow-x-auto">
               <table className="min-w-full border-collapse">
                 <thead>
-                  <tr className="text-sm text-[#7a7368] border-b border-[#eee6da]">
-                    <th className="py-2 px-3 text-left font-semibold">ID Pesanan</th>
-                    <th className="py-2 px-3 text-left font-semibold">Nama Konsumen</th>
-                    <th className="py-2 px-3 text-left font-semibold">Tanggal</th>
-                    <th className="py-2 px-3 text-left font-semibold">Total</th>
-                    <th className="py-2 px-3 text-left font-semibold">Status</th>
-                    <th className="py-2 px-3 text-center font-semibold">Aksi</th>
+                  <tr className="text-[11px] text-[#7a7368] border-b border-[#eee6da] uppercase tracking-wider">
+                    <th className="py-3 px-3 text-left font-bold">Pesanan</th>
+                    <th className="py-3 px-3 text-left font-bold">Konsumen</th>
+                    <th className="py-3 px-3 text-left font-bold">Jadwal</th>
+                    <th className="py-3 px-3 text-left font-bold">Status Utama</th>
+                    <th className="py-3 px-3 text-left font-bold">Pembayaran</th>
+                    <th className="py-3 px-3 text-left font-bold">Timeline 1 (Mitra)</th>
+                    <th className="py-3 px-3 text-left font-bold">Timeline 2 (Progres)</th>
+                    <th className="py-3 px-3 text-center font-bold">Aksi</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#f0ebe2]">
@@ -146,20 +148,38 @@ export default function Pesanan() {
                         key={p.id}
                         className="text-sm text-[#3b3b3b] hover:bg-[#f9f6ef]/60 transition-colors"
                       >
-                        <td className="py-3 px-3 font-medium">{p.id}</td>
-                        <td className="py-3 px-3">{p.nama}</td>
-                        <td className="py-3 px-3">{p.tanggal}</td>
                         <td className="py-3 px-3">
-                          Rp {p.total.toLocaleString("id-ID")}
+                          <div className="flex flex-col">
+                            <span className="font-bold text-[#3b3b3b]">{p.id}</span>
+                            <span className="text-[10px] text-[#7a7368]">{p.paket}</span>
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="flex flex-col">
+                            <span className="font-medium">{p.nama}</span>
+                            <span className="text-[10px] text-[#7a7368]">{p.customerPhone}</span>
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <span className="text-xs">{p.tanggal}</span>
                         </td>
                         <td className="py-3 px-3">
                           <StatusBadge status={p.status} />
                         </td>
+                        <td className="py-3 px-3">
+                          <StatusBadge status={p.paymentStatus} type="payment" />
+                        </td>
+                        <td className="py-3 px-3">
+                          <TimelineIndicator1 confirmations={p.konfirmasiMitra} />
+                        </td>
+                        <td className="py-3 px-3">
+                          <TimelineIndicator2 progress={p.progress} />
+                        </td>
                         <td className="py-3 px-3 text-center">
                           <Link to={`/admin/pesanan/${p.id}`}>
-                            <Button variant="ghost" size="sm" className="mx-auto text-[var(--color-public-accent)] hover:text-[var(--color-public-accent-hover)]">
-                              <Eye size={16} />
-                              <span>Detail</span>
+                            <Button variant="ghost" size="sm" className="mx-auto text-[var(--color-public-accent)] hover:text-[var(--color-public-accent-hover)] px-2">
+                              <Eye size={14} className="mr-1" />
+                              <span className="text-xs">Detail</span>
                             </Button>
                           </Link>
                         </td>
@@ -168,7 +188,7 @@ export default function Pesanan() {
                   ) : (
                     <tr>
                       <td
-                        colSpan="6"
+                        colSpan="8"
                         className="text-center text-[#7a7368] py-10 text-sm italic"
                       >
                         {loading ? "Memuat data..." : "Tidak ada data pesanan yang sesuai dengan filter."}
@@ -191,31 +211,85 @@ export default function Pesanan() {
   );
 }
 
-function StatusBadge({ status }) {
+function StatusBadge({ status, type = "order" }) {
   const base =
-    "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1.5";
+    "px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1 border";
+  
+  if (type === "payment") {
+    switch (status) {
+      case "Lunas":
+      case "Valid (DP)":
+        return <span className={`${base} bg-emerald-50 text-emerald-600 border-emerald-100`}>{status}</span>;
+      case "Belum Bayar":
+        return <span className={`${base} bg-amber-50 text-amber-600 border-amber-100`}>{status}</span>;
+      default:
+        return <span className={`${base} bg-gray-50 text-gray-600 border-gray-100`}>{status}</span>;
+    }
+  }
+
   switch (status) {
+    case "Menunggu Konfirmasi":
     case "Menunggu Pembayaran":
       return (
-        <span className={`${base} bg-amber-50 text-amber-600 border border-amber-100`}>
-          <Clock size={12} /> {status}
+        <span className={`${base} bg-amber-50 text-amber-600 border-amber-100`}>
+          <Clock size={10} /> {status}
         </span>
       );
+    case "Dikonfirmasi":
     case "Diproses":
+    case "Dalam Pengiriman":
       return (
-        <span className={`${base} bg-blue-50 text-blue-600 border border-blue-100`}>
-          <Package size={12} /> {status}
+        <span className={`${base} bg-blue-50 text-blue-600 border-blue-100`}>
+          <Package size={10} /> {status}
         </span>
       );
+    case "Telah Sampai":
     case "Selesai":
       return (
-        <span className={`${base} bg-emerald-50 text-emerald-600 border border-emerald-100`}>
-          <CheckCircle size={12} /> {status}
+        <span className={`${base} bg-emerald-50 text-emerald-600 border-emerald-100`}>
+          <CheckCircle size={10} /> {status}
         </span>
       );
     default:
       return (
-        <span className={`${base} bg-gray-50 text-gray-600 border border-gray-100`}>{status}</span>
+        <span className={`${base} bg-gray-50 text-gray-600 border-gray-100`}>{status}</span>
       );
   }
 }
+
+function TimelineIndicator1({ confirmations = [] }) {
+  const roles = ["MITRA_KANDANG", "MITRA_CATERING", "MITRA_KURIR"];
+  return (
+    <div className="flex gap-1">
+      {roles.map(role => {
+        const conf = confirmations.find(c => c.peran === role);
+        const isAccepted = conf?.status === "ACCEPTED";
+        return (
+          <div 
+            key={role} 
+            title={`${role}: ${conf?.status || "PENDING"}`}
+            className={`w-2 h-2 rounded-full ${isAccepted ? "bg-emerald-500" : "bg-gray-200"}`}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function TimelineIndicator2({ progress = [] }) {
+  const steps = progress.length;
+  const done = progress.filter(p => p.status === "DONE").length;
+  
+  return (
+    <div className="flex flex-col gap-1 w-24">
+      <div className="h-1 w-full bg-gray-100 rounded-full overflow-hidden">
+        <div 
+          className="h-full bg-[var(--color-public-accent)]" 
+          style={{ width: `${steps > 0 ? (done / steps) * 100 : 0}%` }}
+        />
+      </div>
+      <span className="text-[9px] text-[#7a7368] font-medium">{done}/{steps} Selesai</span>
+    </div>
+  );
+}
+

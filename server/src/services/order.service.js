@@ -52,11 +52,18 @@ const mapOrder = (o) => ({
     metode: 'Transfer Bank',
     bukti: o.payments?.[0]?.proofImageUrl || null
   },
+  konfirmasiMitra: o.partnerConfirmations?.map(c => ({
+    peran: c.partnerRole,
+    status: c.status,
+    catatan: c.notesPartner,
+    waktu: c.confirmedAt
+  })) || [],
   progress: o.timelineEvents?.map(e => ({
     tahap: e.title,
     mitra: e.updatedBy,
     waktu: e.status === 'DONE' ? e.updatedAt.toISOString() : (e.status === 'IN_PROGRESS' ? 'Sedang Diproses' : 'Menunggu'),
-    foto: e.proofImageUrl || 'https://placehold.co/600x400?text=No+Photo'
+    foto: e.proofImageUrl || 'https://placehold.co/600x400?text=No+Photo',
+    status: e.status
   })) || []
 });
 
@@ -90,7 +97,8 @@ const getAllOrders = async (filters = {}) => {
         consumer: true,
         package: true,
         payments: true,
-        timelineEvents: true
+        timelineEvents: true,
+        partnerConfirmations: true
       },
       orderBy: { createdAt: 'desc' }
     });
@@ -133,6 +141,7 @@ const getOrderById = async (id) => {
         package: true,
         payments: true,
         timelineEvents: true,
+        partnerConfirmations: true,
         items: {
           include: {
             animal: true,
