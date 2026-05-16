@@ -28,7 +28,8 @@ Membangun sistem yang benar-benar siap pakai secara nyata.
 - **Batch 39**: **Prisma Schema Baseline** - Implementasi draft skema Prisma berdasarkan kontrak data. (SELESAI)
 - **Batch 40**: **Documentation Checkpoint** - Sinkronisasi perencanaan data dan persiapan rencana Batch 41-50. (SELESAI)
 - **Batch 41**: **Database Local Initialization** - Setup Prisma, environment, dan validasi skema lokal. (SELESAI)
-- **Batch 42-50**: **Operational Integration** - Inisialisasi Database fisik (PostgreSQL), migrasi, seed data, dan integrasi API operasional secara bertahap. (NEXT FOCUS)
+- **Batch 42**: **Seed Data Baseline** - Implementasi script seed data untuk persona dev dan data master. (SELESAI)
+- **Batch 43-50**: **Operational Integration** - Migrasi API operasional ke database fisik secara bertahap. (NEXT FOCUS)
 - **Otentikasi Produksi**: Implementasi Auth, JWT, dan RBAC nyata bagi User/Mitra.
 - **Storage Produksi**: Implementasi Server/Cloud Storage untuk bukti transfer.
 - **Audit & Logging**: Implementasi Audit Trail untuk transaksi finansial.

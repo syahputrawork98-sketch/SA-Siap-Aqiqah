@@ -13,9 +13,18 @@ Dokumen ini mencatat progres pengembangan pada fase Database & Operational Integ
   - Pembuatan panduan setup: `docs/database/local-database-setup.md`.
 - **Catatan**: Migrasi database fisik belum dijalankan secara otomatis karena membutuhkan layanan PostgreSQL yang aktif di environment eksekusi. Langkah ini diserahkan kepada pengembang melalui panduan setup.
 
-## Batch 42: Seed Data Initialization (Mendatang)
-- **Tujuan**: Membuat data awal (master data) untuk Paket, Layanan, dan contoh Mitra di database.
-- **Fokus**: Script `prisma/seed.js`.
+## Batch 42: Seed Data Baseline
+- **Tujuan**: Membuat script seed data untuk mengisi database dengan data master dan persona dev.
+- **Status**: Selesai.
+- **Hasil**: 
+  - Pembuatan file `server/prisma/seed.js` dengan data: 6 User Persona, Profil Konsumen, 3 Mitra (Kandang, Catering, Kurir), 2 Paket, 1 Hewan, 1 Menu Catering, dan Platform Settings.
+  - Penambahan script `npm run prisma:seed` di `package.json`.
+  - Pembuatan dokumentasi `docs/database/seed-data-baseline.md`.
+  - Penyelarasan PORT di `.env.example` ke 3001.
+
+## Batch 43: API Data Master Migration (Mendatang)
+- **Tujuan**: Menghubungkan modul Data Master (Mitra, Paket, Hewan) ke database fisik.
+- **Fokus**: Refactor service/controller untuk menggunakan PrismaClient.
 
 ---
 *Terakhir diperbarui: 16 Mei 2026*

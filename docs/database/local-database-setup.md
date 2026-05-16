@@ -44,6 +44,10 @@ Kami telah menyediakan beberapa script di `package.json` untuk mempermudah opera
   ```bash
   npm run prisma:migrate
   ```
+- **Run Seed**: Mengisi database dengan data awal (User, Paket, Mitra).
+  ```bash
+  npm run prisma:seed
+  ```
 
 ## 5. Troubleshooting Umum
 - **Error P1001 (Can't reach database server)**: Pastikan layanan PostgreSQL sudah berjalan dan port (5432) tidak diblokir.
