@@ -80,7 +80,7 @@ enum TimelineVisibility {
 model User {
   id              String           @id @default(cuid())
   email           String           @unique
-  passwordHash    String           // Planned for future production auth
+  passwordHash    String // Planned for future production auth
   role            UserRole         @default(USER)
   isActive        Boolean          @default(true)
   consumerProfile ConsumerProfile?
@@ -127,7 +127,7 @@ model Package {
   name        String
   slug        String   @unique
   description String?
-  priceBase   Int      // Nominal dalam satuan terkecil (e.g., Rupiah)
+  priceBase   Int // Nominal dalam satuan terkecil (e.g., Rupiah)
   imageUrl    String?
   isActive    Boolean  @default(true)
   orders      Order[]
@@ -136,18 +136,18 @@ model Package {
 }
 
 model Animal {
-  id          String         @id @default(cuid())
-  partnerId   String
-  partner     PartnerProfile @relation(fields: [partnerId], references: [id])
-  type        String         // e.g., "Kambing", "Domba"
-  weight      String?
-  gender      String?
-  price       Int
-  status      String         @default("AVAILABLE") // AVAILABLE, RESERVED, SOLD
-  imageUrl    String?
-  orderItems  OrderItem[]
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
+  id         String         @id @default(cuid())
+  partnerId  String
+  partner    PartnerProfile @relation(fields: [partnerId], references: [id])
+  type       String // e.g., "Kambing", "Domba"
+  weight     String?
+  gender     String?
+  price      Int
+  status     String         @default("AVAILABLE") // AVAILABLE, RESERVED, SOLD
+  imageUrl   String?
+  orderItems OrderItem[]
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
 }
 
 model CateringMenu {
@@ -189,7 +189,7 @@ model OrderItem {
   id             String        @id @default(cuid())
   orderId        String
   order          Order         @relation(fields: [orderId], references: [id])
-  entityType     String        // "ANIMAL" or "CATERING_MENU"
+  entityType     String // "ANIMAL" or "CATERING_MENU"
   animalId       String?
   animal         Animal?       @relation(fields: [animalId], references: [id])
   cateringMenuId String?
@@ -218,7 +218,7 @@ model Payment {
   id            String        @id @default(cuid())
   orderId       String
   order         Order         @relation(fields: [orderId], references: [id])
-  type          String        // e.g., "DP", "FULL", "REMAINING"
+  type          String // e.g., "DP", "FULL", "REMAINING"
   amount        Int
   proofImageUrl String?
   status        PaymentStatus @default(PENDING_VERIFICATION)
@@ -229,30 +229,30 @@ model Payment {
 }
 
 model Payout {
-  id        String       @id @default(cuid())
+  id        String         @id @default(cuid())
   orderId   String
-  order     Order        @relation(fields: [orderId], references: [id])
+  order     Order          @relation(fields: [orderId], references: [id])
   partnerId String
   partner   PartnerProfile @relation(fields: [partnerId], references: [id])
   amount    Int
-  status    PayoutStatus @default(PENDING)
+  status    PayoutStatus   @default(PENDING)
   paidAt    DateTime?
   adminNote String?
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
 }
 
 model TimelineEvent {
   id            String             @id @default(cuid())
   orderId       String
   order         Order              @relation(fields: [orderId], references: [id])
-  eventKey      String             // e.g., "SLAUGHTER", "COOKING"
+  eventKey      String // e.g., "SLAUGHTER", "COOKING"
   title         String
   description   String?
   status        FulfillmentStatus  @default(WAITING)
   visibility    TimelineVisibility @default(INTERNAL)
   proofImageUrl String?
-  updatedBy     String             // Menyimpan role/ID pengupdate
+  updatedBy     String // Menyimpan role/ID pengupdate
   createdAt     DateTime           @default(now())
   updatedAt     DateTime           @updatedAt
 }
