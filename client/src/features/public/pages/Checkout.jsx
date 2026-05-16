@@ -40,6 +40,9 @@ const Checkout = () => {
     notesConsumer: "",
   });
 
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [createdOrderId, setCreatedOrderId] = useState(null);
+
   useEffect(() => {
     const fetchPackages = async () => {
       try {
@@ -75,9 +78,8 @@ const Checkout = () => {
 
     setIsSubmitting(true);
     try {
-      // Construct payload based on backend requirements
       const payload = {
-        consumerEmail: 'user@siqah.dev', // Hardcoded for dev persona
+        consumerEmail: 'user@siqah.dev', 
         packageId: formData.packageId,
         scheduledDate: formData.scheduledDate,
         deliveryAddress: formData.deliveryAddress,
@@ -96,8 +98,12 @@ const Checkout = () => {
       const response = await orderApi.createOrder(payload);
       
       if (response.success) {
-        // Redirect to detail page
-        navigate(`/user/pesanan/${response.data.id}`);
+        setCreatedOrderId(response.data.id);
+        setShowSuccess(true);
+        // Redirect after a short delay to show success state
+        setTimeout(() => {
+          navigate(`/user/pesanan/${response.data.id}`);
+        }, 2000);
       }
     } catch (err) {
       alert(err.message || "Gagal membuat pesanan. Silakan coba lagi.");
@@ -108,6 +114,35 @@ const Checkout = () => {
 
   if (loading) return <PublicSection className="py-24"><LoadingState message="Menyiapkan formulir pemesanan..." /></PublicSection>;
   if (error) return <PublicSection className="py-24"><ErrorState message={error} onRetry={() => window.location.reload()} /></PublicSection>;
+
+  if (showSuccess) {
+    return (
+      <PublicSection className="py-32 flex items-center justify-center">
+        <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl p-10 text-center space-y-6 border border-emerald-50">
+          <div className="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto animate-bounce">
+            <FiCheckCircle size={48} />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-[var(--color-public-primary)]">Pesanan Berhasil!</h2>
+            <p className="text-sm text-gray-500 leading-relaxed">
+              Pesanan <span className="font-bold text-emerald-600">#{createdOrderId}</span> telah berhasil dibuat. Anda akan segera dialihkan ke halaman detail pesanan.
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <div className="w-12 h-1 bg-emerald-100 rounded-full overflow-hidden">
+              <div className="h-full bg-emerald-500 animate-[loading_2s_ease-in-out_infinite]" style={{ width: '50%' }}></div>
+            </div>
+          </div>
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes loading {
+              0% { transform: translateX(-100%); }
+              100% { transform: translateX(200%); }
+            }
+          `}} />
+        </div>
+      </PublicSection>
+    );
+  }
 
   return (
     <PublicSection className="py-20" overlay="soft" usePattern={true}>

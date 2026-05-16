@@ -146,11 +146,12 @@ export default function Pesanan() {
                     dataPesanan.map((p) => (
                       <tr
                         key={p.id}
-                        className="text-sm text-[#3b3b3b] hover:bg-[#f9f6ef]/60 transition-colors"
+                        onClick={() => navigate(`/admin/pesanan/${p.id}`)}
+                        className="text-sm text-[#3b3b3b] hover:bg-blue-50/50 cursor-pointer transition-colors group"
                       >
                         <td className="py-3 px-3">
                           <div className="flex flex-col">
-                            <span className="font-bold text-[#3b3b3b]">{p.id}</span>
+                            <span className="font-bold text-[#3b3b3b] group-hover:text-blue-600 transition-colors">{p.id}</span>
                             <span className="text-[10px] text-[#7a7368]">{p.paket}</span>
                           </div>
                         </td>
@@ -176,12 +177,10 @@ export default function Pesanan() {
                           <TimelineIndicator2 progress={p.progress} />
                         </td>
                         <td className="py-3 px-3 text-center">
-                          <Link to={`/admin/pesanan/${p.id}`}>
-                            <Button variant="ghost" size="sm" className="mx-auto text-[var(--color-public-accent)] hover:text-[var(--color-public-accent-hover)] px-2">
-                              <Eye size={14} className="mr-1" />
-                              <span className="text-xs">Detail</span>
-                            </Button>
-                          </Link>
+                          <Button variant="ghost" size="sm" className="mx-auto text-[var(--color-public-accent)] hover:text-blue-600 px-2 group-hover:bg-blue-100/50">
+                            <Eye size={14} className="mr-1" />
+                            <span className="text-xs font-bold">Buka</span>
+                          </Button>
                         </td>
                       </tr>
                     ))

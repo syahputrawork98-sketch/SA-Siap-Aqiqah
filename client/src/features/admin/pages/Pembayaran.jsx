@@ -195,7 +195,8 @@ export default function Pembayaran() {
                     {currentFilteredData.map((item) => (
                       <tr
                         key={item.id}
-                        className="text-sm text-[#3b3b3b] hover:bg-[#f9f6ef]/60 transition"
+                        onClick={() => handleOpenModal(item)}
+                        className="text-sm text-[#3b3b3b] hover:bg-blue-50/50 cursor-pointer transition-colors group"
                       >
                         <td className="py-3 px-3 font-medium">{item.id}</td>
                         <td className="py-3 px-3">{item.konsumen}</td>
@@ -206,13 +207,12 @@ export default function Pembayaran() {
                         </td>
                         <td className="py-3 px-3 text-center">
                           <Button
-                            onClick={() => handleOpenModal(item)}
                             variant="ghost"
                             size="sm"
-                            className="mx-auto text-[var(--color-public-accent)] hover:text-[var(--color-public-accent-hover)]"
+                            className="mx-auto text-[var(--color-public-accent)] hover:text-blue-600 px-2 group-hover:bg-blue-100/50"
                           >
-                            <Eye size={16} />
-                            <span className="text-sm">Lihat</span>
+                            <Eye size={16} className="mr-1" />
+                            <span className="text-xs font-bold">Validasi</span>
                           </Button>
                         </td>
                       </tr>

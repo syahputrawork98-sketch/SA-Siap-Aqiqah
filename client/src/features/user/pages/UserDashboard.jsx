@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { PublicButton, PublicSection } from "@/shared/ui";
 import { FiUser, FiClock, FiCheckCircle, FiPackage } from "react-icons/fi";
 
 const UserDashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <PublicSection className="py-24" overlay="soft" usePattern={true}>
       <div className="max-w-4xl mx-auto p-12 text-center space-y-8 bg-white rounded-3xl shadow-xl border border-blue-100">
@@ -23,13 +26,13 @@ const UserDashboard = () => {
         </p>
 
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <PublicButton variant="solid" onClick={() => window.location.href = "/user/pesanan"}>
+          <PublicButton variant="solid" onClick={() => navigate("/user/pesanan")}>
             <FiPackage className="mr-2" /> Lihat Pesanan Saya
           </PublicButton>
-          <PublicButton variant="outline" onClick={() => window.location.href = "/checkout"}>
+          <PublicButton variant="outline" onClick={() => navigate("/checkout")}>
             Buat Pesanan Baru
           </PublicButton>
-          <PublicButton variant="outline" onClick={() => window.location.href = "/"}>
+          <PublicButton variant="outline" onClick={() => navigate("/")}>
             Kembali ke Beranda
           </PublicButton>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
   PublicSection, 
   PublicCard, 
@@ -15,6 +15,7 @@ const MitraCateringDashboard = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -65,10 +66,14 @@ const MitraCateringDashboard = () => {
               const myConfirmation = order.konfirmasiMitra?.find(c => c.peran === 'MITRA_CATERING');
               
               return (
-                <PublicCard key={order.id} className="group overflow-hidden bg-white border-orange-50 hover:border-orange-200 transition-all duration-300">
+                <PublicCard 
+                  key={order.id} 
+                  onClick={() => navigate(`/mitra-catering/pesanan/${order.id}`)}
+                  className="group overflow-hidden bg-white border-orange-50 hover:border-orange-300 hover:shadow-lg cursor-pointer transition-all duration-300"
+                >
                   <div className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div className="flex items-start gap-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${getStatusColor(myConfirmation?.status)}`}>
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform ${getStatusColor(myConfirmation?.status)}`}>
                          {myConfirmation?.status === 'ACCEPTED' ? <FiCheckCircle size={24} /> : <FiClock size={24} />}
                       </div>
                       <div className="space-y-1">
@@ -78,7 +83,7 @@ const MitraCateringDashboard = () => {
                             {myConfirmation?.status || 'PENDING'}
                           </span>
                         </div>
-                        <h3 className="font-bold text-[var(--color-public-primary)]">{order.paket}</h3>
+                        <h3 className="font-bold text-[var(--color-public-primary)] group-hover:text-orange-700 transition-colors">{order.paket}</h3>
                         <div className="flex items-center gap-4 text-xs text-gray-500">
                           <span className="flex items-center gap-1"><FiCalendar size={12} /> {order.tanggal}</span>
                           <span className="flex items-center gap-1"><FiAlertCircle size={12} /> {getFriendlyOrderStatus(order.status)}</span>
@@ -87,11 +92,9 @@ const MitraCateringDashboard = () => {
                     </div>
 
                     <div className="flex items-center gap-3 pt-4 md:pt-0 border-t md:border-t-0 border-gray-50">
-                       <Link to={`/mitra-catering/pesanan/${order.id}`}>
-                        <PublicButton variant="outline" size="sm" className="group/btn">
+                        <PublicButton variant="outline" size="sm" className="group/btn pointer-events-none">
                           Detail Tugas <FiArrowRight className="ml-2 group-hover/btn:translate-x-1 transition-transform" />
                         </PublicButton>
-                      </Link>
                     </div>
                   </div>
                 </PublicCard>

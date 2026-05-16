@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardHeader, CardContent, EmptyState, Button } from "@/shared/ui";
-import { Package, CheckCircle, Clock, CreditCard, RefreshCw, Server, AlertCircle } from "lucide-react";
+import { Package, CheckCircle, Clock, CreditCard, RefreshCw, Server, AlertCircle, ChevronRight } from "lucide-react";
 import { orderApi } from "../services/orderApi";
 
 export default function Dashboard() {
@@ -8,6 +9,7 @@ export default function Dashboard() {
   const [recentOrders, setRecentOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     setLoading(true);
@@ -48,10 +50,16 @@ export default function Dashboard() {
             Pantau aktivitas dan data pesanan terkini secara real-time.
           </p>
         </div>
-        <Button variant="ghost" size="sm" onClick={fetchData} disabled={loading} className="text-[#7a7368]">
-          <RefreshCw size={16} className={loading ? "animate-spin mr-2" : "mr-2"} />
-          Muat Ulang
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => navigate("/admin/pesanan")} className="text-[#7a7368]">
+            <Package size={16} className="mr-2" />
+            Semua Pesanan
+          </Button>
+          <Button variant="ghost" size="sm" onClick={fetchData} disabled={loading} className="text-[#7a7368]">
+            <RefreshCw size={16} className={loading ? "animate-spin mr-2" : "mr-2"} />
+            Muat Ulang
+          </Button>
+        </div>
       </div>
 
       {error ? (
@@ -67,6 +75,7 @@ export default function Dashboard() {
             value={summary?.totalOrders || 0}
             color="from-[#fefbf7] to-[#f9f6ef]"
             loading={loading}
+            onClick={() => navigate("/admin/pesanan")}
           />
           <StatCard
             icon={Clock}
@@ -98,13 +107,18 @@ export default function Dashboard() {
             <RefreshCw size={24} className="animate-spin text-[var(--color-brand-primary)]" />
           </div>
         )}
-        <CardHeader>
-          <h3 className="text-lg font-semibold text-[#3b3b3b]">
-            Pesanan Terbaru
-          </h3>
-          <p className="text-sm text-[#7a7368]">
-            Daftar 5 pesanan terbaru dari konsumen
-          </p>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <div>
+            <h3 className="text-lg font-semibold text-[#3b3b3b]">
+              Pesanan Terbaru
+            </h3>
+            <p className="text-sm text-[#7a7368]">
+              Daftar 5 pesanan terbaru dari konsumen
+            </p>
+          </div>
+          <Button variant="ghost" size="sm" onClick={() => navigate("/admin/pesanan")} className="text-xs text-blue-600 font-bold uppercase tracking-widest">
+            Lihat Semua <ChevronRight size={14} className="ml-1" />
+          </Button>
         </CardHeader>
         <CardContent>
           {recentOrders.length === 0 ? (
@@ -118,19 +132,24 @@ export default function Dashboard() {
                     <th className="py-3 px-3">Nama Konsumen</th>
                     <th className="py-3 px-3">Tanggal</th>
                     <th className="py-3 px-3">Status</th>
+                    <th className="py-3 px-3 text-right">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
                   {recentOrders.map((p) => (
                     <tr
                       key={p.id}
-                      className="text-sm text-[#3b3b3b] border-b border-[#f0ebe2] hover:bg-[#f9f6ef]/60 transition-colors"
+                      onClick={() => navigate(`/admin/pesanan/${p.id}`)}
+                      className="text-sm text-[#3b3b3b] border-b border-[#f0ebe2] hover:bg-blue-50/50 cursor-pointer transition-colors group"
                     >
                       <td className="py-3 px-3 font-bold">{p.id}</td>
                       <td className="py-3 px-3 font-medium">{p.nama}</td>
                       <td className="py-3 px-3 text-xs">{p.tanggal}</td>
                       <td className="py-3 px-3">
                         <StatusBadge status={p.status} />
+                      </td>
+                      <td className="py-3 px-3 text-right">
+                        <ChevronRight size={16} className="ml-auto text-gray-300 group-hover:text-blue-500 transition-colors" />
                       </td>
                     </tr>
                   ))}
