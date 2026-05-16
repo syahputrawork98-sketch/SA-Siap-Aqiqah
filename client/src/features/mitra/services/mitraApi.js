@@ -31,4 +31,13 @@ export const mitraApi = {
     });
     return handleResponse(response);
   },
+
+  updateTimelineEventStatus: async (orderId, eventId, payload) => {
+    const response = await fetch(`${API_BASE_URL}/orders/${orderId}/timeline-events/${eventId}/status`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return handleResponse(response);
+  },
 };

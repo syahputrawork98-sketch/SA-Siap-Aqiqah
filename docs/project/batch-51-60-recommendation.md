@@ -14,8 +14,8 @@ Menghubungkan visualisasi Dashboard (Admin, Konsumen, Mitra) yang sudah ada deng
 | **Batch 53** | Konsumen Order Status Read | Sinkronisasi dashboard konsumen (daftar pesanan & detail) dengan data real dari DB. | **SELESAI** |
 | **Batch 54** | Konsumen Checkout & Create Order | Integrasi alur pemesanan (Checkout) konsumen ke Database (Write Mode). | **SELESAI** |
 | **Batch 55** | Mitra Kandang UI Integration | Integrasi dashboard Mitra Kandang untuk melihat tugas dan konfirmasi. | **SELESAI** |
-| **Batch 56** | Mitra Kurir UI Integration | Integrasi dashboard Mitra Kurir untuk update progres pengantaran. | **NEXT FOCUS** |
-| **Batch 57** | Mitra Fulfillment Detail UI | Peningkatan detail kontrol bagi Mitra untuk upload bukti & progres. | **DRAFT** |
+| **Batch 56** | Mitra Kurir UI Integration | Integrasi dashboard Mitra Kurir untuk update progres pengantaran. | **SELESAI** |
+| **Batch 57** | Cross-Role Timeline Visibility | Sinkronisasi transparansi timeline antar semua role (Admin/Konsumen/Mitra). | **NEXT FOCUS** |
 | **Batch 58** | Operational Edge Cases | Penanganan re-schedule mitra, penolakan pembayaran berulang, dll. | **DRAFT** |
 | **Batch 59** | User Feedback & Notification Sim | Simulasi feedback sistem (toast/notif) saat aksi dilakukan. | **DRAFT** |
 | **Batch 60** | UI Integration Checkpoint | Audit menyeluruh alur end-to-end dari UI hingga Database. | **DRAFT** |
