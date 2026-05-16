@@ -35,7 +35,7 @@ export default function DeveloperLoginModal({ isOpen, onClose }) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-[100] flex min-h-dvh items-center justify-center overflow-y-auto px-4 py-8 sm:py-10">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -48,7 +48,7 @@ export default function DeveloperLoginModal({ isOpen, onClose }) {
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
-          className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl"
+          className="relative my-auto w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl"
         >
           {/* Header */}
           <div className="bg-[var(--color-public-primary)] p-6 text-white text-center relative">
@@ -79,7 +79,7 @@ export default function DeveloperLoginModal({ isOpen, onClose }) {
           )}
 
           {/* Options */}
-          <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-6 grid max-h-[55dvh] grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto">
             {DEV_PERSONAS.map((persona) => {
               const meta = ROLE_META[persona.role];
               const Icon = meta.icon;
