@@ -51,9 +51,19 @@ Dokumen ini mencatat progres pengembangan pada fase Database & Operational Integ
   - Mekanisme `tryDB` untuk fallback otomatis ke mock `ORDERS` data jika database offline.
   - Pembuatan dokumentasi `docs/database/order-api-migration.md`.
 
-## Batch 46: Order Creation Database Write (Mendatang)
-- **Tujuan**: Implementasi alur penyimpanan pesanan baru (Create Order) ke dalam database.
-- **Fokus**: Menangani penulisan relasi `Order` dan `OrderItem`.
+## Batch 46: Order Creation Database Write
+- **Tujuan**: Implementasi alur penyimpanan pesanan baru (Create Order) ke dalam database Prisma.
+- **Status**: Selesai.
+- **Hasil**: 
+  - Penambahan endpoint `POST /api/orders`.
+  - Implementasi `orderService.createOrder` dengan dukungan `prisma.$transaction`.
+  - Logika otomatisasi: `orderNumber` (SIQ-YYYYMMDD-XXXX), perhitungan nominal (Total, DP, Sisa), dan status awal `PENDING_CONFIRMATION`.
+  - Penanganan error eksplisit jika database offline untuk operasi tulis.
+  - Dokumentasi diperbarui di `docs/database/order-api-migration.md`.
+
+## Batch 47: Partner Confirmation & Timeline 1 (Mendatang)
+- **Tujuan**: Implementasi alur konfirmasi mitra dan inisialisasi timeline tahap 1.
+- **Fokus**: Model `PartnerConfirmation` dan `TimelineEvent`.
 
 ---
 *Terakhir diperbarui: 16 Mei 2026*

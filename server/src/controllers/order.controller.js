@@ -44,8 +44,53 @@ const getOrderById = async (req, res) => {
   });
 };
 
+const createOrder = async (req, res) => {
+  try {
+    const { items, scheduledDate, deliveryAddress } = req.body;
+
+    // Basic validation
+    if (!items || !items.length) {
+      return res.status(400).json({
+        success: false,
+        message: "Items are required to create an order"
+      });
+    }
+    if (!scheduledDate || !deliveryAddress) {
+      return res.status(400).json({
+        success: false,
+        message: "Scheduled date and delivery address are required"
+      });
+    }
+
+    const order = await orderService.createOrder(req.body);
+    
+    res.status(201).json({
+      success: true,
+      message: "Order created successfully",
+      data: order
+    });
+  } catch (error) {
+    console.error('[CONTROLLER ERROR] createOrder:', error);
+
+    // Handle DB connection issues specifically
+    if (error.code === 'P1001' || error.message.includes('reach database')) {
+      return res.status(503).json({
+        success: false,
+        message: "Database is not ready for order write operation"
+      });
+    }
+
+    // Handle other logic errors (consumer not found, etc)
+    res.status(error.message.includes('not found') ? 404 : 500).json({
+      success: false,
+      message: error.message || "Failed to create order"
+    });
+  }
+};
+
 module.exports = {
   getSummary,
   getOrders,
   getOrderById,
+  createOrder,
 };

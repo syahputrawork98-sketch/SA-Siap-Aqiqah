@@ -2,9 +2,9 @@
 
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
-- **Versi**: 0.6.1 (Order API Read-only)
-- **Status**: Batch 45 (Completed).
-- **Blueprint**: API Order read-only terintegrasi ke Prisma dengan fallback aman.
+- **Versi**: 0.7.0 (Create Order Write Active)
+- **Status**: Batch 46 (Completed).
+- **Blueprint**: Implementasi penulisan pesanan (Create Order) ke database Prisma selesai.
 - **Klasifikasi**: **Production-Ready Target System**.
 
 ## Kondisi Saat Ini
