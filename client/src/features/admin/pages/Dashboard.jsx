@@ -144,7 +144,7 @@ export default function Dashboard() {
       {/* Info Label */}
       <div className="flex items-center justify-center gap-2 text-[10px] text-[#aaa] font-medium uppercase tracking-widest">
         <Server size={12} />
-        <span>Dashboard Status: API-Backed (Read-Only Mode)</span>
+        <span>Dashboard Status: API-Backed (Action Control Ready)</span>
       </div>
     </div>
   );

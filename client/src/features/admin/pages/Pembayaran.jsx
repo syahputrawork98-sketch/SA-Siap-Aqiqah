@@ -12,7 +12,7 @@ import { paymentApi } from "../services/paymentApi";
 import ModalValidasiPembayaran from "../ui/payments/ModalValidasiPembayaran";
 
 export default function Pembayaran() {
-  const [activeTab, setActiveTab] = useState("pengajuan");
+  const [activeTab, setActiveTab] = useState("menunggu");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,10 +21,10 @@ export default function Pembayaran() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const tabs = [
-    { id: "pengajuan", label: "Pengajuan", status: "Pengajuan" },
     { id: "menunggu", label: "Menunggu Validasi", status: "Menunggu Validasi" },
     { id: "validasi", label: "Diterima", status: "Diterima" },
     { id: "lunas", label: "Lunas", status: "Lunas" },
+    { id: "ditolak", label: "Ditolak", status: "Ditolak" },
   ];
 
   const fetchData = useCallback(async () => {
@@ -59,43 +59,36 @@ export default function Pembayaran() {
     setShowModal(false);
   };
 
-  const handleApprove = () => {
+  const handleApprove = async () => {
     if (!selectedData) return;
     setIsSubmitting(true);
     
-    // Simulate API call (Persistence remains UI-only)
-    setTimeout(() => {
-      const nextStatus = selectedData.status === "Pengajuan" ? "Menunggu Validasi" : 
-                         selectedData.status === "Menunggu Validasi" ? "Diterima" : "Lunas";
-      
-      setData(prev => prev.map(item => 
-        item.id === selectedData.id ? { ...item, status: nextStatus } : item
-      ));
-      
-      setIsSubmitting(false);
+    try {
+      await paymentApi.verifyPayment(selectedData.id, { adminNote: "Verified by Admin" });
+      await fetchData();
       setShowModal(false);
-      
-      // Auto switch tab to show progress
-      if (nextStatus === "Menunggu Validasi") setActiveTab("menunggu");
-      else if (nextStatus === "Diterima") setActiveTab("validasi");
-      else if (nextStatus === "Lunas") setActiveTab("lunas");
-    }, 800);
+    } catch (err) {
+      alert(err.message || "Gagal verifikasi pembayaran.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleReject = () => {
+  const handleReject = async () => {
     if (!selectedData) return;
+    const reason = window.prompt("Alasan penolakan pembayaran:");
+    if (reason === null) return;
+
     setIsSubmitting(true);
-    
-    // Simulate API call (Persistence remains UI-only)
-    setTimeout(() => {
-      setData(prev => prev.map(item => 
-        item.id === selectedData.id ? { ...item, status: "Pengajuan" } : item
-      ));
-      
-      setIsSubmitting(false);
+    try {
+      await paymentApi.rejectPayment(selectedData.id, { adminNote: reason });
+      await fetchData();
       setShowModal(false);
-      setActiveTab("pengajuan");
-    }, 800);
+    } catch (err) {
+      alert(err.message || "Gagal menolak pembayaran.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const currentFilteredData = getFilteredData(activeTab);
@@ -108,11 +101,12 @@ export default function Pembayaran() {
             <h2 className="text-xl font-semibold text-[#3b3b3b] tracking-wide">
               Manajemen <span className="siqah-accent-text">Pembayaran</span>
             </h2>
-            <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full flex items-center gap-1">
+            <span className="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full flex items-center gap-1">
               <Server size={10} />
-              Development API
+              Admin Action Active
             </span>
           </div>
+
           <p className="text-sm text-[#7a7368]">
             Kelola dan validasi pembayaran konsumen secara dinamis.
           </p>
@@ -172,13 +166,13 @@ export default function Pembayaran() {
           )}
           <CardHeader>
             <h3 className="text-lg font-semibold text-[#3b3b3b] capitalize">
-              {activeTab === "pengajuan"
-                ? "Pengajuan Baru"
-                : activeTab === "menunggu"
-                ? "Menunggu Validasi"
-                : activeTab === "validasi"
-                ? "Pembayaran Divalidasi"
-                : "Pembayaran Lunas"}
+               {activeTab === "menunggu"
+                 ? "Menunggu Validasi"
+                 : activeTab === "validasi"
+                 ? "Pembayaran Divalidasi"
+                 : activeTab === "lunas"
+                 ? "Pembayaran Lunas"
+                 : "Pembayaran Ditolak"}
             </h3>
           </CardHeader>
           <CardContent>
@@ -255,12 +249,6 @@ function StatusBadge({ status }) {
     "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider inline-flex items-center gap-1.5";
 
   switch (status) {
-    case "Pengajuan":
-      return (
-        <span className={`${base} bg-gray-50 text-gray-600 border border-gray-100`}>
-          <FileCheck size={12} /> {status}
-        </span>
-      );
     case "Menunggu Validasi":
       return (
         <span className={`${base} bg-amber-50 text-amber-600 border border-amber-100`}>
@@ -277,6 +265,12 @@ function StatusBadge({ status }) {
       return (
         <span className={`${base} bg-emerald-50 text-emerald-600 border border-emerald-100`}>
           <CreditCard size={12} /> {status}
+        </span>
+      );
+    case "Ditolak":
+      return (
+        <span className={`${base} bg-red-50 text-red-600 border border-red-100`}>
+          <AlertCircle size={12} /> {status}
         </span>
       );
     default:

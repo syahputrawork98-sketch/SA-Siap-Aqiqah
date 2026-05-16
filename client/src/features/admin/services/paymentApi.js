@@ -45,4 +45,23 @@ export const paymentApi = {
     
     return payload;
   },
+
+  verifyPayment: async (paymentId, payload) => {
+    const response = await fetch(`${API_BASE_URL}/payments/${paymentId}/verify`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return handleResponse(response);
+  },
+
+  rejectPayment: async (paymentId, payload) => {
+    const response = await fetch(`${API_BASE_URL}/payments/${paymentId}/reject`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return handleResponse(response);
+  },
 };
+

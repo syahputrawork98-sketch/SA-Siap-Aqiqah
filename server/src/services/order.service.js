@@ -48,18 +48,22 @@ const mapOrder = (o) => ({
     alamat: o.deliveryAddress
   },
   pembayaran: {
+    id: o.payments?.[0]?.id || null,
     status: o.payments?.[0]?.status || 'UNPAID',
     metode: 'Transfer Bank',
     bukti: o.payments?.[0]?.proofImageUrl || null
   },
   konfirmasiMitra: o.partnerConfirmations?.map(c => ({
+    id: c.id,
     peran: c.partnerRole,
     status: c.status,
     catatan: c.notesPartner,
     waktu: c.confirmedAt
   })) || [],
   progress: o.timelineEvents?.map(e => ({
+    id: e.id,
     tahap: e.title,
+    eventKey: e.eventKey,
     mitra: e.updatedBy,
     waktu: e.status === 'DONE' ? e.updatedAt.toISOString() : (e.status === 'IN_PROGRESS' ? 'Sedang Diproses' : 'Menunggu'),
     foto: e.proofImageUrl || 'https://placehold.co/600x400?text=No+Photo',

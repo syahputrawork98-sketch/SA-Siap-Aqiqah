@@ -28,4 +28,32 @@ export const orderApi = {
     const response = await fetch(`${API_BASE_URL}/orders/${id}`);
     return handleResponse(response);
   },
+
+  updatePartnerConfirmationStatus: async (orderId, confirmationId, payload) => {
+    const response = await fetch(`${API_BASE_URL}/orders/${orderId}/partner-confirmations/${confirmationId}/status`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return handleResponse(response);
+  },
+
+  createTimelineEvent: async (orderId, payload) => {
+    const response = await fetch(`${API_BASE_URL}/orders/${orderId}/timeline-events`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return handleResponse(response);
+  },
+
+  updateTimelineEventStatus: async (orderId, eventId, payload) => {
+    const response = await fetch(`${API_BASE_URL}/orders/${orderId}/timeline-events/${eventId}/status`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return handleResponse(response);
+  },
 };
+
