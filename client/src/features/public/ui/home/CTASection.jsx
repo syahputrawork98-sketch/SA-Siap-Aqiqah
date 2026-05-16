@@ -18,7 +18,7 @@ const CTASection = () => {
       >
         <SectionHeading
           title="Wujudkan Aqiqah Penuh Berkah Bersama Siqah"
-          titleClassName="text-[var(--color-public-accent)]"
+          titleClassName="text-white drop-shadow-lg"
           descriptionClassName="siqah-public-text-on-dark-soft"
           description="Percayakan momen berharga keluarga Anda pada Siqah, layanan aqiqah yang berkualitas, terpercaya, dan siap memberi pengalaman terbaik dari kandang hingga rumah."
           className="mb-10"
@@ -40,11 +40,7 @@ const CTASection = () => {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        className="siqah-public-overlay-soft-glow absolute inset-0"
-        animate={{ opacity: [0.2, 0.4, 0.2] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
+
     </PublicSection>
   );
 };

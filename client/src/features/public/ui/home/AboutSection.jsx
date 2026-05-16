@@ -35,7 +35,7 @@ const AboutSection = () => {
           <SectionHeading
             title="Tentang Siqah"
             align="left"
-            titleClassName="text-[var(--color-public-accent)]"
+            titleClassName="text-white drop-shadow-lg"
             descriptionClassName="siqah-public-text-on-dark-soft mx-0"
             description="Siqah lahir dari doa dan harapan para orang tua Muslim yang ingin menjalankan aqiqah dengan mudah, amanah, dan penuh keberkahan."
           />
