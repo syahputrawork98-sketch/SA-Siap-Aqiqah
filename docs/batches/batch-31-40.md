@@ -26,10 +26,19 @@ Dokumen ini mencatat progres pengembangan pada fase Hardening, Persona Expansion
   - Dokumen alur: Pesanan Konsumen, Konfirmasi Mitra, Timeline Fulfillment, Pembayaran & Payout, Admin/Superadmin, dan Matriks Status.
   - Sinkronisasi roadmap dan status proyek.
 
-## Batch 38 - 40: Database Readiness & Contract Prep
-- **Tujuan**: Persiapan transisi dari In-memory mock ke Database fisik.
+## Batch 38: Database Contract Mapping
+- **Tujuan**: Menerjemahkan alur bisnis menjadi kontrak data (entitas, relasi, enum).
+- **Status**: Selesai.
+- **Hasil**: 
+  - Pembuatan folder `docs/database/`.
+  - Dokumen: `database-contract-map.md`, `entity-relationship-notes.md`, `status-enum-contract.md`.
+  - Pemetaan 15+ entitas utama dan 8+ grup enum status.
+  - Dasar untuk pembuatan schema Prisma di batch mendatang.
+
+## Batch 39 - 40: Schema Initialization & Database Setup
+- **Tujuan**: Implementasi fisik Database menggunakan Prisma & PostgreSQL.
 - **Status**: Mendatang.
-- **Fokus**: Standarisasi skema database dan validasi field API.
+- **Fokus**: Inisialisasi skema, migrasi, dan sinkronisasi field kontrak.
 
 ---
 *Terakhir diperbarui: 16 Mei 2026*

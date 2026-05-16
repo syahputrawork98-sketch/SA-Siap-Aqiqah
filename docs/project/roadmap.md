@@ -23,8 +23,9 @@ Menghubungkan seluruh modul operasional ke API dan merancang persistensi data.
 Membangun sistem yang benar-benar siap pakai secara nyata.
 
 - **Batch 31-36**: **Backoffice Polish & Persona Expansion** - Perbaikan UI publik dan perluasan sistem testing Developer Persona (6 Role).
-- **Batch 37**: **Business Flow Blueprint** - Dokumentasi alur bisnis end-to-end (Consumer, Partner, Payment, Fulfillment).
-- **Batch 38-45**: **Database Foundation** - Implementasi Database fisik (PostgreSQL) menggunakan Prisma ORM.
+- **Batch 37**: **Business Flow Blueprint** - Dokumentasi alur bisnis end-to-end (Consumer, Partner, Payment, Fulfillment). (SELESAI)
+- **Batch 38**: **Database Contract Mapping** - Pemetaan entitas, relasi, dan enum data berdasarkan alur bisnis. (SELESAI)
+- **Batch 39-45**: **Database Foundation** - Implementasi Database fisik (PostgreSQL) menggunakan Prisma ORM. (NEXT FOCUS)
 - **Otentikasi Produksi**: Implementasi Auth, JWT, dan RBAC nyata bagi User/Mitra.
 - **Storage Produksi**: Implementasi Server/Cloud Storage untuk bukti transfer.
 - **Audit & Logging**: Implementasi Audit Trail untuk transaksi finansial.
