@@ -1,7 +1,10 @@
 import BackofficeTopbar from "@/shared/ui/BackofficeTopbar";
 import { BACKOFFICE_ROLE_UI } from "@/shared/config/backoffice";
+import { useNavigate } from "react-router-dom";
+import { clearPersona } from "@/app/router/developerPersona";
 
 export default function BackofficeRoleTopbar({ role = "admin" }) {
+  const navigate = useNavigate();
   const roleUi = BACKOFFICE_ROLE_UI[role] ?? BACKOFFICE_ROLE_UI.admin;
   
   // Simplified for Batch 7: Using static data until hooks are migrated
@@ -13,12 +16,18 @@ export default function BackofficeRoleTopbar({ role = "admin" }) {
     notificationCount: fallbackTopbar.notificationCount ?? fallbackTopbar.notifications?.length ?? 0,
   };
 
+  const handleLogout = () => {
+    clearPersona();
+    navigate("/");
+  };
+
   return (
     <BackofficeTopbar
       panelRole={roleUi.panelRole}
       profile={topbarData.profile}
       notificationCount={topbarData.notificationCount}
       notifications={topbarData.notifications}
+      onLogout={handleLogout}
     />
   );
 }

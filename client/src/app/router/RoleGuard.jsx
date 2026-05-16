@@ -1,5 +1,5 @@
-import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import { getPersona } from "@/app/router/developerPersona";
 
 /**
  * RoleGuard (Mock/Development)
@@ -10,7 +10,7 @@ const RoleGuard = ({ allowedRoles, children }) => {
   const location = useLocation();
   
   // Mock auth: Get role from localStorage or default to public
-  const currentRole = localStorage.getItem('user_role') || 'public';
+  const currentRole = getPersona();
 
   // Check if role is allowed
   const isAllowed = allowedRoles.includes(currentRole);

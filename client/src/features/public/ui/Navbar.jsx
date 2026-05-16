@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FiLogIn } from "react-icons/fi";
+import { FiLogIn, FiUser } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import { PublicButton } from "@/shared/ui";
 import DeveloperLoginModal from "./DeveloperLoginModal";
+import { getPersona, isPersonaActive } from "@/app/router/developerPersona";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const location = useLocation();
+  const currentRole = getPersona();
+  const isActive = isPersonaActive();
+
+  // Ubah background saat scroll
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -18,13 +28,6 @@ const Navbar = () => {
     { name: "Paket", path: "/paket" },
     { name: "Kontak", path: "/kontak" },
   ];
-
-  // Ubah background saat scroll
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <motion.nav
@@ -41,20 +44,20 @@ const Navbar = () => {
         {/* ========== KIRI: MENU DESKTOP ========== */}
         <ul className="hidden lg:flex flex-1 justify-start items-center gap-8 font-sans font-semibold text-[var(--color-public-primary)]">
           {menuItems.map((item, idx) => {
-            const isActive = location.pathname === item.path;
+            const isActiveLink = location.pathname === item.path;
             return (
               <li key={idx} className="relative group">
                 <Link
                   to={item.path}
                   className={`transition-colors duration-300 ${
-                    isActive ? "siqah-public-accent" : "siqah-public-link"
+                    isActiveLink ? "siqah-public-accent" : "siqah-public-link"
                   }`}
                 >
                   {item.name}
                 </Link>
                 <span
                   className={`absolute left-0 -bottom-1 h-[2px] bg-[var(--color-public-accent)] transition-all duration-300 ${
-                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                    isActiveLink ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 ></span>
               </li>
@@ -75,12 +78,20 @@ const Navbar = () => {
 
         {/* ========== KANAN: LOGIN & MENU MOBILE ========== */}
         <div className="flex items-center gap-4">
+          {isActive && (
+            <div className="hidden md:flex items-center gap-1.5 px-3 py-1 bg-[var(--color-public-primary)]/10 border border-[var(--color-public-primary)]/20 rounded-full text-[var(--color-public-primary)] text-[10px] font-bold uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+              {currentRole}
+            </div>
+          )}
+          
           <PublicButton
             variant="solid"
             className="hidden lg:flex"
             onClick={() => setLoginModalOpen(true)}
           >
-            <FiLogIn className="text-lg" /> Login
+            {isActive ? <FiUser className="text-lg" /> : <FiLogIn className="text-lg" />}
+            {isActive ? "Dashboard" : "Login"}
           </PublicButton>
 
           {/* Tombol toggle mobile */}
@@ -115,14 +126,14 @@ const Navbar = () => {
           className="lg:hidden flex flex-col items-center gap-6 mt-4 pb-4 font-semibold text-[var(--color-public-primary)] bg-[var(--color-public-overlay-mobile)] backdrop-blur-md rounded-xl shadow-md"
         >
           {menuItems.map((item, idx) => {
-            const isActive = location.pathname === item.path;
+            const isActiveLink = location.pathname === item.path;
             return (
               <li key={idx}>
                 <Link
                   to={item.path}
                   onClick={() => setMobileOpen(false)}
                   className={`text-lg ${
-                    isActive ? "siqah-public-accent" : "siqah-public-link"
+                    isActiveLink ? "siqah-public-accent" : "siqah-public-link"
                   }`}
                 >
                   {item.name}
@@ -130,16 +141,27 @@ const Navbar = () => {
               </li>
             );
           })}
-          <PublicButton
-            variant="solid"
-            className="flex w-[80%]"
-            onClick={() => {
-              setMobileOpen(false);
-              setLoginModalOpen(true);
-            }}
-          >
-            <FiLogIn className="text-lg" /> Login
-          </PublicButton>
+          
+          <div className="w-full px-8 flex flex-col items-center gap-4">
+            {isActive && (
+              <div className="flex items-center gap-2 px-4 py-1.5 bg-[var(--color-public-primary)]/10 border border-[var(--color-public-primary)]/20 rounded-full text-[var(--color-public-primary)] text-xs font-bold uppercase tracking-widest">
+                <span className="w-2 h-2 bg-green-500 rounded-full" />
+                {currentRole} Mode
+              </div>
+            )}
+            
+            <PublicButton
+              variant="solid"
+              className="flex w-full"
+              onClick={() => {
+                setMobileOpen(false);
+                setLoginModalOpen(true);
+              }}
+            >
+              {isActive ? <FiUser className="text-lg" /> : <FiLogIn className="text-lg" />}
+              {isActive ? "Dashboard / Switch" : "Login"}
+            </PublicButton>
+          </div>
         </motion.ul>
       )}
 
