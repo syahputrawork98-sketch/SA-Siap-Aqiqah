@@ -7,4 +7,9 @@ router.get('/', orderController.getOrders);
 router.get('/:id', orderController.getOrderById);
 router.post('/', orderController.createOrder);
 
+// Partner Confirmations (Timeline 1)
+router.get('/:id/partner-confirmations', orderController.getPartnerConfirmations);
+router.post('/:id/partner-confirmations', orderController.createPartnerConfirmations);
+router.patch('/:id/partner-confirmations/:confirmationId/status', orderController.updatePartnerConfirmationStatus);
+
 module.exports = router;

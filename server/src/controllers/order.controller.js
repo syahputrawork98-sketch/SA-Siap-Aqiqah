@@ -88,9 +88,97 @@ const createOrder = async (req, res) => {
   }
 };
 
+const getPartnerConfirmations = async (req, res) => {
+  try {
+    const confirmations = await orderService.getPartnerConfirmations(req.params.id);
+    res.json({
+      success: true,
+      message: "Partner confirmations retrieved successfully",
+      data: confirmations
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Failed to retrieve partner confirmations"
+    });
+  }
+};
+
+const createPartnerConfirmations = async (req, res) => {
+  try {
+    const { confirmations } = req.body;
+    if (!confirmations || !confirmations.length) {
+      return res.status(400).json({
+        success: false,
+        message: "Confirmations payload is required"
+      });
+    }
+
+    const results = await orderService.createPartnerConfirmations(req.params.id, confirmations);
+    res.status(201).json({
+      success: true,
+      message: "Partner confirmations created/updated successfully",
+      data: results
+    });
+  } catch (error) {
+    console.error('[CONTROLLER ERROR] createPartnerConfirmations:', error);
+    if (error.code === 'P1001' || error.message.includes('reach database')) {
+      return res.status(503).json({
+        success: false,
+        message: "Database is not ready for partner confirmation write operation"
+      });
+    }
+    res.status(error.message.includes('not found') ? 404 : 500).json({
+      success: false,
+      message: error.message || "Failed to create partner confirmations"
+    });
+  }
+};
+
+const updatePartnerConfirmationStatus = async (req, res) => {
+  try {
+    const { status, notesPartner } = req.body;
+    const validStatuses = ['PENDING', 'ACCEPTED', 'REJECTED', 'NEED_RESCHEDULE'];
+    
+    if (!status || !validStatuses.includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: `Invalid status. Must be one of: ${validStatuses.join(', ')}`
+      });
+    }
+
+    const updated = await orderService.updatePartnerConfirmationStatus(
+      req.params.id, 
+      req.params.confirmationId, 
+      { status, notesPartner }
+    );
+
+    res.json({
+      success: true,
+      message: "Partner confirmation status updated successfully",
+      data: updated
+    });
+  } catch (error) {
+    console.error('[CONTROLLER ERROR] updatePartnerConfirmationStatus:', error);
+    if (error.code === 'P1001' || error.message.includes('reach database')) {
+      return res.status(503).json({
+        success: false,
+        message: "Database is not ready for partner confirmation write operation"
+      });
+    }
+    res.status(error.message.includes('not found') ? 404 : 500).json({
+      success: false,
+      message: error.message || "Failed to update partner confirmation status"
+    });
+  }
+};
+
 module.exports = {
   getSummary,
   getOrders,
   getOrderById,
   createOrder,
+  getPartnerConfirmations,
+  createPartnerConfirmations,
+  updatePartnerConfirmationStatus,
 };

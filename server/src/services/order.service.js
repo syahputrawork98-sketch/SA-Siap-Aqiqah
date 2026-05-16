@@ -234,9 +234,119 @@ const createOrder = async (payload) => {
   return mapOrder(newOrder);
 };
 
+const resolveOrder = async (idOrNumber) => {
+  return await prisma.order.findFirst({
+    where: {
+      OR: [
+        { id: idOrNumber },
+        { orderNumber: idOrNumber }
+      ]
+    }
+  });
+};
+
+const getPartnerConfirmations = async (idOrNumber) => {
+  const order = await resolveOrder(idOrNumber);
+  if (!order) return [];
+
+  return await tryDB(async () => {
+    const confirmations = await prisma.partnerConfirmation.findMany({
+      where: { orderId: order.id },
+      include: { partner: true }
+    });
+    return confirmations.map(c => ({
+      id: c.id,
+      orderId: c.orderId,
+      orderNumber: order.orderNumber,
+      partnerId: c.partnerId,
+      partnerName: c.partner.businessName,
+      partnerRole: c.partnerRole,
+      status: c.status,
+      notesPartner: c.notesPartner,
+      confirmedAt: c.confirmedAt,
+      createdAt: c.createdAt,
+      updatedAt: c.updatedAt
+    }));
+  }, []);
+};
+
+const createPartnerConfirmations = async (idOrNumber, confirmations) => {
+  const order = await resolveOrder(idOrNumber);
+  if (!order) throw new Error('Order not found');
+
+  return await prisma.$transaction(async (tx) => {
+    const results = [];
+    for (const c of confirmations) {
+      // Idempotency check
+      const existing = await tx.partnerConfirmation.findFirst({
+        where: {
+          orderId: order.id,
+          partnerId: c.partnerId,
+          partnerRole: c.partnerRole
+        }
+      });
+
+      if (existing) {
+        results.push(existing);
+      } else {
+        const created = await tx.partnerConfirmation.create({
+          data: {
+            orderId: order.id,
+            partnerId: c.partnerId,
+            partnerRole: c.partnerRole,
+            status: 'PENDING'
+          }
+        });
+        results.push(created);
+      }
+    }
+    return results;
+  });
+};
+
+const updatePartnerConfirmationStatus = async (idOrNumber, confirmationId, payload) => {
+  const order = await resolveOrder(idOrNumber);
+  if (!order) throw new Error('Order not found');
+
+  return await prisma.$transaction(async (tx) => {
+    const updated = await tx.partnerConfirmation.update({
+      where: { id: confirmationId },
+      data: {
+        status: payload.status,
+        notesPartner: payload.notesPartner,
+        confirmedAt: payload.status === 'ACCEPTED' ? new Date() : null
+      }
+    });
+
+    // Check for Order Status Transition
+    const allConfirmations = await tx.partnerConfirmation.findMany({
+      where: { orderId: order.id }
+    });
+
+    const requiredRoles = ['MITRA_KANDANG', 'MITRA_CATERING', 'MITRA_KURIR'];
+    const acceptedRoles = allConfirmations
+      .filter(c => c.status === 'ACCEPTED')
+      .map(c => c.partnerRole);
+
+    const allAccepted = requiredRoles.every(role => acceptedRoles.includes(role));
+
+    if (allAccepted && order.status === 'PENDING_CONFIRMATION') {
+      await tx.order.update({
+        where: { id: order.id },
+        data: { status: 'AWAITING_PAYMENT' }
+      });
+    }
+
+    return updated;
+  });
+};
+
 module.exports = {
   getSummary,
   getAllOrders,
   getOrderById,
   createOrder,
+  getPartnerConfirmations,
+  createPartnerConfirmations,
+  updatePartnerConfirmationStatus,
 };

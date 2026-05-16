@@ -61,9 +61,18 @@ Dokumen ini mencatat progres pengembangan pada fase Database & Operational Integ
   - Penanganan error eksplisit jika database offline untuk operasi tulis.
   - Dokumentasi diperbarui di `docs/database/order-api-migration.md`.
 
-## Batch 47: Partner Confirmation & Timeline 1 (Mendatang)
-- **Tujuan**: Implementasi alur konfirmasi mitra dan inisialisasi timeline tahap 1.
-- **Fokus**: Model `PartnerConfirmation` dan `TimelineEvent`.
+## Batch 47: Partner Confirmation & Timeline 1
+- **Tujuan**: Implementasi alur konfirmasi mitra dan transisi status order ke database.
+- **Status**: Selesai.
+- **Hasil**: 
+  - Penambahan endpoint `GET`, `POST`, dan `PATCH` untuk `PartnerConfirmation`.
+  - Implementasi logika transisi otomatis status `Order` menjadi `AWAITING_PAYMENT` setelah semua peran wajib (Kandang, Catering, Kurir) memberikan status `ACCEPTED`.
+  - Penanganan idempotensi pada pembuatan record konfirmasi.
+  - Dokumentasi baru di `docs/database/partner-confirmation-api.md`.
+
+## Batch 48: Manual Payment Verification (Mendatang)
+- **Tujuan**: Implementasi pencatatan dan verifikasi pembayaran manual oleh admin.
+- **Fokus**: Model `Payment` dan transisi status ke `PROCESSING`.
 
 ---
 *Terakhir diperbarui: 16 Mei 2026*
