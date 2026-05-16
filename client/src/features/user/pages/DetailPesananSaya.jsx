@@ -110,7 +110,7 @@ const DetailPesananSaya = () => {
                 </div>
               </div>
               <p className="text-sm leading-relaxed text-[var(--color-text-default)]/70 italic">
-                "{order.konsumen?.alamat || 'Alamat tidak tersedia'}"
+                &quot;{order.konsumen?.alamat || 'Alamat tidak tersedia'}&quot;
               </p>
             </PublicCard>
           </div>

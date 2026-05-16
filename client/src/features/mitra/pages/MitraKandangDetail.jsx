@@ -111,7 +111,7 @@ const MitraKandangDetail = () => {
                 </div>
                 <div className="space-y-1 sm:col-span-2">
                   <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Catatan Konsumen</span>
-                  <p className="text-sm text-gray-600 italic">"{order.notesConsumer || 'Tidak ada catatan khusus'}"</p>
+                  <p className="text-sm text-gray-600 italic">&quot;{order.notesConsumer || 'Tidak ada catatan khusus'}&quot;</p>
                 </div>
               </div>
             </PublicCard>
@@ -126,8 +126,8 @@ const MitraKandangDetail = () => {
                   <p className="text-xs text-gray-400">Untuk koordinasi logistik/pengiriman</p>
                 </div>
               </div>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                {order.konsumen?.alamat || 'Alamat tidak tersedia'}
+              <p className="text-sm leading-relaxed text-[var(--color-text-default)]/70 italic">
+                &quot;{order.konsumen?.alamat || 'Alamat tidak tersedia'}&quot;
               </p>
             </PublicCard>
 

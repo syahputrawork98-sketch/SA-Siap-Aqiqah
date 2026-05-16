@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Card, CardHeader, CardContent } from "@/shared/ui";
 import { Search, Filter, Eye, CheckCircle, Clock, Package, RefreshCw, AlertCircle, Server } from "lucide-react";
 import { orderApi } from "../services/orderApi";
@@ -11,6 +11,7 @@ export default function Pesanan() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [meta, setMeta] = useState(null);
+  const navigate = useNavigate();
 
   const fetchData = useCallback(async () => {
     setLoading(true);

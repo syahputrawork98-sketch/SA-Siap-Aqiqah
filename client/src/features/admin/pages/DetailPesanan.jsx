@@ -361,7 +361,7 @@ export default function DetailPesanan() {
                          <StatusBadge status={conf?.status || "PENDING"} type="confirmation" />
                          {conf?.waktu && <span className="text-[9px] text-[#aaa]">{new Date(conf.waktu).toLocaleDateString()}</span>}
                       </div>
-                      {conf?.catatan && <p className="text-[11px] text-[#7a7368] italic mt-1">"{conf.catatan}"</p>}
+                      {conf?.catatan && <p className="text-[11px] text-[#7a7368] italic mt-1">&quot;{conf.catatan}&quot;</p>}
                     </div>
                   </div>
                 );
@@ -536,7 +536,6 @@ function StatusBadge({ status, type = "order" }) {
         </span>
       );
     case "PENDING_CONFIRMATION":
-    case "Menunggu Konfirmasi":
       return (
         <span className={`${base} bg-amber-50 text-amber-600 border border-amber-100`}>
           <Clock size={14} /> Menunggu Konfirmasi
