@@ -1,5 +1,4 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import PublicLayout from '@/app/layouts/PublicLayout';
 import RoleLayout from '@/app/layouts/RoleLayout';
 import RoleGuard from '@/app/router/RoleGuard';
@@ -8,6 +7,8 @@ import { ROLES } from '@/app/router/accessPolicy';
 import { publicRoutes } from './publicRoutes';
 import { adminRoutes } from './adminRoutes';
 import { superadminRoutes } from './superadminRoutes';
+import { userRoutes } from './userRoutes';
+import { mitraKandangRoutes, mitraCateringRoutes, mitraKurirRoutes } from './mitraRoutes';
 
 export const createAppRouterConfig = () => [
   // Public Routes
@@ -37,6 +38,66 @@ export const createAppRouterConfig = () => [
       </RoleGuard>
     ),
     children: superadminRoutes,
+  },
+
+  // User Routes
+  {
+    path: '/user',
+    element: (
+      <RoleGuard allowedRoles={[ROLES.USER]}>
+        <div className="bg-[#fdfbf8] min-h-screen">
+          <main className="p-5 md:p-8">
+            <Outlet />
+          </main>
+        </div>
+      </RoleGuard>
+    ),
+    children: userRoutes,
+  },
+
+  // Mitra Kandang Routes
+  {
+    path: '/mitra-kandang',
+    element: (
+      <RoleGuard allowedRoles={[ROLES.MITRA_KANDANG]}>
+        <div className="bg-[#fdfbf8] min-h-screen">
+          <main className="p-5 md:p-8">
+            <Outlet />
+          </main>
+        </div>
+      </RoleGuard>
+    ),
+    children: mitraKandangRoutes,
+  },
+
+  // Mitra Catering Routes
+  {
+    path: '/mitra-catering',
+    element: (
+      <RoleGuard allowedRoles={[ROLES.MITRA_CATERING]}>
+        <div className="bg-[#fdfbf8] min-h-screen">
+          <main className="p-5 md:p-8">
+            <Outlet />
+          </main>
+        </div>
+      </RoleGuard>
+    ),
+    children: mitraCateringRoutes,
+  },
+
+  // Mitra Kurir Routes
+  {
+    path: '/mitra-kurir',
+    element: (
+      <RoleGuard allowedRoles={[ROLES.MITRA_KURIR]}>
+        <div className="bg-[#fdfbf8] min-h-screen">
+          <main className="p-5 md:p-8">
+            <Outlet />
+          </main>
+        </div>
+      </RoleGuard>
+    ),
+    children: mitraKurirRoutes,
   },
 
   // Fallback
