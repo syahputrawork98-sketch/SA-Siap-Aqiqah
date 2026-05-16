@@ -44,10 +44,14 @@ Dokumen ini mencatat progres pengembangan pada fase Hardening, Persona Expansion
   - Definisi 13 Model utama (User, Order, Payment, TimelineEvent, dll).
   - Skema siap untuk inisialisasi database PostgreSQL di fase berikutnya.
 
-## Batch 40: Schema Initialization & Database Setup
-- **Tujuan**: Inisialisasi fisik Database PostgreSQL, migrasi awal, dan integrasi API operasional.
-- **Status**: Mendatang.
-- **Fokus**: Menjalankan migrasi database dan menghubungkan controller ke DB via Prisma.
+## Batch 40: Documentation Checkpoint & Roadmap Preparation
+- **Tujuan**: Sinkronisasi hasil pengerjaan Batch 37-39 dan penyiapan draf rencana untuk Batch 41-50.
+- **Status**: Selesai.
+- **Hasil**: 
+  - Dokumen: `database-foundation-checkpoint.md` & `batch-41-50-discussion-draft.md`.
+  - Penyelarasan Roadmap Fase 5 (Batch 41-50).
+  - Konfirmasi status: Database belum aktif secara runtime, migrasi belum dijalankan.
+  - Tidak ada perubahan pada source code client/server.
 
 ---
 *Terakhir diperbarui: 16 Mei 2026*
