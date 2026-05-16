@@ -44,7 +44,7 @@ Kami telah menyediakan beberapa script di `package.json` untuk mempermudah opera
   ```bash
   npm run prisma:migrate
   ```
-- **Run Seed**: Mengisi database dengan data awal (User, Paket, Mitra).
+- **Run Seed**: Mengisi database dengan data awal (User, Paket, Mitra). Struktur seed kini bersifat modular per tabel untuk kontrol yang lebih baik.
   ```bash
   npm run prisma:seed
   ```

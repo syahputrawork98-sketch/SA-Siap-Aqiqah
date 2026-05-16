@@ -22,7 +22,17 @@ Dokumen ini mencatat progres pengembangan pada fase Database & Operational Integ
   - Pembuatan dokumentasi `docs/database/seed-data-baseline.md`.
   - Penyelarasan PORT di `.env.example` ke 3001.
 
-## Batch 43: API Data Master Migration (Mendatang)
+## Batch 43: Seed Modularization
+- **Tujuan**: Merapikan script seed agar modular per tabel dan meningkatkan idempotensi.
+- **Status**: Selesai.
+- **Hasil**: 
+  - Refactor `seed.js` menjadi orchestrator.
+  - Pemisahan 7 modul seed di folder `server/prisma/seeds/`.
+  - Peningkatan keamanan data (idempotency) pada `Animal` dan `CateringMenu`.
+  - Pembuatan 8 dokumen detail di `docs/database/seed-tables/`.
+  - Sinkronisasi `seed-data-baseline.md` sebagai indeks dokumen.
+
+## Batch 44: API Data Master Migration (Mendatang)
 - **Tujuan**: Menghubungkan modul Data Master (Mitra, Paket, Hewan) ke database fisik.
 - **Fokus**: Refactor service/controller untuk menggunakan PrismaClient.
 

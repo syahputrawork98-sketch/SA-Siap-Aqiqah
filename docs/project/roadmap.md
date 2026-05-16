@@ -29,7 +29,8 @@ Membangun sistem yang benar-benar siap pakai secara nyata.
 - **Batch 40**: **Documentation Checkpoint** - Sinkronisasi perencanaan data dan persiapan rencana Batch 41-50. (SELESAI)
 - **Batch 41**: **Database Local Initialization** - Setup Prisma, environment, dan validasi skema lokal. (SELESAI)
 - **Batch 42**: **Seed Data Baseline** - Implementasi script seed data untuk persona dev dan data master. (SELESAI)
-- **Batch 43-50**: **Operational Integration** - Migrasi API operasional ke database fisik secara bertahap. (NEXT FOCUS)
+- **Batch 43**: **Seed Modularization** - Refactor script seed menjadi modular per tabel dan dokumentasi detail. (SELESAI)
+- **Batch 44-50**: **Operational Integration** - Migrasi API operasional ke database fisik secara bertahap. (NEXT FOCUS)
 - **Otentikasi Produksi**: Implementasi Auth, JWT, dan RBAC nyata bagi User/Mitra.
 - **Storage Produksi**: Implementasi Server/Cloud Storage untuk bukti transfer.
 - **Audit & Logging**: Implementasi Audit Trail untuk transaksi finansial.
