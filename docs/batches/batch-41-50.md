@@ -79,9 +79,18 @@ Dokumen ini mencatat progres pengembangan pada fase Database & Operational Integ
   - Logika transisi otomatis status `Order` menjadi `PROCESSING` setelah pembayaran DP diverifikasi.
   - Dokumentasi baru di `docs/database/payment-api-migration.md`.
 
-## Batch 49: Fulfillment Timeline / Timeline 2 (Mendatang)
-- **Tujuan**: Implementasi pencatatan progress fulfillment oleh mitra.
-- **Fokus**: Model `TimelineEvent` dan update status order.
+## Batch 49: Fulfillment Timeline / Timeline 2
+- **Tujuan**: Implementasi alur fulfillment progres pesanan ke database Prisma.
+- **Status**: Selesai.
+- **Hasil**: 
+  - Penambahan endpoint `GET`, `POST`, dan `PATCH` (status & visibility) untuk `TimelineEvent`.
+  - Implementasi logika transisi status `Order` berdasarkan kemajuan event (`ON_DELIVERY`, `DELIVERED`, `COMPLETED`).
+  - Proteksi penulisan timeline: Hanya diperbolehkan untuk pesanan dengan status minimal `PROCESSING`.
+  - Dokumentasi baru di `docs/database/fulfillment-timeline-api.md`.
+
+## Batch 50: Transactional Finalization (Mendatang)
+- **Tujuan**: Finalisasi dan audit seluruh alur transaksional DB sebelum transisi ke UI.
+- **Fokus**: Integrasi sisa contract, audit field, dan persiapan serah terima roadmap.
 
 ---
 *Terakhir diperbarui: 16 Mei 2026*

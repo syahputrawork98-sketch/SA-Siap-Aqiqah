@@ -173,6 +173,131 @@ const updatePartnerConfirmationStatus = async (req, res) => {
   }
 };
 
+const getTimelineEvents = async (req, res) => {
+  try {
+    const { visibility } = req.query;
+    const events = await orderService.getTimelineEvents(req.params.id, { visibility });
+    res.json({
+      success: true,
+      message: "Timeline events retrieved successfully",
+      data: events
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Failed to retrieve timeline events"
+    });
+  }
+};
+
+const createTimelineEvent = async (req, res) => {
+  try {
+    const { eventKey, title } = req.body;
+    if (!eventKey || !title) {
+      return res.status(400).json({
+        success: false,
+        message: "eventKey and title are required"
+      });
+    }
+
+    const event = await orderService.createTimelineEvent(req.params.id, req.body);
+    res.status(201).json({
+      success: true,
+      message: "Timeline event created successfully",
+      data: event
+    });
+  } catch (error) {
+    console.error('[CONTROLLER ERROR] createTimelineEvent:', error);
+    if (error.code === 'P1001' || error.message.includes('reach database')) {
+      return res.status(503).json({
+        success: false,
+        message: "Database is not ready for timeline write operation"
+      });
+    }
+    const status = error.message.includes('not ready') ? 400 : (error.message.includes('not found') ? 404 : 500);
+    res.status(status).json({
+      success: false,
+      message: error.message || "Failed to create timeline event"
+    });
+  }
+};
+
+const updateTimelineEventStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const validStatuses = ['WAITING', 'IN_PROGRESS', 'DONE', 'ISSUE'];
+    
+    if (!status || !validStatuses.includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: `Invalid status. Must be one of: ${validStatuses.join(', ')}`
+      });
+    }
+
+    const updated = await orderService.updateTimelineEventStatus(
+      req.params.id, 
+      req.params.eventId, 
+      req.body
+    );
+
+    res.json({
+      success: true,
+      message: "Timeline event status updated successfully",
+      data: updated
+    });
+  } catch (error) {
+    console.error('[CONTROLLER ERROR] updateTimelineEventStatus:', error);
+    if (error.code === 'P1001' || error.message.includes('reach database')) {
+      return res.status(503).json({
+        success: false,
+        message: "Database is not ready for timeline write operation"
+      });
+    }
+    res.status(error.message.includes('not found') ? 404 : 500).json({
+      success: false,
+      message: error.message || "Failed to update timeline event status"
+    });
+  }
+};
+
+const updateTimelineEventVisibility = async (req, res) => {
+  try {
+    const { visibility } = req.body;
+    const validVisibility = ['INTERNAL', 'PUBLISHED'];
+    
+    if (!visibility || !validVisibility.includes(visibility)) {
+      return res.status(400).json({
+        success: false,
+        message: `Invalid visibility. Must be one of: ${validVisibility.join(', ')}`
+      });
+    }
+
+    const updated = await orderService.updateTimelineEventVisibility(
+      req.params.id, 
+      req.params.eventId, 
+      req.body
+    );
+
+    res.json({
+      success: true,
+      message: "Timeline event visibility updated successfully",
+      data: updated
+    });
+  } catch (error) {
+    console.error('[CONTROLLER ERROR] updateTimelineEventVisibility:', error);
+    if (error.code === 'P1001' || error.message.includes('reach database')) {
+      return res.status(503).json({
+        success: false,
+        message: "Database is not ready for timeline write operation"
+      });
+    }
+    res.status(error.message.includes('not found') ? 404 : 500).json({
+      success: false,
+      message: error.message || "Failed to update timeline event visibility"
+    });
+  }
+};
+
 module.exports = {
   getSummary,
   getOrders,
@@ -181,4 +306,8 @@ module.exports = {
   getPartnerConfirmations,
   createPartnerConfirmations,
   updatePartnerConfirmationStatus,
+  getTimelineEvents,
+  createTimelineEvent,
+  updateTimelineEventStatus,
+  updateTimelineEventVisibility,
 };

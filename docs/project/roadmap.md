@@ -35,7 +35,8 @@ Membangun sistem yang benar-benar siap pakai secara nyata.
 - **Batch 46**: **Order Creation Write** - Implementasi penulisan pesanan baru ke model Order dan OrderItem. (SELESAI)
 - **Batch 47**: **Partner Confirmation Baseline** - Implementasi alur konfirmasi mitra dan transisi status order. (SELESAI)
 - **Batch 48**: **Manual Payment Verification** - Implementasi pencatatan dan verifikasi pembayaran manual oleh admin. (SELESAI)
-- **Batch 49-50**: **Fulfillment Timeline** - Implementasi alur fulfillment (Timeline 2) dan penyelesaian transaksional. (NEXT FOCUS)
+- **Batch 49**: **Fulfillment Timeline** - Implementasi alur pelacakan progres pengerjaan pesanan oleh mitra. (SELESAI)
+- **Batch 50**: **Transactional Finalization** - Audit integrasi transaksional dan persiapan transisi ke UI. (NEXT FOCUS)
 - **Otentikasi Produksi**: Implementasi Auth, JWT, dan RBAC nyata bagi User/Mitra.
 - **Storage Produksi**: Implementasi Server/Cloud Storage untuk bukti transfer.
 - **Audit & Logging**: Implementasi Audit Trail untuk transaksi finansial.

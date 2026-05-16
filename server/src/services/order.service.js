@@ -341,6 +341,97 @@ const updatePartnerConfirmationStatus = async (idOrNumber, confirmationId, paylo
   });
 };
 
+const getTimelineEvents = async (idOrNumber, filters = {}) => {
+  const order = await resolveOrder(idOrNumber);
+  if (!order) return [];
+
+  return await tryDB(async () => {
+    const where = { orderId: order.id };
+    if (filters.visibility) {
+      where.visibility = filters.visibility;
+    }
+
+    return await prisma.timelineEvent.findMany({
+      where,
+      orderBy: { createdAt: 'asc' }
+    });
+  }, []);
+};
+
+const createTimelineEvent = async (idOrNumber, payload) => {
+  const order = await resolveOrder(idOrNumber);
+  if (!order) throw new Error('Order not found');
+
+  // Business Rule: Only for orders in PROCESSING or later
+  const allowedStatuses = ['PROCESSING', 'ON_DELIVERY', 'DELIVERED', 'COMPLETED'];
+  if (!allowedStatuses.includes(order.status)) {
+    throw new Error('Order is not ready for fulfillment timeline');
+  }
+
+  return await prisma.timelineEvent.create({
+    data: {
+      orderId: order.id,
+      eventKey: payload.eventKey,
+      title: payload.title,
+      description: payload.description,
+      status: payload.status || 'WAITING',
+      visibility: payload.visibility || 'INTERNAL',
+      proofImageUrl: payload.proofImageUrl || null,
+      updatedBy: payload.updatedBy || 'SYSTEM'
+    }
+  });
+};
+
+const updateTimelineEventStatus = async (idOrNumber, eventId, payload) => {
+  const order = await resolveOrder(idOrNumber);
+  if (!order) throw new Error('Order not found');
+
+  return await prisma.$transaction(async (tx) => {
+    const event = await tx.timelineEvent.update({
+      where: { id: eventId },
+      data: {
+        status: payload.status,
+        description: payload.description,
+        proofImageUrl: payload.proofImageUrl,
+        updatedBy: payload.updatedBy,
+        updatedAt: new Date()
+      }
+    });
+
+    // Order Status Transition Logic
+    if (payload.status === 'DONE') {
+      let newOrderStatus = null;
+
+      if (event.eventKey === 'COURIER_PICKUP') {
+        newOrderStatus = 'ON_DELIVERY';
+      } else if (event.eventKey === 'DELIVERED') {
+        newOrderStatus = 'DELIVERED';
+      } else if (event.eventKey === 'COMPLETED') {
+        newOrderStatus = 'COMPLETED';
+      }
+
+      if (newOrderStatus && order.status !== newOrderStatus) {
+        await tx.order.update({
+          where: { id: order.id },
+          data: { status: newOrderStatus }
+        });
+      }
+    }
+
+    return event;
+  });
+};
+
+const updateTimelineEventVisibility = async (idOrNumber, eventId, payload) => {
+  return await prisma.timelineEvent.update({
+    where: { id: eventId },
+    data: {
+      visibility: payload.visibility,
+      updatedAt: new Date()
+    }
+  });
+};
+
 module.exports = {
   getSummary,
   getAllOrders,
@@ -349,4 +440,8 @@ module.exports = {
   getPartnerConfirmations,
   createPartnerConfirmations,
   updatePartnerConfirmationStatus,
+  getTimelineEvents,
+  createTimelineEvent,
+  updateTimelineEventStatus,
+  updateTimelineEventVisibility,
 };
