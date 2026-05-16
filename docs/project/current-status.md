@@ -2,9 +2,9 @@
 
 ## Ringkasan Project
 - **Nama Project**: SA-Siap-Aqiqah
-- **Versi**: 0.6.0 (Guarded DB Integration)
-- **Status**: Batch 44 (Completed).
-- **Blueprint**: API Data Master read-only terintegrasi ke Prisma dengan fallback aman.
+- **Versi**: 0.6.1 (Order API Read-only)
+- **Status**: Batch 45 (Completed).
+- **Blueprint**: API Order read-only terintegrasi ke Prisma dengan fallback aman.
 - **Klasifikasi**: **Production-Ready Target System**.
 
 ## Kondisi Saat Ini

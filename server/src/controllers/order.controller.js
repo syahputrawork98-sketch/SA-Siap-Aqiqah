@@ -1,7 +1,7 @@
 const orderService = require('../services/order.service');
 
-const getSummary = (req, res) => {
-  const summary = orderService.getSummary();
+const getSummary = async (req, res) => {
+  const summary = await orderService.getSummary();
   res.json({
     success: true,
     message: "Orders summary retrieved successfully",
@@ -9,12 +9,12 @@ const getSummary = (req, res) => {
   });
 };
 
-const getOrders = (req, res) => {
+const getOrders = async (req, res) => {
   const { search, status, tanggal } = req.query;
   const filters = { search, status, tanggal };
   
-  const allOrders = orderService.getAllOrders({});
-  const filteredOrders = orderService.getAllOrders(filters);
+  const allOrders = await orderService.getAllOrders({});
+  const filteredOrders = await orderService.getAllOrders(filters);
 
   res.json({
     success: true,
@@ -28,8 +28,8 @@ const getOrders = (req, res) => {
   });
 };
 
-const getOrderById = (req, res) => {
-  const order = orderService.getOrderById(req.params.id);
+const getOrderById = async (req, res) => {
+  const order = await orderService.getOrderById(req.params.id);
   if (!order) {
     return res.status(404).json({
       success: false,

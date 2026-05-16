@@ -42,9 +42,18 @@ Dokumen ini mencatat progres pengembangan pada fase Database & Operational Integ
   - Mapping data Prisma ke shape data mock untuk menjaga kompatibilitas frontend.
   - Pembuatan dokumentasi `docs/database/data-master-api-migration.md`.
 
-## Batch 45: Order Flow Database Integration (Mendatang)
-- **Tujuan**: Mengaktifkan penyimpanan pesanan baru ke dalam database Prisma.
-- **Fokus**: Refactor Order service/controller.
+## Batch 45: Order API Migration (Read-only)
+- **Tujuan**: Menghubungkan modul Order/Pesanan ke database Prisma secara read-only dengan guarded fallback.
+- **Status**: Selesai.
+- **Hasil**: 
+  - Refactor `order.service.js` dan `order.controller.js` untuk mendukung async/await dan Prisma integration.
+  - Implementasi pemetaan (mapping) dari Prisma model `Order` ke bentuk response yang diharapkan frontend.
+  - Mekanisme `tryDB` untuk fallback otomatis ke mock `ORDERS` data jika database offline.
+  - Pembuatan dokumentasi `docs/database/order-api-migration.md`.
+
+## Batch 46: Order Creation Database Write (Mendatang)
+- **Tujuan**: Implementasi alur penyimpanan pesanan baru (Create Order) ke dalam database.
+- **Fokus**: Menangani penulisan relasi `Order` dan `OrderItem`.
 
 ---
 *Terakhir diperbarui: 16 Mei 2026*
