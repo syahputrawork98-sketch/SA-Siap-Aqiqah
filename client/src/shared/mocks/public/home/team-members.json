@@ -3,28 +3,28 @@
     "id": 1,
     "nama": "Ahmad Fauzi",
     "role": "Tim Kandang",
-    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761263221/team-kandang_tzqlbo.jpg",
+    "img": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=800",
     "quote": "Merawat hewan dengan penuh tanggung jawab dan kasih sayang."
   },
   {
     "id": 2,
     "nama": "Siti Rahmah",
     "role": "Mitra Catering",
-    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761263221/team-catering_f3e0ro.jpg",
+    "img": "https://images.unsplash.com/photo-1581299327733-5097ea683f31?auto=format&fit=crop&q=80&w=800",
     "quote": "Menyiapkan hidangan aqiqah dengan cita rasa terbaik dan penuh keberkahan."
   },
   {
     "id": 3,
     "nama": "Rizky Pratama",
     "role": "Kurir Siqah",
-    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761263221/team-kurir_rjhecz.jpg",
+    "img": "https://images.unsplash.com/photo-1595215943157-5f588a6655ce?auto=format&fit=crop&q=80&w=800",
     "quote": "Mengantar pesanan aqiqah Anda dengan aman, cepat, dan ramah."
   },
   {
     "id": 4,
     "nama": "Nur Aulia",
     "role": "Admin dan Layanan Pelanggan",
-    "img": "https://res.cloudinary.com/dcida9qys/image/upload/v1761263221/team-admin_wtrdcj.jpg",
+    "img": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800",
     "quote": "Membantu setiap pelanggan dengan pelayanan yang jujur dan amanah."
   }
 ]

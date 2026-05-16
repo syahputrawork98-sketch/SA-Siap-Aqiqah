@@ -15,6 +15,7 @@ import Laporan from '@/features/admin/pages/Laporan';
 import Notifikasi from '@/features/admin/pages/Notifikasi';
 import Pengaturan from '@/features/admin/pages/Pengaturan';
 import { Navigate } from 'react-router-dom';
+import { BackofficeHoldState } from '@/shared/ui';
 
 export const adminRoutes = [
   {
@@ -31,15 +32,45 @@ export const adminRoutes = [
   },
   {
     path: 'pembayaran',
-    element: <Pembayaran />,
+    children: [
+      {
+        index: true,
+        element: <Pembayaran />,
+      },
+      {
+        path: 'pengajuan',
+        element: <BackofficeHoldState title="Data Pengajuan Pembayaran" />,
+      },
+      {
+        path: 'invoice',
+        element: <BackofficeHoldState title="Manajemen Invoice" />,
+      },
+      {
+        path: 'data',
+        element: <BackofficeHoldState title="History Pembayaran" />,
+      },
+    ],
   },
   {
-    path: 'mitra',
-    element: <Mitra />,
-  },
-  {
-    path: 'konsumen',
-    element: <Konsumen />,
+    path: 'users',
+    children: [
+      {
+        index: true,
+        element: <Navigate to="konsumen" replace />,
+      },
+      {
+        path: 'mitra',
+        element: <Mitra />,
+      },
+      {
+        path: 'konsumen',
+        element: <Konsumen />,
+      },
+      {
+        path: 'staff',
+        element: <BackofficeHoldState title="Manajemen Staff" />,
+      },
+    ],
   },
   {
     path: 'laporan',

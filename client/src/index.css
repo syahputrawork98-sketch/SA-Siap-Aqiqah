@@ -59,7 +59,7 @@
   --color-public-surface-border: rgb(185 145 77 / 24%);
   --color-public-surface-border-strong: rgb(255 255 255 / 70%);
   
-  --image-public-background: url("https://res.cloudinary.com/dcida9qys/image/upload/v1761094380/background-siqah_vcgib5.jpg");
+  --image-public-background: url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1920");
 
   /* Component intent tokens */
   --color-field-bg: var(--color-bg-surface, #ffffff);

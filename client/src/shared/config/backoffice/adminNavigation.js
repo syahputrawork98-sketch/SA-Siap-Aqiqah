@@ -28,7 +28,7 @@ export const ADMIN_SIDEBAR_MENU = [
     name: "Pembayaran",
     icon: CreditCard,
     children: [
-      { name: "Dashboard Pembayaran", path: "/admin/data-master/pembayaran/dashboard" },
+      { name: "Dashboard Pembayaran", path: "/admin/pembayaran" },
       { name: "Data Pengajuan", path: "/admin/pembayaran/pengajuan" },
       { name: "Data Invoice", path: "/admin/pembayaran/invoice" },
       { name: "Data Pembayaran", path: "/admin/pembayaran/data" },
@@ -38,10 +38,9 @@ export const ADMIN_SIDEBAR_MENU = [
     name: "Manajemen User",
     icon: Users,
     children: [
-      { name: "Dashboard User", path: "/admin/data-master/users" },
-      { name: "Data Mitra Catering", path: "/admin/data-master/mitra/catering" },
-      { name: "Data Kurir", path: "/admin/data-master/mitra/kurir" },
-      { name: "Data konsumen", path: "/admin/data-master/konsumen" },
+      { name: "Data Konsumen", path: "/admin/users/konsumen" },
+      { name: "Data Mitra", path: "/admin/users/mitra" },
+      { name: "Data Staff", path: "/admin/users/staff" },
     ],
   },
   { name: "Laporan", icon: BarChart3, path: "/admin/laporan" },

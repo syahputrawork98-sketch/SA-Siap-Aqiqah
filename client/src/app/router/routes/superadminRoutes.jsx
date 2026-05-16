@@ -6,6 +6,7 @@ import Konsumen from '@/features/admin/pages/Konsumen';
 import Laporan from '@/features/admin/pages/Laporan';
 import Notifikasi from '@/features/admin/pages/Notifikasi';
 import Pengaturan from '@/features/admin/pages/Pengaturan';
+import { BackofficeHoldState } from '@/shared/ui';
 
 export const superadminRoutes = [
   {
@@ -15,6 +16,14 @@ export const superadminRoutes = [
   {
     path: 'users',
     element: <Users />,
+  },
+  {
+    path: 'data-master',
+    element: <BackofficeHoldState title="Global Data Master" />,
+  },
+  {
+    path: 'monitoring',
+    element: <BackofficeHoldState title="Sistem Monitoring & Log" />,
   },
   {
     path: 'mitra',
